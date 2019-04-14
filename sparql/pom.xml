@@ -6,9 +6,11 @@
 
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>sparql</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
+    <name>SPARQL</name>
+    <description>SPARQL Query, Update Module</description>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
