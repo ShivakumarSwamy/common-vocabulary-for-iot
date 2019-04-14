@@ -14,6 +14,7 @@
     <modules>
         <module>sparql</module>
         <module>vocabulary</module>
+        <module>forms</module>
     </modules>
 
 </project>
