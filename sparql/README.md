@@ -7,7 +7,10 @@
           - Insert Data
     - Subject, Property, Obj(Object)
         - String Literal
-
+- SPARQL Query
+     - Query Form
+        - Ask
+        
 ### Version 0.1.0
 
 - SPARQL Query
