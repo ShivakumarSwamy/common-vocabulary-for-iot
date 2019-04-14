@@ -5,6 +5,7 @@ import lombok.NonNull;
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriples;
 import de.uni.stuttgart.ipvs.sparql.prologue.Prologue;
 import de.uni.stuttgart.ipvs.sparql.triple.Triple;
+import de.uni.stuttgart.ipvs.sparql.update.UpdateForm;
 import de.uni.stuttgart.ipvs.sparql.variable.Variable;
 
 import java.util.Collection;
@@ -19,6 +20,7 @@ public class SparqlUtils {
     }
 
     public static String joinPrologues(@NonNull Collection<Prologue> prologues) {
+        if (prologues.isEmpty()) return "";
 
         return joinCollection(prologues, Prologue::getString, "\n");
     }
@@ -56,6 +58,10 @@ public class SparqlUtils {
     public static String joinGraphPatternNotTriples(Collection<GraphPatternNotTriples> graphPatternNotTriples) {
         return joinCollection(graphPatternNotTriples, GraphPatternNotTriples::getString, "");
 
+    }
+
+    public static String joinUpdateForms(Collection<UpdateForm> updateForms) {
+        return joinCollection(updateForms, UpdateForm::getString, " ;\n");
     }
 
     private static <T> String joinCollection(Collection<T> elements,
