@@ -22,7 +22,7 @@ class SelectQueryTest {
                 StrExpression.lowercase(QueryVariable.of("propertyLabel"), QueryVariable.of("propertyName"));
         QueryVariable propertyValue = QueryVariable.of("propertyValue");
 
-        WhereClause whereClause = new WhereClause(TestUtils.tripleSameSubject());
+        WhereClause whereClause = new WhereClause(TestUtils.userHasId());
         whereClause.add(TestUtils.tripleRdfLabelExample());
         whereClause.add(TestUtils.union());
         whereClause.add(TestUtils.minusOf());

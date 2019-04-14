@@ -3,6 +3,7 @@ package de.uni.stuttgart.ipvs.sparql.utils;
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriples;
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriplesImpl;
 import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
+import de.uni.stuttgart.ipvs.sparql.terminal.StringLiteral;
 import de.uni.stuttgart.ipvs.sparql.triple.Triple;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleImpl;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubject;
@@ -49,13 +50,12 @@ public class TestUtils {
         return GraphPatternNotTriplesImpl.minusOf(triple);
     }
 
-    public static TripleSameSubject tripleSameSubject() {
+    public static TripleSameSubject userHasId() {
 
         QueryVariable property = QueryVariable.of("property");
         QueryVariable user = QueryVariable.of("user");
         QueryVariable object = QueryVariable.of("object");
         QueryVariable userId = QueryVariable.of("userId");
-        QueryVariable propertyLabel = QueryVariable.of("propertyLabel");
 
         TripleSameSubjectImpl tripleSameSubject = new TripleSameSubjectImpl(user);
         tripleSameSubject.add(PrefixedName.of("rdf", "type"),
@@ -72,5 +72,21 @@ public class TestUtils {
         QueryVariable propertyLabel = QueryVariable.of("propertyLabel");
 
         return new TripleImpl(property, PrefixedName.of("rdfs", "label"), propertyLabel);
+    }
+
+    public static TripleSameSubject userDetails() {
+        PrefixedName usr = PrefixedName.of("usr", "9e59445c-0150-4cd3-84c8-324b5a39b4b2");
+        PrefixedName consumer = PrefixedName.of("usr", "consumer");
+
+        TripleSameSubjectImpl tripleSameSubject = new TripleSameSubjectImpl(usr);
+        tripleSameSubject.add(PrefixedName.of("rdf", "type"), consumer);
+        tripleSameSubject.add(PrefixedName.of("usr", "hasRole"), consumer);
+        tripleSameSubject.add(PrefixedName.of("usr", "hasId"),
+                StringLiteral.of("9e59445c-0150-4cd3-84c8-324b5a39b4b2"));
+
+        tripleSameSubject.add(PrefixedName.of("usr", "hasUsername"),
+                StringLiteral.of("username-password"));
+
+        return tripleSameSubject;
     }
 }
