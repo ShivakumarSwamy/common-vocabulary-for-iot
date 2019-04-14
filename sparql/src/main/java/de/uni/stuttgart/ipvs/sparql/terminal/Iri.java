@@ -14,8 +14,7 @@ public class Iri implements Subject, Property, Obj {
         this.referent = referent;
     }
 
-    @Override
-    public String getValue() {
+    public String getReferent() {
         return this.referent;
     }
 

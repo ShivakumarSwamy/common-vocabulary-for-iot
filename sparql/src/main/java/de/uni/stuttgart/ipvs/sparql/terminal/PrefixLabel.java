@@ -2,9 +2,7 @@ package de.uni.stuttgart.ipvs.sparql.terminal;
 
 import lombok.NonNull;
 
-import de.uni.stuttgart.ipvs.sparql.SparqlSyntax;
-
-public class PrefixLabel implements SparqlSyntax {
+public class PrefixLabel {
 
     private final String label;
 
@@ -16,7 +14,6 @@ public class PrefixLabel implements SparqlSyntax {
         return label;
     }
 
-    @Override
     public String getString() {
         return this.label + ":";
     }
