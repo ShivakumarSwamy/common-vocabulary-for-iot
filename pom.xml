@@ -13,6 +13,7 @@
     <description>A Common Vocabulary for IoT</description>
     <modules>
         <module>sparql</module>
+        <module>vocabulary</module>
     </modules>
 
 </project>
