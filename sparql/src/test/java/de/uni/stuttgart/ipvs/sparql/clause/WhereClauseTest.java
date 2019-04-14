@@ -11,8 +11,7 @@ class WhereClauseTest {
     @Test
     void getStringEmpty() {
         WhereClause clause = new WhereClause();
-        assertEquals("WHERE {\n" +
-                "}", clause.getString());
+        assertEquals("WHERE {}", clause.getString());
     }
 
     @Test
