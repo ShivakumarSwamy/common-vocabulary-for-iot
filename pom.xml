@@ -6,9 +6,13 @@
 
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>common-vocabulary-for-iot-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>A Common Vocabulary for IoT</name>
     <description>A Common Vocabulary for IoT</description>
+    <modules>
+        <module>sparql</module>
+    </modules>
 
 </project>
