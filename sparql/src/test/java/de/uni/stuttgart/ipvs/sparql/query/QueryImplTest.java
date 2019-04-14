@@ -30,7 +30,7 @@ class QueryImplTest {
 
         QueryVariable propertyValue = QueryVariable.of("propertyValue");
 
-        WhereClause whereClause = new WhereClause(TestUtils.tripleSameSubject());
+        WhereClause whereClause = new WhereClause(TestUtils.userHasId());
         whereClause.add(TestUtils.tripleRdfLabelExample());
         whereClause.add(TestUtils.union());
         whereClause.add(TestUtils.minusOf());

@@ -22,7 +22,7 @@ public class WhereClause {
     }
 
     public WhereClause(@NonNull TripleSameSubject tripleSameSubject) {
-        this.triples.addAll(tripleSameSubject.getTriples());
+        this(tripleSameSubject.getTriples());
     }
 
     public void add(@NonNull TripleSameSubject tripleSameSubject) {
@@ -38,6 +38,9 @@ public class WhereClause {
     }
 
     public String getString() {
+
+        if (this.isEmpty()) return "WHERE {}";
+
         String finalString = "WHERE {\n" + SparqlUtils.joinTriples(this.triples);
 
         finalString += this.graphPatternNotTriples.isEmpty() ? "" :
@@ -48,5 +51,9 @@ public class WhereClause {
 
     public Set<Triple> getTriples() {
         return this.triples;
+    }
+
+    public boolean isEmpty() {
+        return this.triples.isEmpty() && this.graphPatternNotTriples.isEmpty();
     }
 }

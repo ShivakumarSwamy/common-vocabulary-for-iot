@@ -11,13 +11,12 @@ class WhereClauseTest {
     @Test
     void getStringEmpty() {
         WhereClause clause = new WhereClause();
-        assertEquals("WHERE {\n" +
-                "}", clause.getString());
+        assertEquals("WHERE {}", clause.getString());
     }
 
     @Test
     void getStringTriplesBlock() {
-        WhereClause clause = new WhereClause(TestUtils.tripleSameSubject());
+        WhereClause clause = new WhereClause(TestUtils.userHasId());
         clause.add(TestUtils.tripleRdfLabelExample());
         assertEquals("WHERE {\n" +
                 "?user rdf:type usr:user .\n" +
@@ -30,7 +29,7 @@ class WhereClauseTest {
     @Test
     void getStringTriplesBlockWithUnion() {
 
-        WhereClause clause = new WhereClause(TestUtils.tripleSameSubject());
+        WhereClause clause = new WhereClause(TestUtils.userHasId());
         clause.add(TestUtils.tripleRdfLabelExample());
         clause.add(TestUtils.union());
 
