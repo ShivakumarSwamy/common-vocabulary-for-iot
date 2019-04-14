@@ -10,5 +10,22 @@ NOTE:
     - prefix label: `rdf`
     - iri: `http://www.w3.org/1999/02/22-rdf-syntax-ns#`
     
-    - Property
+    - local names:
         - type
+        
+
+- [RDFS](http://www.w3.org/2000/01/rdf-schema# "RDFS")
+    - prefix label: `rdfs`
+    - iri: `http://www.w3.org/2000/01/rdf-schema#`
+    
+    - local names:
+        - Class
+        - label
+
+- [OWL](http://www.w3.org/2002/07/owl# "OWL")
+    - prefix label: `owl`
+    - iri: `http://www.w3.org/2002/07/owl#`
+    
+    - local names:
+        - DatatypeProperty
+        - ObjectProperty
