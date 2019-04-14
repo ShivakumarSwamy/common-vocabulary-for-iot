@@ -29,3 +29,13 @@ NOTE:
     - local names:
         - DatatypeProperty
         - ObjectProperty
+        
+- USER
+    - prefix label: `usr`
+    - iri: `http://www.example.com/vocabulary/user#`
+    
+    - local names:
+        - user
+        - hasId
+        - hasUsername
+        - hasPassword
