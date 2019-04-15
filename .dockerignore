@@ -1,0 +1,10 @@
+.idea/
+
+forms/
+sparql/
+users-management/
+vocabulary/
+
+pom.xml
+README.md
+.gitignore
