@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.config;
+package de.uni.stuttgart.ipvs.ilv.config;
 
 public interface DataSourceProperties {
 

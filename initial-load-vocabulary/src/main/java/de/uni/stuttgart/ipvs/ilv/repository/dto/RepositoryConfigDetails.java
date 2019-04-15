@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.repository.dto;
+package de.uni.stuttgart.ipvs.ilv.repository.dto;
 
 import lombok.Data;
 
