@@ -13,6 +13,7 @@
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>users-management</artifactId>
     <version>0.1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>Users Management</name>
 
@@ -26,6 +27,12 @@
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
 
         <version.lombok>1.18.0</version.lombok>
+
+        <version.sparql.query.results>0.1.0</version.sparql.query.results>
+        <version.forms>0.1.0</version.forms>
+        <version.vocabulary>0.1.0</version.vocabulary>
+        <version.initial.load.vocabulary>0.1.0-SNAPSHOT</version.initial.load.vocabulary>
+
     </properties>
 
     <dependencies>
@@ -40,6 +47,31 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>sparql-query-results</artifactId>
+            <version>${version.sparql.query.results}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>forms</artifactId>
+            <version>${version.forms}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>vocabulary</artifactId>
+            <version>${version.vocabulary}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>initial-load-vocabulary</artifactId>
+            <version>${version.initial.load.vocabulary}</version>
         </dependency>
 
     </dependencies>
