@@ -15,6 +15,7 @@
         <module>sparql</module>
         <module>vocabulary</module>
         <module>forms</module>
+        <module>sparql-query-results</module>
     </modules>
 
 </project>
