@@ -1,0 +1,7 @@
+version: "3"
+services:
+  db:
+    container_name: users
+    image: graph-db-free:8.9.0
+    ports:
+      - "7205:7200"
