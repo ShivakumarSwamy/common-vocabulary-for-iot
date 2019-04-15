@@ -16,6 +16,7 @@
         <module>vocabulary</module>
         <module>forms</module>
         <module>users-management</module>
+        <module>initial-load-vocabulary</module>
     </modules>
 
 </project>
