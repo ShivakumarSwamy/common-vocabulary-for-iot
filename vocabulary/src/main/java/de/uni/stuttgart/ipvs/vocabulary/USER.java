@@ -8,7 +8,8 @@ import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 public class USER {
 
     private static final Iri USER_IRI;
-    private static final PrefixLabel USER_PREFIX_LABEL;
+
+    public static final PrefixLabel USER_PREFIX_LABEL;
 
     public static final PrefixDeclaration USER_PREFIX_DECLARATION;
 
@@ -17,6 +18,7 @@ public class USER {
     public static final PrefixedName USER_HAS_ID;
     public static final PrefixedName USER_HAS_USERNAME;
     public static final PrefixedName USER_HAS_PASSWORD;
+    public static final PrefixedName USER_HAS_ROLE;
 
     static {
         USER_IRI = new Iri("http://www.example.com/vocabulary/user#");
@@ -29,6 +31,8 @@ public class USER {
         USER_HAS_ID = new PrefixedName(USER_PREFIX_LABEL, "hasId");
         USER_HAS_USERNAME = new PrefixedName(USER_PREFIX_LABEL, "hasUsername");
         USER_HAS_PASSWORD = new PrefixedName(USER_PREFIX_LABEL, "hasPassword");
+
+        USER_HAS_ROLE = new PrefixedName(USER_PREFIX_LABEL, "hasRole");
 
     }
 }
