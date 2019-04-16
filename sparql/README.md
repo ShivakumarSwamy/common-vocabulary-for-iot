@@ -1,5 +1,10 @@
 # SPARQL Module
 
+√
+### Version 0.2.1
+
+- GraphUpdate prologues setter added
+
 ### Version 0.2.0
 - SPARQL Update
     - Update Form

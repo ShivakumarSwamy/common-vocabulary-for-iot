@@ -43,6 +43,10 @@ public class GraphUpdate implements UpdateForm {
         this.triples.addAll(tripleSameSubject.getTriples());
     }
 
+    public void setPrologues(Collection<Prologue> prologues) {
+        this.prologues = prologues;
+    }
+
     @Override
     public Collection<Prologue> getPrologues() {
         return this.prologues;
