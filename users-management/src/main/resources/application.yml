@@ -3,6 +3,10 @@ server:
 
 debug: true
 
+spring:
+  devtools:
+    restart:
+      enabled: true
 data:
   source:
     properties:
@@ -52,6 +56,10 @@ logging:
 
 spring:
   profiles: docker
+  devtools:
+    restart:
+      enabled: false
+
 data:
   source:
     properties:

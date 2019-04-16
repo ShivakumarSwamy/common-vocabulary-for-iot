@@ -5,42 +5,43 @@ import lombok.NonNull;
 import de.uni.stuttgart.ipvs.results.SelectResults;
 import de.uni.stuttgart.ipvs.results.VariableBinding;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static de.uni.stuttgart.ipvs.um.users.persistence.QVExprConstants.*;
+
 public class UserUtils {
 
-    private static final Map<String, BiConsumer<UserDetailsImpl, String>> USER_PROPERTY_FUNCTION_MAP;
 
     private static final Function<Map<String, VariableBinding>, String> GROUP_BY_USER_ID;
+    private static final Function<Map<String, VariableBinding>, String> PROPERTY_NAME;
+    private static final Function<Map<String, VariableBinding>, String> PROPERTY_VALUE;
 
 
     private UserUtils() {
         throw new IllegalStateException(getClass().getName());
     }
 
-    static Map<String, List<Map<String, VariableBinding>>> getUsersFromSelectResults(@NonNull SelectResults selectResults) {
+    static Collection<Map<String, String>> getUsersPropertyMapFromSelectResults(@NonNull SelectResults selectResults) {
 
         var collect = selectResults.getResults().getBindings().stream()
-                .collect(Collectors.groupingBy(GROUP_BY_USER_ID));
+                .collect(Collectors.groupingBy(GROUP_BY_USER_ID, Collectors.toMap(PROPERTY_NAME, PROPERTY_VALUE)));
 
-        return collect;
+        return collect.values();
     }
 
-
     static {
-        USER_PROPERTY_FUNCTION_MAP = new HashMap<>();
-        USER_PROPERTY_FUNCTION_MAP.put("id", UserDetailsImpl::setId);
-        USER_PROPERTY_FUNCTION_MAP.put("username", UserDetailsImpl::setUsername);
-        USER_PROPERTY_FUNCTION_MAP.put("role", UserDetailsImpl::setRole);
 
         GROUP_BY_USER_ID = stringVariableBindingMap ->
-                stringVariableBindingMap.get(QVExprConstants.QV_USER_ID.getVariableName()).getValue();
+                stringVariableBindingMap.get(QV_USER_ID.getVariableName()).getValue();
 
+        PROPERTY_NAME = stringVariableBindingMap ->
+                stringVariableBindingMap.get(QV_PROPERTY_NAME.getVariableName()).getValue();
+
+        PROPERTY_VALUE = stringVariableBindingMap ->
+                stringVariableBindingMap.get(QV_PROPERTY_VALUE.getVariableName()).getValue();
 
 
     }

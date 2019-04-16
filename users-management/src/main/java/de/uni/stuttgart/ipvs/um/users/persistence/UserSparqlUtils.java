@@ -63,7 +63,9 @@ class UserSparqlUtils {
         tripleSameSubject.add(USER_HAS_USERNAME, StringLiteral.of(userDetails.getUsername()));
         tripleSameSubject.add(USER_HAS_PASSWORD, StringLiteral.of(userDetails.getPassword()));
 
-        tripleSameSubject.add(USER_HAS_ROLE, PrefixedName.of(USER_PREFIX_LABEL, userDetails.getRole()));
+        var roleClass = PrefixedName.of(USER_PREFIX_LABEL, userDetails.getRole());
+        tripleSameSubject.add(USER_HAS_ROLE, roleClass);
+        tripleSameSubject.add(RDF.RDF_TYPE, roleClass);
 
         return tripleSameSubject;
     }

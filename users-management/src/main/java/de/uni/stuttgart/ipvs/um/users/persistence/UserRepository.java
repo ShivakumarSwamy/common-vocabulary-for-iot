@@ -10,9 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import de.uni.stuttgart.ipvs.ilv.HttpEntityFactory;
 import de.uni.stuttgart.ipvs.ilv.config.DataSourceEndpoints;
 import de.uni.stuttgart.ipvs.results.SelectResults;
-import de.uni.stuttgart.ipvs.results.VariableBinding;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 @Repository
@@ -28,12 +27,12 @@ public class UserRepository {
         this.dataSourceEndpoints = dataSourceEndpoints;
     }
 
-    public Map<String, List<Map<String, VariableBinding>>> findAllUsers() {
+    public Collection<Map<String, String>> findAllUsers() {
         var allUsersQueryString = UserQueryUtils.findAllUsers();
 
         var selectResults = selectQuery(allUsersQueryString, "READ: ALL USERS");
 
-        return UserUtils.getUsersFromSelectResults(selectResults);
+        return UserUtils.getUsersPropertyMapFromSelectResults(selectResults);
     }
 
     public void save(UserDetailsImpl userDetails) {

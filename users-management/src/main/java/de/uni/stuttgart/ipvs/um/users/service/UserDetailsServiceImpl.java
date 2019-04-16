@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import de.uni.stuttgart.ipvs.um.response.ResultsSet;
 import de.uni.stuttgart.ipvs.um.users.dto.UserCreateDTO;
 import de.uni.stuttgart.ipvs.um.users.persistence.UserDetailsImpl;
 import de.uni.stuttgart.ipvs.um.users.persistence.UserRepository;
@@ -29,6 +30,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepository.save(userDetails);
 
         return userDetails.getId();
+    }
+
+    public ResultsSet findAllUsers() {
+
+        return new ResultsSet<>(this.userRepository.findAllUsers());
     }
 
     @Override

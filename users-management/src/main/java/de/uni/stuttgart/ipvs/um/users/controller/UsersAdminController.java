@@ -4,25 +4,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.uni.stuttgart.ipvs.results.VariableBinding;
-import de.uni.stuttgart.ipvs.um.users.persistence.UserRepository;
-
-import java.util.List;
-import java.util.Map;
+import de.uni.stuttgart.ipvs.um.response.ResultsSet;
+import de.uni.stuttgart.ipvs.um.users.service.UserDetailsServiceImpl;
 
 @RestController
-@RequestMapping("/api/admin/accounts")
+@RequestMapping("/api/admin/users")
 public class UsersAdminController {
 
-    private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public UsersAdminController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UsersAdminController(UserDetailsServiceImpl userDetailsService) {
+
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping
-    public Map<String, List<Map<String, VariableBinding>>> getAllUsers() {
-        return this.userRepository.findAllUsers();
+    public ResultsSet getAllUsers() {
+        return this.userDetailsService.findAllUsers();
     }
 
 }
