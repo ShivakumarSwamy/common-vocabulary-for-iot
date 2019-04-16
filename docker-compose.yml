@@ -5,3 +5,8 @@ services:
     image: graph-db-free:8.9.0
     ports:
       - "7205:7200"
+  app-users-management:
+    container_name: users-management
+    image: users-management:0.1.0
+    depends_on:
+      - db

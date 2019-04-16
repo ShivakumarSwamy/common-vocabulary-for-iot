@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+---
+
+debug: true
+
+spring:
+  profiles: dev
+
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "localhost"
+      port: "7205"
+      repository-id: "users"
+      initial-load-file-location: "user-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/users"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/users/statements"
+      query-repository-statements: "/repositories/users"
+logging:
+  level:
+    de:
+      uni:
+        stuttgart:
+          ipvs:
+            ilv:
+              repository: "DEBUG"
+
+---
+
+spring:
+  profiles: docker
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "users"
+      port: "7200"
+      repository-id: "users"
+      initial-load-file-location: "user-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/users"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/users/statements"
+      query-repository-statements: "/repositories/users"
+debug: true
