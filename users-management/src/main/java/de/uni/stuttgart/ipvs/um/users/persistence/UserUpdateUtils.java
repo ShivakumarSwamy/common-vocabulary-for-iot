@@ -1,6 +1,7 @@
 package de.uni.stuttgart.ipvs.um.users.persistence;
 
 import de.uni.stuttgart.ipvs.sparql.update.GraphUpdate;
+import de.uni.stuttgart.ipvs.vocabulary.ProloguesFactory;
 
 class UserUpdateUtils {
 
@@ -12,6 +13,7 @@ class UserUpdateUtils {
 
         var tripleSameSubject = UserSparqlUtils.newUserDetails(userDetails);
         var graphUpdate = GraphUpdate.insertDataOf(tripleSameSubject);
+        graphUpdate.setPrologues(ProloguesFactory.getProloguesRdfRdfsOwlUser());
 
         return graphUpdate.getString();
     }

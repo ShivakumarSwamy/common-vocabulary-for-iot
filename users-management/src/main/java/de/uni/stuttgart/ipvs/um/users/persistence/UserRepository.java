@@ -38,6 +38,9 @@ public class UserRepository {
 
     public void save(UserDetailsImpl userDetails) {
 
+        var graphUpdateFormString = UserUpdateUtils.newUserDetails(userDetails);
+        graphUpdate(graphUpdateFormString, "CREATE: NEW USER");
+
     }
 
     private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {
@@ -47,12 +50,24 @@ public class UserRepository {
 
     }
 
+    private void graphUpdate(String graphUpdateFormString, String contextErrorMessage) {
+
+        var httpEntity = HttpEntityFactory.getHttpEntityGraphUpdate(graphUpdateFormString);
+        var urlString = this.dataSourceEndpoints.getUpdateRepositoryStatements();
+
+        try {
+            this.restTemplate.postForEntity(urlString, httpEntity, String.class);
+        } catch (RestClientException failedPostSparqlUpdate) {
+            throw new UserRepositoryException(contextErrorMessage, failedPostSparqlUpdate);
+        }
+    }
+
     private <T> T query(HttpEntity httpEntity, Class<T> responseType, String errorMessage) {
 
-        var urlString = dataSourceEndpoints.getQueryRepositoryStatements();
+        var urlString = this.dataSourceEndpoints.getQueryRepositoryStatements();
         T response;
         try {
-            response = restTemplate.postForObject(urlString, httpEntity, responseType);
+            response = this.restTemplate.postForObject(urlString, httpEntity, responseType);
         } catch (RestClientException failedPostSparqlQuery) {
             throw new UserRepositoryException(errorMessage, failedPostSparqlQuery);
         }

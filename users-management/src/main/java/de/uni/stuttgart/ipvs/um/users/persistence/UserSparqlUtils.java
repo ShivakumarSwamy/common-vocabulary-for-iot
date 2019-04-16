@@ -16,6 +16,7 @@ import de.uni.stuttgart.ipvs.vocabulary.USER;
 import java.util.List;
 
 import static de.uni.stuttgart.ipvs.um.users.persistence.QVExprConstants.*;
+import static de.uni.stuttgart.ipvs.vocabulary.USER.*;
 
 class UserSparqlUtils {
 
@@ -38,7 +39,7 @@ class UserSparqlUtils {
 
         var tripleSameSubject = new TripleSameSubjectImpl(QV_USER);
         tripleSameSubject.add(RDF.RDF_TYPE, USER.USER_CLASS);
-        tripleSameSubject.add(USER.USER_HAS_ID, QV_USER_ID);
+        tripleSameSubject.add(USER_HAS_ID, QV_USER_ID);
         tripleSameSubject.add(QV_PROPERTY, QV_OBJECT);
 
         return tripleSameSubject;
@@ -49,22 +50,20 @@ class UserSparqlUtils {
     }
 
     static GraphPatternNotTriples minusPasswordProperty() {
-        TripleImpl triple = new TripleImpl(QV_USER, USER.USER_HAS_PASSWORD, QV_PROPERTY_VALUE);
+        TripleImpl triple = new TripleImpl(QV_USER, USER_HAS_PASSWORD, QV_PROPERTY_VALUE);
         return GraphPatternNotTriplesImpl.minusOf(triple);
     }
 
-    //    TODO : replace usr
     static TripleSameSubject newUserDetails(UserDetailsImpl userDetails) {
 
-        var userSubject = PrefixedName.of("usr", userDetails.getId());
+        var userSubject = PrefixedName.of(USER_PREFIX_LABEL, userDetails.getId());
         var tripleSameSubject = new TripleSameSubjectImpl(userSubject);
 
-        tripleSameSubject.add(USER.USER_HAS_ID, StringLiteral.of(userDetails.getId()));
-        tripleSameSubject.add(USER.USER_HAS_USERNAME, StringLiteral.of(userDetails.getUsername()));
-        tripleSameSubject.add(USER.USER_HAS_PASSWORD, StringLiteral.of(userDetails.getPassword()));
+        tripleSameSubject.add(USER_HAS_ID, StringLiteral.of(userDetails.getId()));
+        tripleSameSubject.add(USER_HAS_USERNAME, StringLiteral.of(userDetails.getUsername()));
+        tripleSameSubject.add(USER_HAS_PASSWORD, StringLiteral.of(userDetails.getPassword()));
 
-        tripleSameSubject.add(PrefixedName.of("usr", "hasRole"),
-                PrefixedName.of("usr", userDetails.getRole()));
+        tripleSameSubject.add(USER_HAS_ROLE, PrefixedName.of(USER_PREFIX_LABEL, userDetails.getRole()));
 
         return tripleSameSubject;
     }
