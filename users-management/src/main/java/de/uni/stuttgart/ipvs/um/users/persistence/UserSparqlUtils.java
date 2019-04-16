@@ -2,6 +2,7 @@ package de.uni.stuttgart.ipvs.um.users.persistence;
 
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriples;
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriplesImpl;
+import de.uni.stuttgart.ipvs.sparql.node.Subject;
 import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 import de.uni.stuttgart.ipvs.sparql.terminal.StringLiteral;
 import de.uni.stuttgart.ipvs.sparql.triple.Triple;
@@ -24,10 +25,10 @@ class UserSparqlUtils {
         throw new IllegalStateException(getClass().getName());
     }
 
-    static GraphPatternNotTriples unionOwlProperties() {
+    static GraphPatternNotTriples unionOwlProperties(Subject subject) {
 
         var tripleDP = new TripleImpl(QV_PROPERTY, RDF.RDF_TYPE, OWL.OWL_DATATYPE_PROPERTY);
-        var tripleDPV = new TripleImpl(QV_USER, QV_PROPERTY, QV_PROPERTY_VALUE);
+        var tripleDPV = new TripleImpl(subject, QV_PROPERTY, QV_PROPERTY_VALUE);
 
         var tripleOP = new TripleImpl(QV_PROPERTY, RDF.RDF_TYPE, OWL.OWL_OBJECT_PROPERTY);
         var tripleOPV = new TripleImpl(QV_OBJECT, RDFS.RDFS_LABEL, QV_PROPERTY_VALUE);
@@ -35,9 +36,10 @@ class UserSparqlUtils {
         return GraphPatternNotTriplesImpl.unionOf(List.of(tripleDP, tripleDPV), List.of(tripleOP, tripleOPV));
     }
 
-    static TripleSameSubject userPropertyIdentify() {
 
-        var tripleSameSubject = new TripleSameSubjectImpl(QV_USER);
+    static TripleSameSubject userPropertyIdentify(Subject subject) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(subject);
         tripleSameSubject.add(RDF.RDF_TYPE, USER.USER_CLASS);
         tripleSameSubject.add(USER_HAS_ID, QV_USER_ID);
         tripleSameSubject.add(QV_PROPERTY, QV_OBJECT);

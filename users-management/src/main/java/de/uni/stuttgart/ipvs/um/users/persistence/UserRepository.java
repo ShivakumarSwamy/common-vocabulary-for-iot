@@ -27,6 +27,13 @@ public class UserRepository {
         this.dataSourceEndpoints = dataSourceEndpoints;
     }
 
+    public void save(UserDetailsImpl userDetails) {
+
+        var graphUpdateFormString = UserUpdateUtils.newUserDetails(userDetails);
+        graphUpdate(graphUpdateFormString, "CREATE: NEW USER");
+
+    }
+
     public Collection<Map<String, String>> findAllUsers() {
         var allUsersQueryString = UserQueryUtils.findAllUsers();
 
@@ -35,12 +42,13 @@ public class UserRepository {
         return UserUtils.getUsersPropertyMapFromSelectResults(selectResults);
     }
 
-    public void save(UserDetailsImpl userDetails) {
+    public Collection<Map<String, String>> findUserByUserId(String id) {
+        var userQueryString = UserQueryUtils.findUser(id);
+        var selectResults = selectQuery(userQueryString, "READ: A USER");
 
-        var graphUpdateFormString = UserUpdateUtils.newUserDetails(userDetails);
-        graphUpdate(graphUpdateFormString, "CREATE: NEW USER");
-
+        return UserUtils.getUsersPropertyMapFromSelectResults(selectResults);
     }
+
 
     private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {
 

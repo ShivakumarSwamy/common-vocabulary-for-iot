@@ -22,6 +22,16 @@ data:
       update-repository-statements: "/repositories/users/statements"
       query-repository-statements: "/repositories/users"
 
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"
+
+
+
 ---
 
 debug: true
@@ -52,6 +62,14 @@ logging:
             ilv:
               repository: "DEBUG"
 
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"
+
 ---
 
 spring:
@@ -74,4 +92,13 @@ data:
       read-all-repository: "/repositories"
       update-repository-statements: "/repositories/users/statements"
       query-repository-statements: "/repositories/users"
+
 debug: true
+
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"

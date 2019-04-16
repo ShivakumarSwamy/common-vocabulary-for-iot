@@ -26,10 +26,29 @@ public class UserUtils {
 
     static Collection<Map<String, String>> getUsersPropertyMapFromSelectResults(@NonNull SelectResults selectResults) {
 
-        var collect = selectResults.getResults().getBindings().stream()
+        var usersGroupedById = selectResults.getResults().getBindings().stream()
                 .collect(Collectors.groupingBy(GROUP_BY_USER_ID, Collectors.toMap(PROPERTY_NAME, PROPERTY_VALUE)));
 
-        return collect.values();
+        return usersGroupedById.values();
+//        return getUsers(usersGroupedById);
+    }
+
+    private static Collection<UserDetailsImpl> getUsers(Map<String, Map<String, String>> usersGroupedById) {
+
+        return usersGroupedById.values().stream()
+                .map(UserUtils::getUser)
+                .collect(Collectors.toList());
+    }
+
+    private static UserDetailsImpl getUser(Map<String, String> userPropertyMap) {
+        // the keys should match with vocabulary designed
+        var userDetails = new UserDetailsImpl();
+        userDetails.setId(userPropertyMap.get("id"));
+        userDetails.setRole(userPropertyMap.get("role"));
+        userDetails.setUsername(userPropertyMap.get("username"));
+        userDetails.setPassword(userPropertyMap.get("password"));
+
+        return userDetails;
     }
 
     static {
