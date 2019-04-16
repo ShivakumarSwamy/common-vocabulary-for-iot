@@ -16,6 +16,8 @@
         <module>vocabulary</module>
         <module>forms</module>
         <module>sparql-query-results</module>
+        <module>users-management</module>
+        <module>initial-load-vocabulary</module>
     </modules>
 
 </project>

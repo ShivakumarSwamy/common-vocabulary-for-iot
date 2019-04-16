@@ -1,0 +1,53 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
+PREFIX usr:  <http://www.example.com/vocabulary/user#>
+
+INSERT DATA {
+
+    usr:user            rdf:type            rdfs:Class;
+                        rdfs:label          "User";
+                        rdfs:comment        "Represents a user entity".
+
+    usr:consumer        rdf:type            rdfs:Class;
+                        rdfs:subClassOf     usr:user;
+                        rdfs:label          "Consumer";
+                        rdfs:comment        "Represents a consumer role user entity".
+
+    usr:manager         rdf:type            rdfs:Class;
+                        rdfs:subClassOf     usr:user;
+                        rdfs:label          "Manager";
+                        rdfs:comment        "Represents a manager role user entity".
+
+    usr:admin           rdf:type            rdfs:Class;
+                        rdfs:subClassOf     usr:user;
+                        rdfs:label          "Admin";
+                        rdfs:comment        "Represents a admin role user entity".
+
+    usr:hasId           rdf:type            owl:DatatypeProperty;
+                        rdfs:domain         usr:user;
+                        rdfs:range          xsd:string;
+                        rdfs:label          "ID";
+                        rdfs:comment        "Represents a unique ID of the user entity".
+
+    usr:hasUsername     rdf:type            owl:DatatypeProperty;
+                        rdfs:domain         usr:user;
+                        rdfs:range          xsd:string;
+                        rdfs:label          "Username";
+                        rdfs:comment        "Represents a username of the user entity".
+
+    usr:hasPassword     rdf:type            owl:DatatypeProperty;
+                        rdfs:domain         usr:user;
+                        rdfs:range          xsd:string;
+                        rdfs:label          "Password";
+                        rdfs:comment        "Represents a password of the user entity".
+
+
+    usr:hasRole         rdf:type            owl:ObjectProperty;
+                        rdfs:domain         usr:user;
+                        rdfs:range          rdfs:Class;
+                        rdfs:label          "Role";
+                        rdfs:comment        "Represents a role of the user entity, range of class values are subclasses of user class".
+
+}
