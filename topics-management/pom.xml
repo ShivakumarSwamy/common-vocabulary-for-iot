@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+    </parent>
+
+    <groupId>de.uni.stuttgart.ipvs</groupId>
+    <artifactId>topics-management</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+
+    <name>Topics Management</name>
+    <description>Manage terms</description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.encoding>utf-8</maven.compiler.encoding>
+
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+
+        <version.jose4j>0.6.5</version.jose4j>
+
+        <version.sparql.query.results>0.1.0</version.sparql.query.results>
+        <version.forms>0.1.0</version.forms>
+        <version.initial.load.vocabulary>0.1.0</version.initial.load.vocabulary>
+        <version.vocabulary>0.2.0</version.vocabulary>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>sparql-query-results</artifactId>
+            <version>${version.sparql.query.results}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>forms</artifactId>
+            <version>${version.forms}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>vocabulary</artifactId>
+            <version>${version.vocabulary}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni.stuttgart.ipvs</groupId>
+            <artifactId>initial-load-vocabulary</artifactId>
+            <version>${version.initial.load.vocabulary}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${maven.compiler.encoding}</encoding>
+                </configuration>
+
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.basedir}</outputDirectory>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
