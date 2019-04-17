@@ -50,4 +50,10 @@ INSERT DATA {
                         rdfs:label          "Role";
                         rdfs:comment        "Represents a role of the user entity, range of class values are subclasses of user class".
 
+    usr:1331bc0f-8ccb-4813-b656-73332e8998e2    rdf:type            usr:admin;
+                                                usr:hasId           "1331bc0f-8ccb-4813-b656-73332e8998e2";
+                                                usr:hasUsername     "iot-admin";
+                                                usr:hasPassword     "$2a$10$REH5LE.MYVTu2oCpHf78KeZlvwyJNTrfw.c5O5wVJeI/GwRgFayQ6";
+                                                usr:hasRole         usr:admin .
+
 }

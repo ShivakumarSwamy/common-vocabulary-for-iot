@@ -3,6 +3,7 @@ server:
 
 debug: true
 
+
 spring:
   devtools:
     restart:
@@ -31,7 +32,12 @@ error:
         role: "role values has to be manager or consumer, case in-sensitive"
 
 
-
+logging:
+  level:
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
 ---
 
 debug: true
@@ -55,12 +61,10 @@ data:
       query-repository-statements: "/repositories/users"
 logging:
   level:
-    de:
-      uni:
-        stuttgart:
-          ipvs:
-            ilv:
-              repository: "DEBUG"
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
 
 error:
   message:
@@ -93,7 +97,7 @@ data:
       update-repository-statements: "/repositories/users/statements"
       query-repository-statements: "/repositories/users"
 
-debug: true
+debug: false
 
 error:
   message:

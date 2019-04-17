@@ -27,6 +27,16 @@ public class UserRepository {
         this.dataSourceEndpoints = dataSourceEndpoints;
     }
 
+    public boolean isUsernameExists(String username) {
+
+        var askQueryString = UserQueryUtils.askUsernameExists(username);
+        var httpEntity = HttpEntityFactory.getHttpEntityAskQuery(askQueryString);
+
+        var stringBoolean = query(httpEntity, String.class, "ASK USER: FAILED TO ASK USERNAME EXISTS");
+
+        return stringBoolean == null || stringBoolean.equals("true");
+    }
+
     public void save(UserDetailsImpl userDetails) {
 
         var graphUpdateFormString = UserUpdateUtils.newUserDetails(userDetails);
@@ -43,11 +53,19 @@ public class UserRepository {
     }
 
     public Collection<Map<String, String>> findUserByUserId(String id) {
-        var userQueryString = UserQueryUtils.findUser(id);
+        var userQueryString = UserQueryUtils.findUserByUserId(id);
         var selectResults = selectQuery(userQueryString, "READ: A USER");
 
         return UserUtils.getUsersPropertyMapFromSelectResults(selectResults);
     }
+
+    public UserDetailsImpl findUserByUsername(String username) {
+        var userQueryString = UserQueryUtils.findUserByUsername(username);
+        var selectResults = selectQuery(userQueryString, "READ: A USER");
+
+        return UserUtils.getUserFromSelectResults(selectResults);
+    }
+
 
 
     private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {

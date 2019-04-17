@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static de.uni.stuttgart.ipvs.form.utils.FormControlValidators.LENGTH;
 import static de.uni.stuttgart.ipvs.um.form.UserFormControlIds.*;
 
 @Configuration
@@ -32,11 +31,28 @@ public class BeansUserForm {
 
     @Bean
     @Qualifier("userCreateForm")
-    FormModelValidator userFormValidator() {
+    FormModelValidator userCreateFormValidator() {
         return new FormModelValidatorImpl(userFormControlValidators());
     }
 
+    @Bean
+    @Qualifier("userLoginForm")
+    FormModelValidator userLoginFormValidator() {
+        return new FormModelValidatorImpl(principalCredentialsValidators());
+    }
+
     private Map<String, FormControlValidator> userFormControlValidators() {
+
+        var map = new HashMap<>(principalCredentialsValidators());
+
+        map.put(ROLE,
+                new FormControlValidatorImpl(this.ufcEM.getRole(),
+                        textValuesIgnoreCase(new String[]{"Manager", "Consumer"})));
+
+        return map;
+    }
+
+    private Map<String, FormControlValidator> principalCredentialsValidators() {
 
         var map = new HashMap<String, FormControlValidator>();
 
@@ -46,10 +62,6 @@ public class BeansUserForm {
         map.put(PASSWORD,
                 new FormControlValidatorImpl(
                         this.ufcEM.getPassword(), patternMatch(Pattern.compile("^[a-zA-Z0-9-_]+$"))));
-
-        map.put(ROLE,
-                new FormControlValidatorImpl(this.ufcEM.getRole(),
-                        textValuesIgnoreCase(new String[]{"Manager", "Consumer"})));
 
         return map;
     }
@@ -66,8 +78,8 @@ public class BeansUserForm {
 
     private static boolean textInValuesIgnoreCase(String[] values, String text) {
         return Arrays.stream(values)
-                        .filter(Objects::nonNull)
-                        .anyMatch(value -> value.equalsIgnoreCase(text));
+                .filter(Objects::nonNull)
+                .anyMatch(value -> value.equalsIgnoreCase(text));
     }
 
     private static FormControlValidatorBiConsumer<String> patternMatch(Pattern pattern) {

@@ -30,6 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public String createUser(UserCreateDTO userCreateDTO) {
 
         this.userFormModelValidation.validate(userCreateDTO);
+        this.checkUsernameExists(userCreateDTO.getUsername());
 
         var userDetails = UserDetailsImpl.buildFromDTO(userCreateDTO);
         this.userRepository.save(userDetails);
@@ -46,7 +47,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String username) {
+        var user = this.userRepository.findUserByUsername(username);
+        if (!user.isValid())
+            throw new UsernameNotFoundException(username + " username not found");
+        return user;
+    }
+
+    private void checkUsernameExists(String username) {
+        if (this.userRepository.isUsernameExists(username))
+            throw new UserServiceException("Username '" + username + "' already exists");
+
     }
 }

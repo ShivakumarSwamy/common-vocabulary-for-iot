@@ -2,6 +2,8 @@ package de.uni.stuttgart.ipvs.um.users.persistence;
 
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriples;
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriplesImpl;
+import de.uni.stuttgart.ipvs.sparql.node.Obj;
+import de.uni.stuttgart.ipvs.sparql.node.Property;
 import de.uni.stuttgart.ipvs.sparql.node.Subject;
 import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 import de.uni.stuttgart.ipvs.sparql.terminal.StringLiteral;
@@ -36,6 +38,19 @@ class UserSparqlUtils {
         return GraphPatternNotTriplesImpl.unionOf(List.of(tripleDP, tripleDPV), List.of(tripleOP, tripleOPV));
     }
 
+    static TripleSameSubject userHasUsername(Subject subject, String username) {
+        return userTypeWithProperty(subject, USER_HAS_USERNAME, StringLiteral.of(username));
+    }
+
+    private static TripleSameSubject userTypeWithProperty(Subject subject, Property property, Obj obj) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(subject);
+
+        tripleSameSubject.add(RDF.RDF_TYPE, USER.USER_CLASS);
+        tripleSameSubject.add(property, obj);
+
+        return tripleSameSubject;
+    }
 
     static TripleSameSubject userPropertyIdentify(Subject subject) {
 

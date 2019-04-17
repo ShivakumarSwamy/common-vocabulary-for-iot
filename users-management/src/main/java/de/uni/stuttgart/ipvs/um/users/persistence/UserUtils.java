@@ -30,12 +30,22 @@ public class UserUtils {
                 .collect(Collectors.groupingBy(GROUP_BY_USER_ID, Collectors.toMap(PROPERTY_NAME, PROPERTY_VALUE)));
 
         return usersGroupedById.values();
-//        return getUsers(usersGroupedById);
     }
 
-    private static Collection<UserDetailsImpl> getUsers(Map<String, Map<String, String>> usersGroupedById) {
+    static UserDetailsImpl getUserFromSelectResults(SelectResults selectResults) {
 
-        return usersGroupedById.values().stream()
+        var usersGroupedById = getUsersPropertyMapFromSelectResults(selectResults);
+
+        var collectionWithSingleUser = getUserFromUsersGroupById(usersGroupedById);
+
+        var iterator = collectionWithSingleUser.iterator();
+
+        return iterator.hasNext() ? iterator.next() : new UserDetailsImpl();
+    }
+
+    private static Collection<UserDetailsImpl> getUserFromUsersGroupById(Collection<Map<String, String>> usersGroupedById) {
+
+        return usersGroupedById.stream()
                 .map(UserUtils::getUser)
                 .collect(Collectors.toList());
     }

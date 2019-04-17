@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.ToString;
 
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails, CredentialsContainer {
 
     private String id;
     private String username;
@@ -53,6 +54,11 @@ public class UserDetailsImpl implements UserDetails {
         this.setAuthorities(List.of(new SimpleGrantedAuthority("ROLE_" + roleUppercase)));
     }
 
+    @JsonIgnore
+    public boolean isValid() {
+        return !(this.id == null || this.username == null || this.password == null | this.role == null);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -77,5 +83,10 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        this.password = "";
     }
 }
