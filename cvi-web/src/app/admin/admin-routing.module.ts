@@ -22,21 +22,20 @@ const routes: Routes = [
           {
             path: 'users',
             component: AdminUsersListComponent
-          }
+          },
           // ,
           // {
           //   path: 'topics',
           //   loadChildren: '../topics/topics.module#TopicsModule'
           // },
-          // {
-          //   path: 'terms',
-          //   loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
-          // },
+          {
+            path: 'terms',
+            loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
+          },
           // {
           //   path: 'hardware-types',
           //   loadChildren: '../hardware-types/hardware-types.module#HardwareTypesModule'
           // }
-          ,
           {
             path: 'profile',
             loadChildren: '../profile/profile.module#ProfileModule'

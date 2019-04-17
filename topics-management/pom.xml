@@ -13,6 +13,7 @@
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>topics-management</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
 
     <name>Topics Management</name>
     <description>Manage terms</description>
@@ -44,6 +45,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>${version.jose4j}</version>
         </dependency>
 
         <dependency>

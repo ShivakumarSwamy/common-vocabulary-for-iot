@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
 
 debug: true
 
@@ -32,10 +32,14 @@ logging:
         web: "DEBUG"
 ---
 
-debug: true
 
 spring:
   profiles: dev
+
+server:
+  port: 8090
+
+debug: true
 
 data:
   source:
@@ -81,3 +85,6 @@ data:
       query-repository-statements: "/repositories/cvi"
 
 debug: false
+
+server:
+  port: 8080

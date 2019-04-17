@@ -3,11 +3,29 @@
 ## Application requirements
 
 - Bash Terminal
+- Git
 - Maven
 - Docker
 - Npm
 
-## Build RDF/Triple Store GraphDB Free Image
+## Setup Steps
+
+1. Clone the project using `git clone <PROJECT_LINK>.git`
+
+1. [Download RDF store image graph db free](#download-rdftriple-store-graphdb-free) 
+
+1. [Package application to jars](#package-application-to-jars)
+
+1. [Build all service images](#build-all-service-image)
+    - `graph-db-free:<version>` image exposes `7200` port
+    - `users-management:<version>` image exposes `8080` port
+    - `topic-management:<version>` image exposes `8080` port
+
+1. [Run all services](#run-all-services)
+                         
+1. [Run Web app](#run-web-app)
+
+## Download RDF/Triple Store GraphDB Free
 
 1. Register [here](https://www.ontotext.com/products/graphdb/) and follow the steps guided after registration
 
@@ -15,7 +33,7 @@
 
 1. Place the downloaded zip file in the [project root directory](./)
 
-1. Build the image using the [script](./build-graph-db-free-image.sh)  
+1. (Optional)Build the image using the [script](./build-graph-db-free-image.sh)  
     `bash build-graph-db-free-image.sh`
 
 NOTE: 
@@ -31,7 +49,7 @@ by passing version as argument to [script](build-graph-db-free-image.sh)
 `bash build-graph-db-free-image.sh <VERSION>`
 
 
-## Package jar
+## Package application to jars
 
 1. Navigate to [project root directory](./)
 
@@ -61,8 +79,17 @@ by passing version as argument to [script](build-graph-db-free-image.sh)
      
 ## Run all services
 
-- After building all images run, 
-`docker-compose up`
+- In [docker-compose.yml](./docker-compose.yml) file 
+    - port mapping (if port needs to be changed then ports 
+    should be changed in [proxy config file for docker](./cvi-web/proxy-config-docker.json))
+        - `users` triple store container `7200` -> `7205`
+        - `cvi` triple store container `7200` -> `7210`
+        - `users-management` app container `8080` -> `8005`
+        - `topics-management` app container `8080` -> `8010`
+            
+- After building all images run, containers using [docker-compose.yml](./docker-compose.yml) file  
+`docker-compose up` or `docker-compose -d up` (detached)
+
 
 
 ## Run Web app
@@ -71,8 +98,8 @@ by passing version as argument to [script](build-graph-db-free-image.sh)
 
 1. Install all dependencies using `npm` and [angular.json](./cvi-web/angular.json)
 
-1. Run the angular server using a [proxy config file](./cvi-web/proxy-config.json) to proxy to spring application server
-`ng serve --proxy-config proxy-config.json` 
+1. Run the angular server using a [proxy config file](./cvi-web/proxy-config-docker.json) to proxy to spring application server  
+`ng serve --proxy-config proxy-config-docker.json` 
 
 
 [Ontotext-AD Dockerfile]: https://github.com/Ontotext-AD/graphdb-docker/blob/master/free-edition/Dockerfile "Ontotext-AD Dockerfile"
