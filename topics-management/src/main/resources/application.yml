@@ -31,6 +31,19 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
+    topic:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        hardware-type: "Hardware type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
+
 
 logging:
   level:
@@ -78,6 +91,18 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
+    topic:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        hardware-type: "Hardware type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
 ---
 
 spring:
@@ -114,3 +139,15 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
+    topic:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        hardware-type: "Hardware type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
