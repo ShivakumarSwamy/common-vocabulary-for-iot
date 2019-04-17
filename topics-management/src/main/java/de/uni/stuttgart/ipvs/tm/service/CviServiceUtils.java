@@ -2,6 +2,8 @@ package de.uni.stuttgart.ipvs.tm.service;
 
 import de.uni.stuttgart.ipvs.results.SelectResults;
 import de.uni.stuttgart.ipvs.results.VariableBinding;
+import de.uni.stuttgart.ipvs.tm.response.HardwareTypeItemDetails;
+import de.uni.stuttgart.ipvs.tm.response.ResultsSet;
 import de.uni.stuttgart.ipvs.tm.response.SearchItemDetails;
 import de.uni.stuttgart.ipvs.tm.response.TermsMeaningResultsSet;
 
@@ -32,6 +34,29 @@ public class CviServiceUtils {
                 .collect(toList());
 
         return new TermsMeaningResultsSet(exactResults, relatedResults);
+    }
+
+    static ResultsSet getAllHardwareTypesResultsSet(SelectResults selectResults) {
+
+        var results = selectResults.getResults().getBindings().stream()
+                .map(CviServiceUtils::geHardwareTypeItemDetails)
+                .collect(toList());
+
+        return new ResultsSet<>(results);
+    }
+
+    private static HardwareTypeItemDetails geHardwareTypeItemDetails(Map<String, VariableBinding> stringVariableBindingMap) {
+
+        var hardwareTypeItemDetails = new HardwareTypeItemDetails();
+
+        var categoryLabelVB = stringVariableBindingMap.get(QV_CATEGORY_LABEL.getVariableName());
+        hardwareTypeItemDetails.setCategory(categoryLabelVB.getValue());
+
+        var hardwareComponentLabelVB = stringVariableBindingMap.get(QV_HARDWARE_COMPONENT_LABEL.getVariableName());
+        hardwareTypeItemDetails.setHardwareComponent(hardwareComponentLabelVB.getValue());
+
+        hardwareTypeItemDetails.of(getSearchItemDetails(stringVariableBindingMap));
+        return hardwareTypeItemDetails;
     }
 
     private static SearchItemDetails getSearchItemDetails(Map<String, VariableBinding> stringVariableBindingMap) {

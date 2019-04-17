@@ -1,20 +1,25 @@
 package de.uni.stuttgart.ipvs.tm.persistence;
 
 import de.uni.stuttgart.ipvs.sparql.clause.GraphPatternNotTriples;
+import de.uni.stuttgart.ipvs.sparql.node.Subject;
 import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
+import de.uni.stuttgart.ipvs.sparql.terminal.StringLiteral;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubject;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubjectImpl;
+import de.uni.stuttgart.ipvs.tm.service.HardwareType;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 import static de.uni.stuttgart.ipvs.tm.constant.QVExprConstants.*;
-import static de.uni.stuttgart.ipvs.vocabulary.CVI.CVI_PREFIX_LABEL;
-import static de.uni.stuttgart.ipvs.vocabulary.CVI.HAS_SEARCH_ID;
+import static de.uni.stuttgart.ipvs.vocabulary.CVI.*;
 import static de.uni.stuttgart.ipvs.vocabulary.RDF.RDF_TYPE;
 import static de.uni.stuttgart.ipvs.vocabulary.RDFS.*;
 
 public class CviSparqlUtils {
+
+    private static final PrefixedName RDFS_SUBCLASS_OF = PrefixedName.of(RDFS_PREFIX_LABEL, "subClassOf");
+
     private CviSparqlUtils() {
         throw new IllegalStateException(getClass().getName());
     }
@@ -30,8 +35,62 @@ public class CviSparqlUtils {
 
 
     private static TripleSameSubject searchItemDetailsTerm(String term) {
+        return searchItemDetails(PrefixedName.of(CVI_PREFIX_LABEL, term));
+    }
 
-        var tripleSameSubject = new TripleSameSubjectImpl(PrefixedName.of(CVI_PREFIX_LABEL, term));
+    static TripleSameSubject searchItemDetailsHardwareType() {
+        var tripleSameSubject = searchItemDetails(QV_HARDWARE_TYPE);
+
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, QV_CATEGORY);
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, HARDWARE_TYPE_CLASS);
+
+        return tripleSameSubject;
+    }
+
+    static TripleSameSubject newHardwareType(HardwareType hardwareType) {
+        var tripleSameSubject = new TripleSameSubjectImpl(PrefixedName.of(CVI_PREFIX_LABEL, hardwareType.getSearchId()));
+
+        tripleSameSubject.add(HAS_SEARCH_ID, StringLiteral.of(hardwareType.getSearchId()));
+        tripleSameSubject.add(RDFS_LABEL, StringLiteral.of(hardwareType.getLabel()));
+        tripleSameSubject.add(RDFS_COMMENT, StringLiteral.of(hardwareType.getComment()));
+
+        tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
+
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, HARDWARE_TYPE_CLASS);
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, PrefixedName.of(CVI_PREFIX_LABEL, hardwareType.getCategory()));
+
+        return tripleSameSubject;
+    }
+
+    /**
+     * category is the subclass of hardware component (i.e sensor and actuator in vocabulary)
+     */
+    static TripleSameSubject identifyCategory() {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(QV_CATEGORY);
+
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, QV_HARDWARE_COMPONENT);
+        tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
+        tripleSameSubject.add(RDFS_LABEL, QV_CATEGORY_LABEL);
+        return tripleSameSubject;
+    }
+
+    /**
+     * hardware component is subclass of hardware class in vocabulary
+     */
+    static TripleSameSubject identifyHardwareComponent() {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(QV_HARDWARE_COMPONENT);
+
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, HARDWARE_CLASS);
+        tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
+        tripleSameSubject.add(RDFS_LABEL, QV_HARDWARE_COMPONENT_LABEL);
+        return tripleSameSubject;
+    }
+
+    private static TripleSameSubjectImpl searchItemDetails(Subject subject) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(subject);
 
         tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
         tripleSameSubject.add(HAS_SEARCH_ID, QV_SEARCH_ID);
@@ -39,6 +98,6 @@ public class CviSparqlUtils {
         tripleSameSubject.add(RDFS_COMMENT, QV_COMMENT);
 
         return tripleSameSubject;
-
     }
+
 }

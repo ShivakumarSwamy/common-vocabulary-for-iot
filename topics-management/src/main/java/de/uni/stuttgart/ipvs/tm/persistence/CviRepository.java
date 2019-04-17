@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import de.uni.stuttgart.ipvs.ilv.HttpEntityFactory;
 import de.uni.stuttgart.ipvs.ilv.config.DataSourceEndpoints;
 import de.uni.stuttgart.ipvs.results.SelectResults;
+import de.uni.stuttgart.ipvs.tm.service.HardwareType;
 
 import java.util.Collection;
 
@@ -32,9 +33,23 @@ public class CviRepository {
         return selectQuery(queryString, "READ: FAILED TO GET SEARCH TERMS MEANING");
     }
 
-    private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {
+    public SelectResults findAllHardwareTypes() {
+        var queryFormString = CviQueryUtils.allHardwareTypes();
+        return selectQuery(queryFormString, "READ: ALL HARDWARE TYPES", false);
+    }
 
-        var httpEntity = HttpEntityFactory.getHttpEntitySelectQuery(queryFormString);
+    public void save(HardwareType hardwareType) {
+        var graphUpdateFormString = CviUpdateUtils.newHardwareType(hardwareType);
+        graphUpdate(graphUpdateFormString, "CREATE: NEW HARDWARE TYPE");
+    }
+
+    private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {
+        return selectQuery(queryFormString, contextErrorMessage, true);
+    }
+
+    private SelectResults selectQuery(String queryFormString, String contextErrorMessage, boolean infer) {
+
+        var httpEntity = HttpEntityFactory.getHttpEntitySelectQuery(queryFormString, infer);
         return query(httpEntity, SelectResults.class, contextErrorMessage);
 
     }

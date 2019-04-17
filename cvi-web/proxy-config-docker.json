@@ -14,5 +14,9 @@
   "/api/meaning/terms": {
     "target": "http://localhost:8010",
     "secure": false
+  },
+  "/api/manager/hardware-types": {
+    "target": "http://localhost:8010",
+    "secure": false
   }
 }
