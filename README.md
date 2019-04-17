@@ -44,6 +44,21 @@ by passing version as argument to [script](build-graph-db-free-image.sh)
 1. Build the image using the [script](./build-users-management-image.sh)  
     `bash build-users-management-image.sh` 
 
+## Build topics management image
+
+1. Navigate to [project root directory](./)
+
+1. Build the image using the [script](./build-topics-management-image.sh)  
+    `bash build-topics-management-image.sh` 
+    
+
+## Build all service image
+
+1. Navigate to [project root directory](./)
+
+1. Build the image using the [script](./build-all-images.sh)  
+    `bash build-all-images.sh` 
+     
 ## Run all services
 
 - After building all images run, 
