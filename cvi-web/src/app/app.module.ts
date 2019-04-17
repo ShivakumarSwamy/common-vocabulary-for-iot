@@ -11,6 +11,7 @@ import {ConsumerModule} from "./consumer/consumer.module";
 import {ManagerModule} from "./manager/manager.module";
 import {AdminModule} from "./admin/admin.module";
 import {httpInterceptorProviders} from "./interceptors/index-interceptors";
+import {CviService} from "./service/cvi.service";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {httpInterceptorProviders} from "./interceptors/index-interceptors";
   ],
   providers: [
     UserService,
+    CviService,
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent]

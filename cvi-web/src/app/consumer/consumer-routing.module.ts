@@ -17,17 +17,16 @@ const routes: Routes = [
           {
             path: '',
             component: ConsumerWelcomeComponent
-          }
+          },
           // ,
           // {
           //   path: 'topics',
           //   loadChildren: '../topics/topics.module#TopicsModule'
-          // },
-          // {
-          //   path: 'terms',
-          //   loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
-          // }
-          ,
+          //},
+          {
+            path: 'terms',
+            loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
+          },
           {
             path: 'profile',
             loadChildren: '../profile/profile.module#ProfileModule'
