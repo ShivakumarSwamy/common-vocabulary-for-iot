@@ -1,6 +1,43 @@
 server:
   port: 8080
 
+debug: true
+
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "localhost"
+      port: "7200"
+      repository-id: "users"
+      initial-load-file-location: "user-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/users"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/users/statements"
+      query-repository-statements: "/repositories/users"
+
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
 ---
 
 debug: true
@@ -24,17 +61,27 @@ data:
       query-repository-statements: "/repositories/users"
 logging:
   level:
-    de:
-      uni:
-        stuttgart:
-          ipvs:
-            ilv:
-              repository: "DEBUG"
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
+
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"
 
 ---
 
 spring:
   profiles: docker
+  devtools:
+    restart:
+      enabled: false
+
 data:
   source:
     properties:
@@ -49,4 +96,13 @@ data:
       read-all-repository: "/repositories"
       update-repository-statements: "/repositories/users/statements"
       query-repository-statements: "/repositories/users"
-debug: true
+
+debug: false
+
+error:
+  message:
+    user:
+      form-control:
+        username: "username length should between 6 and 20, and can only consist of a-z, A-Z, 0-9, -, _"
+        password: "password length should be greater than 8, with no whitespaces"
+        role: "role values has to be manager or consumer, case in-sensitive"

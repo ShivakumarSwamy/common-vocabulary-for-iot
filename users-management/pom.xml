@@ -26,12 +26,11 @@
 
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
 
-        <version.lombok>1.18.0</version.lombok>
+        <version.jose4j>0.6.5</version.jose4j>
 
         <version.sparql.query.results>0.1.0</version.sparql.query.results>
         <version.forms>0.1.0</version.forms>
         <version.initial.load.vocabulary>0.1.0</version.initial.load.vocabulary>
-
         <version.vocabulary>0.1.1</version.vocabulary>
 
     </properties>
@@ -41,7 +40,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${version.lombok}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -52,8 +50,19 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>${version.jose4j}</version>
         </dependency>
 
         <dependency>
@@ -79,6 +88,14 @@
             <artifactId>initial-load-vocabulary</artifactId>
             <version>${version.initial.load.vocabulary}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
 
     </dependencies>
 
@@ -109,109 +126,5 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${maven.compiler.plugin.version}</version>
-
-                        <configuration>
-                            <source>${maven.compiler.source}</source>
-                            <target>${maven.compiler.target}</target>
-                            <encoding>${maven.compiler.encoding}</encoding>
-                        </configuration>
-
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.2.1</version>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>de.uni.stuttgart.ipvs.um.UsersManagementApplication</mainClass>
-                                </transformer>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/spring.factories</resource>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>shade</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!--                    <plugin>-->
-                    <!--                        <groupId>org.springframework.boot</groupId>-->
-                    <!--                        <artifactId>spring-boot-maven-plugin</artifactId>-->
-                    <!--                    </plugin>-->
-
-                    <!--                    <plugin>-->
-                    <!--                        <groupId>io.fabric8</groupId>-->
-                    <!--                        <artifactId>docker-maven-plugin</artifactId>-->
-                    <!--                        <version>0.20.1</version>-->
-                    <!--                        <configuration>-->
-                    <!--                            <images>-->
-                    <!--                                <image>-->
-                    <!--                                    <name>${project.artifactId}</name>-->
-                    <!--                                    <build>-->
-                    <!--                                        <from>openjdk:11-jre</from>-->
-
-                    <!--                                        <assembly>-->
-                    <!--                                            <descriptorRef>artifact</descriptorRef>-->
-                    <!--                                        </assembly>-->
-
-                    <!--                                        <runCmds>-->
-                    <!--                                            <run>groupadd -r appUser</run>-->
-                    <!--                                            <run>useradd -r -g appUser appUser</run>-->
-                    <!--                                        </runCmds>-->
-
-                    <!--                                        <user>appUser</user>-->
-
-                    <!--                                        <ports>-->
-                    <!--                                            <port>8080</port>-->
-                    <!--                                        </ports>-->
-
-                    <!--                                        <cmd>-->
-                    <!--                                            java -Dspring.profiles.active=docker -jar maven/${project.artifactId}-${project.version}.jar-->
-                    <!--                                        </cmd>-->
-
-                    <!--                                        <tags>-->
-                    <!--                                            <tag>latest</tag>-->
-                    <!--                                            <tag>${project.version}</tag>-->
-                    <!--                                        </tags>-->
-
-                    <!--                                    </build>-->
-                    <!--                                </image>-->
-                    <!--                            </images>-->
-                    <!--                        </configuration>-->
-                    <!--                        <executions>-->
-                    <!--                            <execution>-->
-                    <!--                                <id>docker:build</id>-->
-                    <!--                                <phase>package</phase>-->
-                    <!--                                <goals>-->
-                    <!--                                    <goal>build</goal>-->
-                    <!--                                </goals>-->
-                    <!--                            </execution>-->
-                    <!--                        </executions>-->
-                    <!--                    </plugin>-->
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

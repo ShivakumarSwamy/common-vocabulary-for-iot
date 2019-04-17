@@ -1,7 +1,7 @@
 # Vocabulary module
 
 NOTE: 
-- This project would not packaged on it's own, needs to packaged via parent project
+- This project would not packaged on it's own, needs to packaged via [parent project pom](../pom.xml)
 - Only needed properties, class for project is present in the module
 
 ### Version 0.1.1

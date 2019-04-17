@@ -8,5 +8,7 @@ services:
   app-users-management:
     container_name: users-management
     image: users-management:0.1.0
+    ports:
+      - "8080:8080"
     depends_on:
       - db

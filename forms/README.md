@@ -20,4 +20,16 @@ FormModelValidator validator = new FormModelValidatorImpl(
 
 FormModel model = new FormModelImpl(List.of(new FormControlImpl<>("username", "")));
 System.out.println(validator.isValid(model)); // false
+
+System.out.println(validator.getError(model).toString()); // FormControlError(id=username, value=, help=Username should have length)
 ``` 
+
+### Version 0.1.0
+
+- interfaces:
+    - FormModelValidator
+    - FormModelControl
+    - FormModel
+    - FormControlValidatorBiConsumer
+    
+- FormControlError
