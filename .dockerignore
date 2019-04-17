@@ -2,9 +2,15 @@
 
 forms/
 sparql/
-users-management/
+sparql-query-results/
 vocabulary/
+initial-load-vocabulary/
+
+users-management/
+cvi-web/
 
 pom.xml
 README.md
 .gitignore
+
+*.sh
