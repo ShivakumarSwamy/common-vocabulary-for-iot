@@ -85,3 +85,6 @@ data:
       query-repository-statements: "/repositories/cvi"
 
 debug: false
+
+server:
+  port: 8080

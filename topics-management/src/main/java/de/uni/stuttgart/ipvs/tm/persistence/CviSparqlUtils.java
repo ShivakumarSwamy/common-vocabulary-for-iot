@@ -12,8 +12,7 @@ import static de.uni.stuttgart.ipvs.tm.constant.QVExprConstants.*;
 import static de.uni.stuttgart.ipvs.vocabulary.CVI.CVI_PREFIX_LABEL;
 import static de.uni.stuttgart.ipvs.vocabulary.CVI.HAS_SEARCH_ID;
 import static de.uni.stuttgart.ipvs.vocabulary.RDF.RDF_TYPE;
-import static de.uni.stuttgart.ipvs.vocabulary.RDFS.RDFS_CLASS;
-import static de.uni.stuttgart.ipvs.vocabulary.RDFS.RDFS_LABEL;
+import static de.uni.stuttgart.ipvs.vocabulary.RDFS.*;
 
 public class CviSparqlUtils {
     private CviSparqlUtils() {
@@ -29,7 +28,7 @@ public class CviSparqlUtils {
         return GraphPatternNotTriplesImpl2.unionOf(tripleSameSubjects);
     }
 
-    // TODO rdfs comment
+
     private static TripleSameSubject searchItemDetailsTerm(String term) {
 
         var tripleSameSubject = new TripleSameSubjectImpl(PrefixedName.of(CVI_PREFIX_LABEL, term));
@@ -37,7 +36,7 @@ public class CviSparqlUtils {
         tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
         tripleSameSubject.add(HAS_SEARCH_ID, QV_SEARCH_ID);
         tripleSameSubject.add(RDFS_LABEL, QV_LABEL);
-        tripleSameSubject.add(PrefixedName.of("rdfs", "comment"), QV_COMMENT);
+        tripleSameSubject.add(RDFS_COMMENT, QV_COMMENT);
 
         return tripleSameSubject;
 
