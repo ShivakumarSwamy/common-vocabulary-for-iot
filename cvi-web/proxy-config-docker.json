@@ -3,7 +3,7 @@
     "target": "http://localhost:8005",
     "secure": false
   },
-  "/api/admin/**": {
+  "/api/admin/users": {
     "target": "http://localhost:8005",
     "secure": false
   },
@@ -16,6 +16,18 @@
     "secure": false
   },
   "/api/manager/hardware-types": {
+    "target": "http://localhost:8010",
+    "secure": false
+  },
+  "/api/manager/topics": {
+    "target": "http://localhost:8010",
+    "secure": false
+  },
+  "/api/consumer/topics": {
+    "target": "http://localhost:8010",
+    "secure": false
+  },
+  "/api/admin/topics": {
     "target": "http://localhost:8010",
     "secure": false
   }
