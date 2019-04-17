@@ -1,14 +1,26 @@
 version: "3"
 services:
-  db:
+  db-1:
     container_name: users
-    image: graph-db-free:8.9.0
+    image: graph-db-free
     ports:
       - "7205:7200"
   app-users-management:
     container_name: users-management
-    image: users-management:0.1.0
+    image: users-management
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - db-1
+  db-2:
+    container_name: cvi
+    image: graph-db-free
+    ports:
+      - "7210:7200"
+  app-topics-management:
+    container_name: topics-management
+    image: topics-management
+    ports:
+      - "8010:8080"
+    depends_on:
+      - db-2
