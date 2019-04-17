@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { CviService } from '../../service/cvi.service';
-import { TermsMeaningResultsSet } from '../../response/terms-meaning-results-set';
-import { distinct } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {CviService} from '../../service/cvi.service';
+import {TermsMeaningResultsSet} from '../../response/terms-meaning-results-set';
 
 @Component({
   selector: 'app-terms-search',

@@ -1,4 +1,4 @@
-import { SearchItemDetails } from './search-item-details';
+import {SearchItemDetails} from './search-item-details';
 
 export interface TermsMeaningResultsSet {
   exactResults: Array<SearchItemDetails>;

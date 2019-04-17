@@ -3,24 +3,24 @@
   <div class="text-center">
     <div class="form-row mt-3">
       <div class="form-group col-md-10 ml-4">
-        <input class="form-control" type="search"
-               id="searchControl" placeholder="Enter search term"
-               (keyup.enter)="getResultsSet()"
-               [formControl]="searchControl">
+        <input (keyup.enter)="getResultsSet()" [formControl]="searchControl"
+               class="form-control" id="searchControl"
+               placeholder="Enter search term"
+               type="search">
       </div>
 
       <div class="form-group ml-2">
-        <button class="btn btn-primary"
-                type="button" [disabled]="searchControl.invalid"
-                (click)="getResultsSet()">Search
+        <button (click)="getResultsSet()"
+                [disabled]="searchControl.invalid" class="btn btn-primary"
+                type="button">Search
         </button>
       </div>
     </div>
   </div>
 
   <p *ngIf="showSorryMessage">Sorry, your search did not yield any results.</p>
-  <div class="mb-3"
-       *ngIf="isExactResultsSetValid()">
+  <div *ngIf="isExactResultsSetValid()"
+       class="mb-3">
     <hr>
     <p class="font-weight-light">Exact Match</p>
     <div *ngFor="let exactResult of termsMeaningResultsSet.exactResults">
@@ -30,8 +30,8 @@
     </div>
   </div>
 
-  <div class="mb-3"
-       *ngIf="isRelatedResultsSetValid()">
+  <div *ngIf="isRelatedResultsSetValid()"
+       class="mb-3">
     <hr class="text-black-50">
     <p class="font-weight-light">Related Match</p>
     <div *ngFor="let relatedResult of termsMeaningResultsSet.relatedResults">

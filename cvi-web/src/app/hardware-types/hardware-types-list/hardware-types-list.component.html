@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="text-center mt-3">
+    <div *ngIf="showCreateHardwareType" class="mb-3">
+      <small class="mr-1">Nothing found. Create Hardware Type?</small>
+      <a class="btn btn-sm btn-primary" routerLink="../create">Create</a>
+    </div>
+  </div>
+
+  <div *ngIf="isResultsSetValid()"
+       class="mb-3">
+    <hr class="text-black-50">
+    <div *ngFor="let hardwareTypeItemDetails of hardwareTypeItemDetailsResultsSet.results">
+      <div class="mb-3">
+        <app-hardware-types-item-details [hardwareTypeItemDetails]="hardwareTypeItemDetails"></app-hardware-types-item-details>
+      </div>
+    </div>
+  </div>
+</div>

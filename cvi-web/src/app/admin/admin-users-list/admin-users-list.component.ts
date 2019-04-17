@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {ResultsSet} from "../../response/results-set";
 import {UserDetails} from "../../response/user-details";
@@ -11,7 +11,8 @@ export class AdminUsersListComponent implements OnInit {
 
   resultsSetUserDetails: ResultsSet<UserDetails>;
 
-  constructor(private usersService: UserService) { }
+  constructor(private usersService: UserService) {
+  }
 
   ngOnInit() {
     this.usersService.readAll()

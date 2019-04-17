@@ -1,6 +1,6 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoggingInterceptor } from './logging-interceptor';
-import { AuthInterceptor } from './auth-interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {LoggingInterceptor} from './logging-interceptor';
+import {AuthInterceptor} from './auth-interceptor';
 
 export const httpInterceptorProviders = [
   {

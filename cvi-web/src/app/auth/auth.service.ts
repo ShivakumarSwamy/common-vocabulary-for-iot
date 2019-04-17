@@ -86,7 +86,6 @@ export class AuthService {
   }
 
 
-
   parseToken() {
     const parts = this.token.split('.');
     const decodedPayload = window.atob(parts[1]);

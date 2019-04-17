@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ConsumerRoutingModule } from './consumer-routing.module';
-import { ConsumerHomeComponent } from './consumer-home/consumer-home.component';
-import { ConsumerWelcomeComponent } from './consumer-welcome/consumer-welcome.component';
-import { ConsumerToolbarComponent } from './consumer-toolbar/consumer-toolbar.component';
+import {ConsumerRoutingModule} from './consumer-routing.module';
+import {ConsumerHomeComponent} from './consumer-home/consumer-home.component';
+import {ConsumerWelcomeComponent} from './consumer-welcome/consumer-welcome.component';
+import {ConsumerToolbarComponent} from './consumer-toolbar/consumer-toolbar.component';
 
 @NgModule({
   declarations: [ConsumerHomeComponent, ConsumerWelcomeComponent, ConsumerToolbarComponent],
@@ -13,4 +13,5 @@ import { ConsumerToolbarComponent } from './consumer-toolbar/consumer-toolbar.co
     ConsumerRoutingModule
   ]
 })
-export class ConsumerModule { }
+export class ConsumerModule {
+}
