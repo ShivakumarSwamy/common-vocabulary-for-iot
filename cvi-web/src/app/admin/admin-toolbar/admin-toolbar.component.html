@@ -7,20 +7,20 @@
         <a class="nav-link" routerLink="./users">Users</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="./topics">Topics</a>
-      </li>
+<!--      <li class="nav-item">-->
+      <!--        <a class="nav-link" routerLink="./topics">Topics</a>-->
+      <!--      </li>-->
 
       <li class="nav-item">
         <a class="nav-link" routerLink="./terms">Terms Meaning</a>
       </li>
 
-      <!--      <li class="nav-item">-->
-      <!--        <a class="nav-link" routerLink="./hardware-types">Hardware Types</a>-->
-      <!--      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./hardware-types">Hardware Types</a>
+      </li>
 
       <li class="nav-item">
-        <a class="nav-link" (click)="authService.logout()">Logout</a>
+        <a (click)="authService.logout()" class="nav-link">Logout</a>
       </li>
 
       <li class="nav-item">

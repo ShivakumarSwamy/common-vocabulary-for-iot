@@ -23,6 +23,14 @@ data:
       update-repository-statements: "/repositories/cvi/statements"
       query-repository-statements: "/repositories/cvi"
 
+error:
+  message:
+    hardware-type:
+      form-control:
+        hardware-component: "Hardware component is required"
+        category: "Category is required"
+        label: "Label is required"
+        comment: "Comment is required"
 
 logging:
   level:
@@ -61,6 +69,15 @@ logging:
       springframework:
         security: "DEBUG"
         web: "DEBUG"
+
+error:
+  message:
+    hardware-type:
+      form-control:
+        hardware-component: "Hardware component is required"
+        category: "Category is required"
+        label: "Label is required"
+        comment: "Comment is required"
 ---
 
 spring:
@@ -88,3 +105,12 @@ debug: false
 
 server:
   port: 8080
+
+error:
+  message:
+    hardware-type:
+      form-control:
+        hardware-component: "Hardware component is required"
+        category: "Category is required"
+        label: "Label is required"
+        comment: "Comment is required"

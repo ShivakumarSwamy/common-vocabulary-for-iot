@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ConsumerHomeComponent } from './consumer-home/consumer-home.component';
-import { AuthGuard } from '../auth/auth.guard';
-import { ConsumerWelcomeComponent } from './consumer-welcome/consumer-welcome.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ConsumerHomeComponent} from './consumer-home/consumer-home.component';
+import {AuthGuard} from '../auth/auth.guard';
+import {ConsumerWelcomeComponent} from './consumer-welcome/consumer-welcome.component';
 
 const routes: Routes = [
   {
