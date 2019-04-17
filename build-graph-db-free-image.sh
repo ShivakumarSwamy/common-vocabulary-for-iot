@@ -15,4 +15,5 @@ docker image build \
     --file GraphDB-Free.Dockerfile \
     --build-arg version=${version} \
     --tag graph-db-free:${version} \
+    --tag graph-db-free:latest \
     .
