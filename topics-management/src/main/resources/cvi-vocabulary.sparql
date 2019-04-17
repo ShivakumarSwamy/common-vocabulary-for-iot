@@ -1,0 +1,247 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+PREFIX cvi: <http://www.cvi.com/vocabulary#>
+
+INSERT DATA {
+
+cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     rdfs:Class;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "Search ID";
+                            rdfs:comment    "ID to uniquely identify the class name. The subject of the triple or specifically the local name of the subject in the qualified name represents the ID. It is used during searching of entities".
+
+
+cvi:entity                  rdf:type        rdfs:Class;
+                            cvi:hasSearchId "entity";
+                            rdfs:label      "Entity";
+                            rdfs:comment    "A unique individual representation".
+
+
+cvi:hasId                   rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     cvi:entity;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "ID";
+                            rdfs:comment    "UUID of the entity".
+
+
+cvi:hasOwner                rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     cvi:entity;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "Owner";
+                            rdfs:comment    "Owner(Manager) UUID of the entity".
+
+
+
+cvi:topic                   rdf:type        rdfs:Class;
+                            cvi:hasSearchId "topic";
+                            rdfs:label      "Topic";
+                            rdfs:comment    "Topic provided by the entity".
+
+
+
+cvi:hasPath                 rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     cvi:topic;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "Path";
+                            rdfs:comment    "Path of the topic".
+
+cvi:hasMiddlewareEndpoint   rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     cvi:topic;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "Middleware Endpoint";
+                            rdfs:comment    "Endpoint where path is available".
+
+
+cvi:hasDataType             rdf:type        owl:DatatypeProperty;
+                            rdfs:domain     cvi:topic;
+                            rdfs:range      xsd:string;
+                            rdfs:label      "Data Type";
+                            rdfs:comment    "Type of data the topic provides, convenience property".
+
+
+cvi:hasTopicType            rdf:type        owl:ObjectProperty;
+                            rdfs:domain     cvi:topic;
+                            rdfs:range      rdfs:Class;
+                            rdfs:label      "Topic Type";
+                            rdfs:comment    "Type of the topic, values can be either subscribe or publish".
+
+cvi:hasProtocol             rdf:type        owl:ObjectProperty;
+                            rdfs:domain     cvi:topic;
+                            rdfs:range      rdfs:Class;
+                            rdfs:label      "Protocol";
+                            rdfs:comment    "Protocol used by the middleware".
+
+
+
+cvi:topic-type              rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "topic-type";
+                            rdfs:label          "Topic Type";
+                            rdfs:comment        "Type of the topic, values can be either subscribe or publish".
+
+cvi:subscribe               rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "subscribe";
+                            rdfs:subClassOf     cvi:topic-type;
+                            rdfs:label          "Subscribe";
+                            rdfs:comment        "Subscribe type of topic, associated with a sensor".
+
+cvi:publish                 rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "publish";
+                            rdfs:subClassOf     cvi:topic-type;
+                            rdfs:label          "Publish";
+                            rdfs:comment        "Publish type of topic, associated with a actuator".
+
+
+
+cvi:protocol                rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "protocol";
+                            rdfs:label          "Protocol";
+                            rdfs:comment         "Protocol used by the middleware".
+
+cvi:mqtt                    rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "mqtt";
+                            rdfs:subClassOf     cvi:protocol;
+                            rdfs:label          "MQTT";
+                            rdfs:comment        "MQTT is a type of protocol".
+
+cvi:http                    rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "http";
+                            rdfs:subClassOf     cvi:protocol;
+                            rdfs:label          "HTTP";
+                            rdfs:comment        "HTTP is a type of protocol".
+
+
+
+cvi:message                 rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "message";
+                            rdfs:label          "Message";
+                            rdfs:comment        "Message(data) provided by the entity".
+
+
+cvi:hasMessageFormat        rdf:type            owl:ObjectProperty;
+                            rdfs:domain         cvi:message;
+                            rdfs:range          rdfs:Class;
+                            rdfs:label          "Message Format";
+                            rdfs:comment        "Message Format of the message. Example JSON".
+
+cvi:hasMetaModel            rdf:type            owl:DatatypeProperty;
+                            rdfs:domain         cvi:message;
+                            rdfs:range          xsd:string;
+                            rdfs:label          "Meta Model";
+                            rdfs:comment        "Meta Model of the message. It represents the schema or structure of the message".
+
+cvi:hasMetaModelType        rdf:type            owl:ObjectProperty;
+                            rdfs:domain         cvi:message;
+                            rdfs:range          rdfs:Class;
+                            rdfs:label          "Meta Model Type";
+                            rdfs:comment        "Meta model type of the message. It represents the type of schema like JSON schema".
+
+
+
+cvi:message-format          rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "message-format";
+                            rdfs:label          "Message Format";
+                            rdfs:comment        "Message Format of the message. Example JSON".
+
+
+cvi:json                    rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "json";
+                            rdfs:subClassOf     cvi:message-format;
+                            rdfs:label          "JSON";
+                            rdfs:comment        "JSON is type of message format".
+
+
+
+cvi:schema                  rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "schema";
+                            rdfs:label          "Schema";
+                            rdfs:comment        "Schema of the message".
+
+
+
+cvi:meta-model-type         rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "meta-model-type";
+                            rdfs:subClassOf     cvi:schema;
+                            rdfs:label          "Meta Model Type";
+                            rdfs:comment        "Meta model type of the message. It represents the type of schema like JSON schema".
+
+cvi:json-schema             rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "json-schema";
+                            rdfs:subClassOf     cvi:meta-model-type;
+                            rdfs:label          "JSON Schema";
+                            rdfs:comment        "JSON Schema is a type of meta model type".
+
+
+cvi:hardware                rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "hardware";
+                            rdfs:label          "Hardware";
+                            rdfs:comment        "A hardware component of a device".
+
+
+cvi:sensor                  rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "sensor";
+                            rdfs:subClassOf     cvi:hardware;
+                            rdfs:label          "Sensor";
+                            rdfs:comment        "Sensor is a type of hardware component of a device. It gathers the information of the surrounding environment and sends the data to required connected device, or to any platform or application ".
+
+cvi:actuator                rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "actuator";
+                            rdfs:subClassOf     cvi:hardware;
+                            rdfs:label          "Actuator";
+                            rdfs:comment        "Actuator is a type of hardware component of a device. It performs action based on the command received by the connected device, or any platform or application".
+
+
+cvi:hardware-type           rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "hardware-type";
+                            rdfs:label          "Hardware Type";
+                            rdfs:comment        "A hardware type created by a manager role. A hardware type can be model number of a category like parking space sensor".
+
+cvi:hasHardwareType         rdf:type            owl:ObjectProperty;
+                            rdfs:domain         cvi:hardware;
+                            rdfs:range          rdfs:Class;
+                            rdfs:label          "Hardware Type";
+                            rdfs:comment        "The type of hardware component the device is equipped with. The value of this property is the class name of the hardwareProperties type created by Manager role".
+
+cvi:hasUnit                 rdf:type            owl:DatatypeProperty;
+                            rdfs:domain         cvi:hardware;
+                            rdfs:range          xsd:string;
+                            rdfs:label          "Unit";
+                            rdfs:comment        "The unit of the hardware type".
+
+
+cvi:parking                 rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "parking";
+                            rdfs:label          "Parking";
+                            rdfs:comment        "The space in which vehicles park".
+
+cvi:space                   rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "space";
+                            rdfs:label          "Space";
+                            rdfs:comment        "An area which may be occupied or un-occupied".
+
+cvi:gate                    rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "gate";
+                            rdfs:label          "Gate";
+                            rdfs:comment        "A gate which can be opened an closed based on a command".
+
+
+cvi:parking-space-sensor    rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "parking-space-sensor";
+                            rdfs:subClassOf     cvi:sensor;
+                            rdfs:subClassOf     cvi:parking;
+                            rdfs:subClassOf     cvi:space;
+                            rdfs:label          "Parking Space Sensor";
+                            rdfs:comment        "A sensor which monitors the parking space availability in the given area".
+
+
+cvi:parking-gate-actuator   rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "parking-gate-actuator";
+                            rdfs:subClassOf     cvi:actuator;
+                            rdfs:subClassOf     cvi:parking;
+                            rdfs:subClassOf     cvi:gate;
+                            rdfs:label          "Parking Gate Actuator";
+                            rdfs:comment        "An actuator which controls the opening and closing of a parking gate".
+
+}
