@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
 
     if (redirectUrl.startsWith('/admin')) return redirectUrl;
 
+    return '/error' // should invoke page not found component
   }
 
 }

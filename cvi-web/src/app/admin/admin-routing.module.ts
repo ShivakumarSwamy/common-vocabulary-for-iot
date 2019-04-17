@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "../auth/auth.guard";
 import {AdminHomeComponent} from "./admin-home/admin-home.component";
 import {AdminWelcomeComponent} from "./admin-welcome/admin-welcome.component";
+import {AdminUsersListComponent} from "./admin-users-list/admin-users-list.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
           {
             path: '',
             component: AdminWelcomeComponent
+          },
+          {
+            path: 'users',
+            component: AdminUsersListComponent
           }
           // ,
           // {
