@@ -6,11 +6,11 @@
 
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>vocabulary</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>Vocabulary</name>
-    <description>Vocabulary that consists of RDF, RDFS, OWL, Users</description>
+    <description>Vocabulary that consists of RDF, RDFS, OWL, USER, CVI</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
