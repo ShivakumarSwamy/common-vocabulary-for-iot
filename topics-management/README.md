@@ -9,7 +9,57 @@ graph db as triple store
     
 - The JAR built by maven can be use to deploy the app based on [profile](./src/main/resources/application.yml) default, dev, and docker 
 
+- Manage terms meaning, hardware types
+
+## Version 0.2.0
+
+- Manage hardware types
+
+### Endpoints
+
+Refer below for [filter, url role access rules](#security)
+
+- `/api/manager/hardware-types`
+    - `POST`: create new hardware type
+        - Request Body: [Hardware type create dto](#hardware-type-create-dto)
+        - Content type: JSON
+        - Response status Code: 201 
+        - Role: MANAGER
+        - Response Body: 
+        `message` key has `Hardware Type created with search id: <SEARCH_ID>` , `SEARCH_ID` for hardware type
+    - `GET`: get all hardware types
+        - Content type: JSON
+        - Response status Code: 200
+        - Role: MANAGER 
+        - - Response Body: [Results Set](#results-set) collection of elements 
+        [hardware-type-item-details](#hardware-type-item-details)
+
+### Hardware type create dto
+
+- keys required are
+    - `label`: label for hardware type, represent RDFS label in vocabulary, also used to generate search id
+    - `comment`: description of hardware type, represent RDFS comment in vocabulary
+    - `hardware component`: either `Sensor` or `Actuator` (sub-classes of `hardware` in CVI vocabulary)  
+    - `category`: value would be sub-classes of `Sensor` or `Actuator` in CVI vocabulary, 
+    represents the category hardware type belongs to
+   
+- `hardware type` created would be subclassed under `category` value and `hardware-type` class from CVI Vocabulary
+
+
+### Hardware type item details
+
+- keys present are
+    - `category`: value would be sub-classes of `Sensor` or `Actuator` in CVI vocabulary, 
+    represents the category hardware type belongs to
+    - `hardware component`: either `Sensor` or `Actuator` (sub-classes of `hardware` in CVI vocabulary) 
+    - `label`: label for hardware type, represent RDFS label in vocabulary, also used to generate search id
+    - `comment`: description of hardware type, represent RDFS comment in vocabulary
+    - `searchId`: represents `hasSearchId` in vocabulary CVI, search id for hardware type
+
+
 ## Version 0.1.0
+
+- Manage terms meaning
 
 ### Endpoints
 
@@ -62,7 +112,7 @@ example search query `parking`
 ### Search Item Details
 
 search item details has keys
-    - `searchId`: represents `hasSerachId` in vocabulary CVI
+    - `searchId`: represents `hasSearchId` in vocabulary CVI
     - `label`: represents `label` in vocabulary RDFS
     - `comment`: represents `comment` in vocabulary RDFS
     
@@ -79,6 +129,7 @@ example search items details for `parking` term
 ### Results Set
 
 - Results Set type has a field or key in JSON `results`
+- array results based on service
 
 example empty result set
 ```
@@ -88,18 +139,7 @@ example empty result set
 
 ```
 
-example single user details
-```
-{
-    "results": [
-        {
-            "id": "foo",
-            "username": "foo",
-            "role": "foo"
-        }
-    ]
-}    
-```
+
 
 ### Security
 
