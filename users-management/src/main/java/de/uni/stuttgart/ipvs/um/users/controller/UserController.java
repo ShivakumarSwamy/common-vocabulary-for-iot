@@ -32,16 +32,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody UserCreateDTO userCreateDTO) {
-        String uuidUser = this.userDetailsServiceImpl.createUser(userCreateDTO);
-
-        var newUserLocationUri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(uuidUser)
-                .toUri();
-
-        return ResponseEntity.created(newUserLocationUri).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody UserCreateDTO userCreateDTO) {
+        this.userDetailsServiceImpl.createUser(userCreateDTO);
     }
 
     @GetMapping

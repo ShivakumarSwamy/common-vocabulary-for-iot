@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
 
-    public String createUser(UserCreateDTO userCreateDTO) {
+    public void createUser(UserCreateDTO userCreateDTO) {
 
         this.userFormModelValidation.validate(userCreateDTO);
         this.checkUsernameExists(userCreateDTO.getUsername());
@@ -35,7 +35,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         var userDetails = UserDetailsImpl.buildFromDTO(userCreateDTO);
         this.userRepository.save(userDetails);
 
-        return userDetails.getId();
     }
 
     public ResultsSet findAllUsers() {
