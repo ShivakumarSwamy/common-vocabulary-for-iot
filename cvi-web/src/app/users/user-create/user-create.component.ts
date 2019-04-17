@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {UserCreateDto} from "../dto/user-create-dto";
-import {UserService} from "../service/user.service";
-import {ResponseMessage} from "../../response-message";
-import {error} from "@angular/compiler/src/util";
+import {UserCreateDto} from "../../dto/user-create-dto";
+import {UserService} from "../../service/user.service";
+import {ResponseMessage} from "../../response/response-message";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-create',
@@ -35,7 +35,8 @@ export class UserCreateComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -98,9 +99,17 @@ export class UserCreateComponent implements OnInit {
 
     this.userService.create(this.getUserCreateDto())
       .subscribe(
-        () => this.successSubmit = true,
+        () => {
+          this.successSubmit = true;
+          this.navigateToLoginOnSuccess();
+        },
+
         (error) => this.errorResponseMessage = error
       );
+  }
+
+  navigateToLoginOnSuccess() {
+    this.router.navigate(['/login'])
   }
 
   clearErrorResponseMessageFromApi() {

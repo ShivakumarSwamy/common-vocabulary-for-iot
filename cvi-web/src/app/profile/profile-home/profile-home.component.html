@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="text-center mt-3" *ngIf="showErrorMessage">
+    <small class="alert alert-danger">Sorry, Your Profile Details not found please try later</small>
+  </div>
+  <div class="mt-3">
+    <app-profile-user-details [userDetails]="userDetails"></app-profile-user-details>
+  </div>
+</div>
