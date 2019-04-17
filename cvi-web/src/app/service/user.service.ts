@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UserCreateDto} from "../dto/user-create-dto";
 import {HttpClient} from "@angular/common/http";
-import {USERS_ENDPOINT} from "../api-endpoints";
+import {ADMIN_USERS_ENDPOINT, USERS_ENDPOINT} from "../api-endpoints";
 import {catchError} from "rxjs/operators";
 import {handleError} from "../handle-error";
 import {UserDetails} from "../response/user-details";
@@ -25,6 +25,13 @@ export class UserService {
     return this.httpClient.get<ResultsSet<UserDetails>>(USERS_ENDPOINT)
       .pipe(
         catchError(handleError)
-      )
+      );
+  }
+
+  readAll(): Observable<ResultsSet<UserDetails>> {
+    return this.httpClient.get<ResultsSet<UserDetails>>(ADMIN_USERS_ENDPOINT)
+      .pipe(
+        catchError(handleError)
+      );
   }
 }
