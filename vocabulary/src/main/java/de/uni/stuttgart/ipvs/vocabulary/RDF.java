@@ -8,7 +8,7 @@ import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 public class RDF {
 
     private static final Iri RDF_IRI;
-    private static final PrefixLabel RDF_PREFIX_LABEL;
+    public static final PrefixLabel RDF_PREFIX_LABEL;
 
     public static final PrefixDeclaration RDF_PREFIX_DECLARATION;
 

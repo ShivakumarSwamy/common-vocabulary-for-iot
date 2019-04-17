@@ -4,13 +4,22 @@ NOTE:
 - This project would not packaged on it's own, needs to packaged via [parent project pom](../pom.xml)
 - Only needed properties, class for project is present in the module
 
+### Version 0.2.1
+
+
+- CVI iri fix: `http://www.cvi.com/vocabulary#`
+
+- [RDFS](http://www.w3.org/2000/01/rdf-schema# "RDFS")    
+    - local names:
+        - comment
+        
 ### Version 0.2.0
 
 - More convenience methods for `ProloguesFactory` 
 
 - CVI
     - prefix label: `cvi`
-    - iri: `http://www.cvi.com/vocbulary#`
+    - iri: `http://www.cvi.com/vocabulary#`
     
     - local names
         - hasSearchId

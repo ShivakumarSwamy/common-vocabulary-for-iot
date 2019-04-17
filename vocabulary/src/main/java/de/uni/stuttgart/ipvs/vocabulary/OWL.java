@@ -8,7 +8,7 @@ import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 public class OWL {
 
     private static final Iri OWL_IRI;
-    private static final PrefixLabel OWL_PREFIX_LABEL;
+    public static final PrefixLabel OWL_PREFIX_LABEL;
 
     public static final PrefixDeclaration OWL_PREFIX_DECLARATION;
 

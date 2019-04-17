@@ -8,13 +8,14 @@ import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 public class RDFS {
 
     private static final Iri RDFS_IRI;
-    private static final PrefixLabel RDFS_PREFIX_LABEL;
+    public static final PrefixLabel RDFS_PREFIX_LABEL;
 
     public static final PrefixDeclaration RDFS_PREFIX_DECLARATION;
 
     public static final PrefixedName RDFS_CLASS;
 
     public static final PrefixedName RDFS_LABEL;
+    public static final PrefixedName RDFS_COMMENT;
 
     static {
         RDFS_IRI = new Iri("http://www.w3.org/2000/01/rdf-schema#");
@@ -24,5 +25,6 @@ public class RDFS {
 
         RDFS_CLASS = new PrefixedName(RDFS_PREFIX_LABEL, "Class");
         RDFS_LABEL = new PrefixedName(RDFS_PREFIX_LABEL, "label");
+        RDFS_COMMENT = new PrefixedName(RDFS_PREFIX_LABEL, "comment");
     }
 }

@@ -38,7 +38,7 @@ public class CVI {
     public static final PrefixedName HARDWARE_TYPE_CLASS;
 
     static {
-        CVI_IRI = new Iri("http://www.cvi.com/vocbulary#");
+        CVI_IRI = new Iri("http://www.cvi.com/vocabulary#");
 
         CVI_PREFIX_LABEL = new PrefixLabel("cvi");
 
