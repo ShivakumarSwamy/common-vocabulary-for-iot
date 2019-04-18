@@ -30,7 +30,7 @@ public class CviSparqlUtils {
                 .map(CviSparqlUtils::searchItemDetailsTerm)
                 .collect(Collectors.toList());
 
-        return GraphPatternNotTriplesImpl2.unionOf(tripleSameSubjects);
+        return UnionImpl.unionOf(tripleSameSubjects);
     }
 
 

@@ -12,11 +12,13 @@ import {ManagerModule} from "./manager/manager.module";
 import {AdminModule} from "./admin/admin.module";
 import {httpInterceptorProviders} from "./interceptors/index-interceptors";
 import {CviService} from "./service/cvi.service";
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,19 @@
       {{errorResponseMessage.message}}
     </div>
 
+    <div *ngIf="userCreateForm.errors">
+      <div *ngIf="userCreateForm.hasError('usernamePasswordSame')">
+        <div class="alert alert-danger col-md-6">
+          {{userCreateForm.getError('usernamePasswordSame')}}
+        </div>
+      </div>
+      <div *ngIf="userCreateForm.hasError('mismatchPassword')">
+        <div class="alert alert-danger col-md-6">
+          {{userCreateForm.getError('mismatchPassword')}}
+        </div>
+      </div>
+    </div>
+
     <div class="form-group col-md-6">
       <label for="username">Username</label><span class="text-danger">*</span>
       <input class="form-control" formControlName="username"
@@ -46,13 +59,8 @@
       </div>
     </div>
 
-    <!--    <button class="btn btn-primary"-->
-    <!--            type="submit" [disabled]="userCreateForm.invalid">-->
-    <!--      Submit-->
-    <!--    </button>-->
-
     <button class="btn btn-primary"
-            type="submit">
+            type="submit" [disabled]="userCreateForm.invalid">
       Submit
     </button>
 

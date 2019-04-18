@@ -2,7 +2,7 @@ FROM openjdk:11-jre
 
 WORKDIR /app
 
-ARG version=0.1.0
+ARG version=0.1.1
 
 ENV USERS_MANAGEMENT_APP_JAR=users-management-${version}.jar
 

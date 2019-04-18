@@ -37,6 +37,7 @@ export class AuthService {
   isConsumer = false;
   isAdmin = false;
 
+  username = '';
   redirectUrl = '/';
   token = '';
   role = '';
@@ -91,6 +92,7 @@ export class AuthService {
     const decodedPayload = window.atob(parts[1]);
     const parsedPayload = JSON.parse(decodedPayload);
     this.role = parsedPayload.role;
+    this.username = parsedPayload.username;
 
     if (this.role !== null) {
       if (this.role === 'Manager') {

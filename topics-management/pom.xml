@@ -12,11 +12,11 @@
 
     <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>topics-management</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <packaging>jar</packaging>
 
     <name>Topics Management</name>
-    <description>Manage terms meaning, hardware types</description>
+    <description>Manage terms meaning, hardware types,  topics</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

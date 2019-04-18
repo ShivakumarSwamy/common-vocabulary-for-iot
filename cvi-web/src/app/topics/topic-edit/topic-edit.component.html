@@ -1,0 +1,129 @@
+<div *ngIf="successResponseMessage">
+  <div class="container">
+    <div *ngIf="successResponseMessage"
+         class="alert alert-success mt-3">
+      {{successResponseMessage.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!successResponseMessage" class="mt-4">
+  <form [formGroup]="topicFormProvider.topicsForm"
+        class="container">
+
+
+    <div class="form-row">
+      <div class="form-group col-md-4 mr-3">
+        <label class="text-dark" for="id">ID</label>
+        <input class="form-control" [formControl]="topicFormProvider.idControl"
+               id="id" placeholder="Enter id"
+               type="text" readonly>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label class="text-dark" for="owner">Owner</label>
+        <input class="form-control" [formControl]="topicFormProvider.ownerControl"
+               id="owner" placeholder="Enter owner"
+               type="text" readonly>
+      </div>
+    </div>
+
+
+    <div *ngIf="errorResponseMessage"
+         class="alert alert-danger mb-3">
+      {{errorResponseMessage.message}}
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4 mr-3">
+        <label class="text-dark" for="path">Path</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="path"
+               id="path" placeholder="Enter path"
+               type="text">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label class="text-dark" for="middlewareEndpoint">Middleware Endpoint</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="middlewareEndpoint"
+               id="middlewareEndpoint" placeholder="Enter middleware endpoint"
+               type="text">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6 mr-3">
+        <label class="text-dark" for="hardwareType">Hardware Type</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="hardwareType"
+               id="hardwareType" placeholder="Enter hardware type"
+               type="text">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="text-dark" for="unit">Unit</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="unit"
+               id="unit" placeholder="Enter unit"
+               type="text">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-2 mr-1">
+        <label class="text-dark" for="topicType">Topic Type</label><span class="text-danger">*</span>
+        <select class="form-control" formControlName="topicType"
+                id="topicType">
+          <option *ngFor="let topicType of topicFormProvider.topicTypes" [value]="topicType">{{topicType}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2 mr-1">
+        <label class="text-dark" for="protocol">Protocol</label><span class="text-danger">*</span>
+        <select class="form-control" formControlName="protocol"
+                id="protocol">
+          <option *ngFor="let protocol of topicFormProvider.protocols" [value]="protocol">{{protocol}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2 mr-1">
+        <label class="text-dark" for="dataType">Data Type</label><span class="text-danger">*</span>
+        <select class="form-control" formControlName="dataType"
+                id="dataType">
+          <option *ngFor="let dataType of topicFormProvider.dataTypes" [value]="dataType">{{dataType}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2 mr-1">
+        <label class="text-dark" for="messageFormat">Message Format</label><span class="text-danger">*</span>
+        <select class="form-control" formControlName="messageFormat"
+                id="messageFormat">
+          <option *ngFor="let messageFormat of topicFormProvider.messageFormats"
+                  [value]="messageFormat">{{messageFormat}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label class="text-dark" for="metaModelType">Meta Model Type</label><span class="text-danger">*</span>
+        <select class="form-control" formControlName="metaModelType"
+                id="metaModelType">
+          <option *ngFor="let metaModelType of topicFormProvider.metaModelTypes"
+                  [value]="metaModelType">{{metaModelType}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group col-md-10">
+      <label class="text-dark" for="metaModel">Meta Model</label><span class="text-danger">*</span>
+      <textarea class="form-control" formControlName="metaModel" id="metaModel"
+                placeholder="Enter meta model"></textarea>
+    </div>
+
+
+    <button (click)="onSave()" [disabled]="topicFormProvider.topicsForm.invalid"
+            class="btn btn-sm btn-primary mr-1">
+      Save
+    </button>
+    <button (click)="onCancel()" class="btn btn-sm btn-secondary">
+      Cancel
+    </button>
+  </form>
+</div>

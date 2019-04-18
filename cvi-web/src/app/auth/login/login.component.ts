@@ -91,13 +91,13 @@ export class LoginComponent implements OnInit {
 
       if (this.authService.isAdmin) return '/admin';
     }
-    if (redirectUrl.startsWith('/consumer')) return redirectUrl;
+    if (this.authService.isConsumer && redirectUrl.startsWith('/consumer')) return redirectUrl;
 
-    if (redirectUrl.startsWith('/manager')) return redirectUrl;
+    if (this.authService.isManager && redirectUrl.startsWith('/manager')) return redirectUrl;
 
-    if (redirectUrl.startsWith('/admin')) return redirectUrl;
+    if (this.authService.isAdmin && redirectUrl.startsWith('/admin')) return redirectUrl;
 
-    return '/error' // should invoke page not found component
+    return '/forbidden';
   }
 
 }
