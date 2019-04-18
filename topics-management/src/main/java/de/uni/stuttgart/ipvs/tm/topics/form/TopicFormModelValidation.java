@@ -14,6 +14,7 @@ import de.uni.stuttgart.ipvs.form.model.FormModelImpl;
 import de.uni.stuttgart.ipvs.form.validation.FormControlError;
 import de.uni.stuttgart.ipvs.form.validation.FormModelValidator;
 import de.uni.stuttgart.ipvs.tm.topics.dto.TopicCreateDTO;
+import de.uni.stuttgart.ipvs.tm.topics.dto.TopicEditDTO;
 import de.uni.stuttgart.ipvs.tm.topics.properties.HardwareProperties;
 import de.uni.stuttgart.ipvs.tm.topics.properties.MessageProperties;
 import de.uni.stuttgart.ipvs.tm.topics.properties.TopicProperties;
@@ -42,6 +43,19 @@ public class TopicFormModelValidation {
 
     private static FormModel formModel(TopicCreateDTO topicCreateDTO) {
         return new FormModelImpl(formControls(topicCreateDTO));
+    }
+
+    private static FormModel formModel(TopicEditDTO topicEditDTO) {
+        return new FormModelImpl(formControls(topicEditDTO));
+    }
+
+    private static Collection<FormControl> formControls(TopicEditDTO topicEditDTO) {
+        var formControls = new ArrayList<>(formControlsTopicProperties(topicEditDTO));
+
+        formControls.addAll(formControlsMessageProperties(topicEditDTO));
+        formControls.addAll(formControlsHardwareProperties(topicEditDTO));
+
+        return formControls;
     }
 
     private static Collection<FormControl> formControls(TopicCreateDTO topicCreateDTO) {
@@ -84,6 +98,19 @@ public class TopicFormModelValidation {
 
     public void validate(TopicCreateDTO topicCreateDTO) {
         var formModel = formModel(topicCreateDTO);
+
+        if (!this.tFMV.isValid(formModel)) {
+            throwTopicFormControlErrorException(this.tFMV.getError());
+        }
+        log.debug("TOPIC FORM IS VALID");
+    }
+
+    public void validate(TopicEditDTO topicEditDTO) {
+
+        if (topicEditDTO.getOwner() == null || topicEditDTO.getOwner().isEmpty())
+            throw new TopicFormControlErrorException("Owner id is required");
+
+        var formModel = formModel(topicEditDTO);
 
         if (!this.tFMV.isValid(formModel)) {
             throwTopicFormControlErrorException(this.tFMV.getError());

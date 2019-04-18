@@ -17,44 +17,38 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toSet;
 
 // TODO update GraphPatternNotTriples impl
-public class GraphPatternNotTriplesImpl2 implements GraphPatternNotTriples {
+public class UnionImpl implements GraphPatternNotTriples {
 
-    private Set<Set<Triple>> setOfSetOfTriples = new LinkedHashSet<>();
+    private Set<Set<Triple>> setOfSetOfTriples;
 
     private final ClauseKeyword clauseKeyword;
 
-    public GraphPatternNotTriplesImpl2(ClauseKeyword clauseKeyword, Triple triple) {
+    public UnionImpl(ClauseKeyword clauseKeyword, Triple triple) {
         this(clauseKeyword, Set.of(), List.of(triple));
     }
 
-    public GraphPatternNotTriplesImpl2(ClauseKeyword clauseKeyword, Collection<Triple> rightTriples) {
+    public UnionImpl(ClauseKeyword clauseKeyword, Collection<Triple> rightTriples) {
         this(clauseKeyword, Set.of(), rightTriples);
     }
 
-    public GraphPatternNotTriplesImpl2(@NonNull ClauseKeyword clauseKeyword,
-                                       @NonNull Collection<Triple> leftTriples,
-                                       @NonNull Collection<Triple> rightTriples) {
+    public UnionImpl(@NonNull ClauseKeyword clauseKeyword,
+                     @NonNull Collection<Triple> leftTriples,
+                     @NonNull Collection<Triple> rightTriples) {
         this(clauseKeyword, Set.of(new LinkedHashSet<>(leftTriples), new LinkedHashSet<>(rightTriples)));
     }
 
-    public GraphPatternNotTriplesImpl2(ClauseKeyword clauseKeyword, Set<Set<Triple>> setOfSetOfTriples) {
+    public UnionImpl(ClauseKeyword clauseKeyword, Set<Set<Triple>> setOfSetOfTriples) {
         this.clauseKeyword = clauseKeyword;
         this.setOfSetOfTriples = setOfSetOfTriples;
     }
 
-    public static GraphPatternNotTriples unionOf(Collection<Triple> rightTriples, Collection<Triple> leftTriples) {
-        return new GraphPatternNotTriplesImpl2(ClauseKeyword.UNION, rightTriples, leftTriples);
-    }
 
     public static GraphPatternNotTriples unionOf(Collection<TripleSameSubject> tripleSameSubjects) {
-        return new GraphPatternNotTriplesImpl2(ClauseKeyword.UNION,
+        return new UnionImpl(ClauseKeyword.UNION,
                 tripleSameSubjectAsSetOfSetOfTriples(tripleSameSubjects));
     }
 
 
-    public static GraphPatternNotTriples minusOf(Triple triple) {
-        return new GraphPatternNotTriplesImpl2(ClauseKeyword.MINUS, triple);
-    }
 
     @Override
     public Set<Triple> getTriples() {
@@ -70,19 +64,7 @@ public class GraphPatternNotTriplesImpl2 implements GraphPatternNotTriples {
 
     @Override
     public String getString() {
-
-        if (this.hasSingleElement()) return this.stringForSingleElement();
-
         return this.stringForManyElements();
-    }
-
-    private boolean hasSingleElement() {
-        return this.setOfSetOfTriples.size() == 1;
-    }
-
-    private String stringForSingleElement() {
-        var iterator = this.setOfSetOfTriples.iterator();
-        return this.clauseKeyword.name() + " " + SparqlUtils.groupGraphPattern(iterator.next());
     }
 
     private String stringForManyElements() {
