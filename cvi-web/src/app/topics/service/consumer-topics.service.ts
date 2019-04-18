@@ -10,7 +10,7 @@ export class ConsumerTopicsService {
   }
 
   search(termsText: string) {
-    return this.httpClient.post<TopicsResponse>(CONSUMER_TOPICS_ENDPOINT,
+    return this.httpClient.post<TopicsResponse>(CONSUMER_TOPICS_ENDPOINT + '/search',
       null,
       {params: {search_query: termsText}}
     );

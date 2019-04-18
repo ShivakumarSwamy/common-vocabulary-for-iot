@@ -1,7 +1,8 @@
 import {FormBuilder, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
-import {TopicDTO} from '../dto/topic-dto';
+import {TopicCreateDto} from '../dto/topic-create-dto';
 import {TopicProperties} from '../response/topic-properties';
+import {TopicEditDto} from "../dto/topic-edit-dto";
 
 @Injectable()
 export class TopicFormProvider {
@@ -31,6 +32,9 @@ export class TopicFormProvider {
     }, {updateOn: 'blur'}
   );
 
+  idControl = this.formBuilder.control('', Validators.required);
+  ownerControl = this.formBuilder.control('', Validators.required);
+
   topicTypes = ['Publish', 'Subscribe'];
   protocols = ['HTTP', 'MQTT'];
   dataTypes = ['string', 'integer', 'float', 'boolean', 'double'];
@@ -48,10 +52,17 @@ export class TopicFormProvider {
   metaModelTypeValue = '';
   metaModelValue = '';
 
+  ownerValue = '';
+
   constructor(private formBuilder: FormBuilder) {
   }
 
-  subscribeAllControls() {
+  subscribeAllEditControls() {
+    this.subscribeAllCreateControls();
+    this.subscribeToOwnerControl();
+  }
+
+  subscribeAllCreateControls() {
     this.subscribeToPathControl();
     this.subscribeToMiddlewareEndpointControl();
     this.subscribeToTopicTypeControl();
@@ -77,6 +88,9 @@ export class TopicFormProvider {
     this.messageFormatControl.setValue(topicProperties.message_format);
     this.metaModelTypeControl.setValue(topicProperties.meta_model_type);
     this.metaModelControl.setValue(topicProperties.meta_model);
+
+    this.idControl.setValue(topicProperties.id);
+    this.ownerControl.setValue(topicProperties.owner);
   }
 
   initializeWithDefaultValuesForControls() {
@@ -85,6 +99,15 @@ export class TopicFormProvider {
     this.dataTypeControl.setValue('string');
     this.messageFormatControl.setValue('JSON');
     this.metaModelTypeControl.setValue('JSON Schema');
+  }
+
+
+
+  subscribeToOwnerControl() {
+    this.ownerControl.valueChanges
+      .subscribe(
+        value => this.ownerValue = value
+      );
   }
 
   subscribeToPathControl() {
@@ -157,8 +180,24 @@ export class TopicFormProvider {
       );
   }
 
-  getTopicDTO(): TopicDTO {
+  getTopicCreateDto(): TopicCreateDto {
     return {
+      path: this.pathValue,
+      middlewareEndpoint: this.middlewareEndpointValue,
+      dataType: this.dataTypeValue,
+      protocol: this.protocolValue,
+      topicType: this.topicTypeValue,
+      hardwareType: this.hardwareTypeValue,
+      unit: this.unitValue,
+      messageFormat: this.messageFormatValue,
+      metaModelType: this.metaModelTypeValue,
+      metaModel: this.escapeDoubleQuotes()
+    };
+  }
+
+  getTopicEditDto(): TopicEditDto {
+    return {
+      owner: this.ownerValue,
       path: this.pathValue,
       middlewareEndpoint: this.middlewareEndpointValue,
       dataType: this.dataTypeValue,

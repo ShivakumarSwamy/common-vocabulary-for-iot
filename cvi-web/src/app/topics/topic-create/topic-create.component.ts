@@ -60,7 +60,7 @@ export class TopicCreateComponent implements OnInit {
 
   ngOnInit() {
 
-    this.topicFormProvider.subscribeAllControls();
+    this.topicFormProvider.subscribeAllCreateControls();
     this.topicFormProvider.topicsForm.reset();
     this.topicFormProvider.initializeWithDefaultValuesForControls();
   }
@@ -69,7 +69,7 @@ export class TopicCreateComponent implements OnInit {
   onSubmit() {
     this.clearSuccessResponseMessage();
     this.clearErrorResponseMessage();
-    this.topicsService.createTopic(this.topicFormProvider.getTopicDTO())
+    this.topicsService.createTopic(this.topicFormProvider.getTopicCreateDto())
       .subscribe(
         srm => this.successResponseMessage = srm,
         erm => this.errorResponseMessage = erm,

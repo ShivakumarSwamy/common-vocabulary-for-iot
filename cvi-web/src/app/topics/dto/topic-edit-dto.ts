@@ -1,4 +1,5 @@
-export interface TopicDTO {
+export interface TopicEditDto {
+  owner: string;
   path: string;
   protocol: string;
   middlewareEndpoint: string;

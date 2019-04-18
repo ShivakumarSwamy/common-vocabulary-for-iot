@@ -15,19 +15,15 @@
     "target": "http://localhost:8010",
     "secure": false
   },
-  "/api/manager/hardware-types": {
+  "/api/manager/**": {
     "target": "http://localhost:8010",
     "secure": false
   },
-  "/api/manager/topics": {
+  "/api/consumer/**": {
     "target": "http://localhost:8010",
     "secure": false
   },
-  "/api/consumer/topics": {
-    "target": "http://localhost:8010",
-    "secure": false
-  },
-  "/api/admin/topics": {
+  "/api/admin/**": {
     "target": "http://localhost:8010",
     "secure": false
   }

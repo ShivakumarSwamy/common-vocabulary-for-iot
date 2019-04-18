@@ -4,6 +4,8 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
 import {TopicFormProvider} from '../provider/topic-form-provider';
 import {ResponseMessage} from '../../response/response-message';
+import {AdminTopicsService} from "../service/admin-topics.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-topic-edit',
@@ -15,20 +17,27 @@ export class TopicEditComponent implements OnInit {
   errorResponseMessage: ResponseMessage;
   topicId: string;
 
+  topicsService: ManagerTopicsService | AdminTopicsService;
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private topicFormProvider: TopicFormProvider,
-              private managerTopicsService: ManagerTopicsService) {
+              private authService: AuthService,
+              private managerTopicsService: ManagerTopicsService,
+              private adminTopicsService: AdminTopicsService) {
   }
 
   ngOnInit() {
-    this.topicFormProvider.subscribeAllControls();
+    this.topicFormProvider.subscribeAllEditControls();
     this.topicFormProvider.topicsForm.reset();
+
+    this.initTopicsService();
+
     this.activatedRoute.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
-          this.topicId = params.get('id');
-          return this.managerTopicsService.read(this.topicId);
+          this.topicId = params.get('idValue');
+          return this.topicsService.read(this.topicId);
         })
       ).subscribe(
       value => this.topicFormProvider.setControlValuesUsingTopicProperties(value.results[0])
@@ -38,7 +47,7 @@ export class TopicEditComponent implements OnInit {
   onSave() {
     this.clearSuccessResponseMessage();
     this.clearErrorResponseMessage();
-    this.managerTopicsService.edit(this.topicId, this.topicFormProvider.getTopicDTO())
+    this.topicsService.edit(this.topicId, this.topicFormProvider.getTopicEditDto())
       .subscribe(
         () => this.gotoList(),
         erm => this.errorResponseMessage = erm,
@@ -59,5 +68,20 @@ export class TopicEditComponent implements OnInit {
 
   clearErrorResponseMessage() {
     this.errorResponseMessage = undefined;
+  }
+
+  initTopicsService() {
+    if (this.authService.isManager) {
+      this.topicsService = this.managerTopicsService;
+    }
+
+    if (this.authService.isAdmin) {
+      this.topicsService = this.adminTopicsService;
+    }
+
+    // default
+    if (!this.topicsService) {
+      this.topicsService = this.managerTopicsService;
+    }
   }
 }

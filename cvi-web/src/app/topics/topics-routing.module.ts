@@ -30,7 +30,7 @@ const routes: Routes = [
             component: TopicCreateComponent
           },
           {
-            path: 'edit/:id',
+            path: 'edit/:idValue',
             component: TopicEditComponent
           },
           {

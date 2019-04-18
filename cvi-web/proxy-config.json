@@ -15,15 +15,15 @@
     "target": "http://localhost:8090",
     "secure": false
   },
-  "/api/manager/topics": {
+  "/api/manager/**": {
     "target": "http://localhost:8090",
     "secure": false
   },
-  "/api/consumer/topics": {
+  "/api/consumer/**": {
     "target": "http://localhost:8090",
     "secure": false
   },
-  "/api/admin/topics": {
+  "/api/admin/**": {
     "target": "http://localhost:8090",
     "secure": false
   }

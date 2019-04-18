@@ -19,7 +19,8 @@
       <p class="mb-0">Meta Model: <span class="text-secondary">{{topicProperties.meta_model}}</span></p>
     </div>
 
-    <div *ngIf="authService.isManager" [class.card-footer]="authService.isManager">
+    <div *ngIf="authService.isManager || authService.isAdmin"
+         [class.card-footer]="authService.isManager || authService.isAdmin">
 
       <a [routerLink]="['../' + 'edit',topicProperties.id]" class="btn btn-sm btn-outline-primary mr-1">Edit</a>
       <a (click)="delete(topicProperties.id)" class="btn btn-sm btn-outline-danger text-danger">Delete</a>

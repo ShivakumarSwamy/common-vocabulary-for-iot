@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {UserCreateDto} from "../../dto/user-create-dto";
 import {UserService} from "../../service/user.service";
 import {ResponseMessage} from "../../response/response-message";
@@ -21,7 +21,8 @@ export class UserCreateComponent implements OnInit {
     password: this.passwordFormControl,
     confirmPassword: this.confirmPasswordFormControl,
     role: this.roleFormControl
-  }, {updateOn: 'blur'});
+  }, {updateOn: 'blur', validators: [this.validatePasswordAndConfirmPasswordMatch(),
+      this.validateUsernamePasswordSame()]});
 
   username = '';
   password = '';
@@ -51,13 +52,42 @@ export class UserCreateComponent implements OnInit {
     this.roleFormControl.setValue("Consumer")
   }
 
+  validatePasswordAndConfirmPasswordMatch() {
+    return (control: AbstractControl) => {
 
-  isPasswordFormControlTouchedAndDirty() {
-    return this.passwordFormControl.touched && this.passwordFormControl.dirty;
+      const passwordControl = control.get('password');
+      const confirmPasswordControl = control.get('confirmPassword');
+
+      if (passwordControl && passwordControl.value && confirmPasswordControl && confirmPasswordControl.value) {
+        if (passwordControl.value !== confirmPasswordControl.value)
+          return {'mismatchPassword': 'Passwords do not match'}
+      }
+
+      return null;
+    }
   }
 
-  isConfirmPasswordFormControlTouchedAndDirty() {
-    return this.confirmPasswordFormControl.touched && this.confirmPasswordFormControl.dirty;
+  validateUsernamePasswordSame() {
+    return (control: AbstractControl) => {
+
+      const usernameControl = control.get('username');
+      const passwordControl = control.get('password');
+
+      if (passwordControl && passwordControl.value && usernameControl && usernameControl.value) {
+        if (passwordControl.value === usernameControl.value)
+          return {'usernamePasswordSame': 'Username and password same'}
+      }
+
+      return null;
+    }
+  }
+
+  isPasswordFormControlDirty() {
+    return this.passwordFormControl.dirty;
+  }
+
+  isConfirmPasswordFormControlDirty() {
+    return this.confirmPasswordFormControl.dirty;
   }
 
   subscribeUsernameFormControl() {
@@ -88,7 +118,7 @@ export class UserCreateComponent implements OnInit {
     return {
       username: this.username,
       password: this.password,
-      role: this.role
+      role: this.roleFormControl.value
     }
   }
 

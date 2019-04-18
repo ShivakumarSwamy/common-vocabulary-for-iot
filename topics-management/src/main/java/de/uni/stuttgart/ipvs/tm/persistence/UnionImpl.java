@@ -51,6 +51,7 @@ public class GraphPatternNotTriplesImpl2 implements GraphPatternNotTriples {
                 tripleSameSubjectAsSetOfSetOfTriples(tripleSameSubjects));
     }
 
+
     public static GraphPatternNotTriples minusOf(Triple triple) {
         return new GraphPatternNotTriplesImpl2(ClauseKeyword.MINUS, triple);
     }

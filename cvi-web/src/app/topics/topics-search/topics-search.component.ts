@@ -71,7 +71,7 @@ export class TopicsSearchComponent implements OnInit {
       this.topicsService = this.managerTopicsService;
     }
 
-    if (this.authService.isConsumer) {
+    if (this.authService.isConsumer || this.authService.isAdmin) {
       this.topicsService = this.consumerTopicsService;
     }
 
