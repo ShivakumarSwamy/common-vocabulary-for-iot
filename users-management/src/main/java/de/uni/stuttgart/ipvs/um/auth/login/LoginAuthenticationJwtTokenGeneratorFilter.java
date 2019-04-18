@@ -47,6 +47,7 @@ public class LoginAuthenticationJwtTokenGeneratorFilter extends UsernamePassword
         JwtClaims claims = new JwtClaims();
         claims.setSubject(userDetails.getId());
         claims.setStringClaim("role", userDetails.getRole());
+        claims.setStringClaim("username", userDetails.getUsername());
         claims.setIssuedAtToNow();
         claims.setExpirationTimeMinutesInTheFuture(10000);
 
