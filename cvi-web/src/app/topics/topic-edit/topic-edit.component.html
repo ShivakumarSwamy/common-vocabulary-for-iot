@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div *ngIf="!successResponseMessage" class="mt-4">
+<div *ngIf="!successResponseMessage && showForm" class="mt-4">
   <form [formGroup]="topicFormProvider.topicsForm"
         class="container">
 

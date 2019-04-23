@@ -60,6 +60,6 @@ export class TermsSearchComponent implements OnInit {
   }
 
   replaceTermsTextWhitespacesWithPlusSign() {
-    return this.termsText.replace(/\s+/g, '+').toLowerCase();
+    return this.termsText.trim().replace(/\s+/g, '+').toLowerCase();
   }
 }
