@@ -11,6 +11,10 @@ graph db as triple store
 
 - Manage terms meaning, hardware types, topics
 
+## Version 0.3.1
+
+- version update vocabulary 0.2.1 -> 0.2.2
+
 ## Version 0.3.0
 
 - Manager topics

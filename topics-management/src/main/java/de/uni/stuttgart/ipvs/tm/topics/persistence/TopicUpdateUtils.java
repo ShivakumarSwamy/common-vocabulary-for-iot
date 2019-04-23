@@ -69,7 +69,7 @@ class TopicUpdateUtils {
         var whereClause = new WhereClause();
         whereClause.add(TopicSparqlUtils.hasId(QV_ENTITY, StringLiteral.of(entityID)));
         whereClause.add(new TripleImpl(QV_ENTITY, QV_PROPERTY_NAME, QV_PROPERTY_VALUE));
-        whereClause.add(new TripleImpl(QV_ENTITY, CVI.HAS_OWNER, StringLiteral.of(ownerID)));
+        whereClause.add(new TripleImpl(QV_ENTITY, CVI.CVI_HAS_OWNER, StringLiteral.of(ownerID)));
         insertDelete.setWhereClause(whereClause);
 
         insertDelete.setPrologues(ProloguesFactory.getProloguesRdfRdfsOwlCvi());

@@ -51,19 +51,19 @@ class TopicSparqlUtils {
     }
 
     static Triple entityType(Subject subject) {
-        return new TripleImpl(subject, RDF_TYPE, ENTITY_CLASS);
+        return new TripleImpl(subject, RDF_TYPE, CVI_ENTITY_CLASS);
     }
 
     static Triple hasOwner(Subject subject, Obj obj) {
-        return new TripleImpl(subject, HAS_OWNER, obj);
+        return new TripleImpl(subject, CVI_HAS_OWNER, obj);
     }
 
     static Triple hasId(Subject subject, Obj obj) {
-        return new TripleImpl(subject, HAS_ID, obj);
+        return new TripleImpl(subject, CVI_HAS_ID, obj);
     }
 
     static Triple topicType(Subject subject) {
-        return new TripleImpl(subject, RDF_TYPE, TOPIC_CLASS);
+        return new TripleImpl(subject, RDF_TYPE, CVI_TOPIC_CLASS);
     }
 
     static Subject entityIdSubject(String entityID) {
@@ -73,9 +73,9 @@ class TopicSparqlUtils {
     static TripleSameSubject entityProperties(EntityProperties entityProperties) {
 
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityProperties.getId()));
-        tripleSameSubject.add(RDF_TYPE, ENTITY_CLASS);
-        tripleSameSubject.add(HAS_ID, StringLiteral.of(entityProperties.getId()));
-        tripleSameSubject.add(HAS_OWNER, StringLiteral.of(entityProperties.getOwner()));
+        tripleSameSubject.add(RDF_TYPE, CVI_ENTITY_CLASS);
+        tripleSameSubject.add(CVI_HAS_ID, StringLiteral.of(entityProperties.getId()));
+        tripleSameSubject.add(CVI_HAS_OWNER, StringLiteral.of(entityProperties.getOwner()));
 
         return tripleSameSubject;
     }
@@ -83,17 +83,17 @@ class TopicSparqlUtils {
 
     static TripleSameSubject messageProperties(String entityID, MessageProperties messageProperties) {
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityID));
-        tripleSameSubject.add(RDF_TYPE, MESSAGE_CLASS);
+        tripleSameSubject.add(RDF_TYPE, CVI_MESSAGE_CLASS);
 
         var messageFormatClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMessageFormat());
-        tripleSameSubject.add(HAS_MESSAGE_FORMAT, messageFormatClass);
+        tripleSameSubject.add(CVI_HAS_MESSAGE_FORMAT, messageFormatClass);
         tripleSameSubject.add(RDF_TYPE, messageFormatClass);
 
         var metaModelTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMetaModelType());
-        tripleSameSubject.add(HAS_META_MODEL_TYPE, metaModelTypeClass);
+        tripleSameSubject.add(CVI_HAS_META_MODEL_TYPE, metaModelTypeClass);
         tripleSameSubject.add(RDF_TYPE, metaModelTypeClass);
 
-        tripleSameSubject.add(HAS_META_MODEL, StringLiteral.of(messageProperties.getMetaModel()));
+        tripleSameSubject.add(CVI_HAS_META_MODEL, StringLiteral.of(messageProperties.getMetaModel()));
 
         return tripleSameSubject;
     }
@@ -101,13 +101,13 @@ class TopicSparqlUtils {
     static TripleSameSubject hardwareProperties(String entityId, HardwareProperties hardwareProperties) {
 
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
-        tripleSameSubject.add(RDF_TYPE, HARDWARE_CLASS);
+        tripleSameSubject.add(RDF_TYPE, CVI_HARDWARE_CLASS);
 
         var hardwareTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, hardwareProperties.getHardwareType());
-        tripleSameSubject.add(HAS_HARDWARE_TYPE, hardwareTypeClass);
+        tripleSameSubject.add(CVI_HAS_HARDWARE_TYPE, hardwareTypeClass);
         tripleSameSubject.add(RDF_TYPE, hardwareTypeClass);
 
-        tripleSameSubject.add(HAS_UNIT, StringLiteral.of(hardwareProperties.getUnit()));
+        tripleSameSubject.add(CVI_HAS_UNIT, StringLiteral.of(hardwareProperties.getUnit()));
 
         return tripleSameSubject;
 
@@ -116,18 +116,18 @@ class TopicSparqlUtils {
     static TripleSameSubject topicProperties(String entityId, TopicProperties topicProperties) {
 
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
-        tripleSameSubject.add(RDF_TYPE, TOPIC_CLASS);
+        tripleSameSubject.add(RDF_TYPE, CVI_TOPIC_CLASS);
 
-        tripleSameSubject.add(HAS_PATH, StringLiteral.of(topicProperties.getPath()));
-        tripleSameSubject.add(HAS_MIDDLEWARE_ENDPOINT, StringLiteral.of(topicProperties.getMiddlewareEndpoint()));
-        tripleSameSubject.add(HAS_DATA_TYPE, StringLiteral.of(topicProperties.getDataType()));
+        tripleSameSubject.add(CVI_HAS_PATH, StringLiteral.of(topicProperties.getPath()));
+        tripleSameSubject.add(CVI_HAS_MIDDLEWARE_ENDPOINT, StringLiteral.of(topicProperties.getMiddlewareEndpoint()));
+        tripleSameSubject.add(CVI_HAS_DATA_TYPE, StringLiteral.of(topicProperties.getDataType()));
 
         var protocolClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getProtocol());
-        tripleSameSubject.add(HAS_PROTOCOL, protocolClass);
+        tripleSameSubject.add(CVI_HAS_PROTOCOL, protocolClass);
         tripleSameSubject.add(RDF_TYPE, protocolClass);
 
         var topicTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getTopicType());
-        tripleSameSubject.add(HAS_TOPIC_TYPE, topicTypeClass);
+        tripleSameSubject.add(CVI_HAS_TOPIC_TYPE, topicTypeClass);
         tripleSameSubject.add(RDF_TYPE, topicTypeClass);
 
         return tripleSameSubject;

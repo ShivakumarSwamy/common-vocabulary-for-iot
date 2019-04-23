@@ -52,7 +52,7 @@ public class CviServiceUtils {
         var categoryLabelVB = stringVariableBindingMap.get(QV_CATEGORY_LABEL.getVariableName());
         hardwareTypeItemDetails.setCategory(categoryLabelVB.getValue());
 
-        var hardwareComponentLabelVB = stringVariableBindingMap.get(QV_HARDWARE_COMPONENT_LABEL.getVariableName());
+        var hardwareComponentLabelVB = stringVariableBindingMap.get(QV_COMPONENT_LABEL.getVariableName());
         hardwareTypeItemDetails.setHardwareComponent(hardwareComponentLabelVB.getValue());
 
         hardwareTypeItemDetails.of(getSearchItemDetails(stringVariableBindingMap));
