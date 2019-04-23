@@ -3,10 +3,10 @@ package de.uni.stuttgart.ipvs.tm.response;
 import lombok.Data;
 
 @Data
-public class HardwareTypeItemDetails {
+public class ComponentTypeItemDetails {
 
+    private String component;
     private String category;
-    private String hardwareComponent;
 
     private String searchId;
     private String label;

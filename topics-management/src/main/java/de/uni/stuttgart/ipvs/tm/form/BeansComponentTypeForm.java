@@ -16,31 +16,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static de.uni.stuttgart.ipvs.form.utils.FormControlValidators.LENGTH;
-import static de.uni.stuttgart.ipvs.tm.form.HardwareTypeFormControlIds.*;
+import static de.uni.stuttgart.ipvs.tm.form.ComponentTypeFormControlIds.*;
 
 @Configuration
-@EnableConfigurationProperties(HardwareTypeFormControlErrorMessages.class)
-public class BeansHardwareTypeForm {
+@EnableConfigurationProperties(ComponentTypeFormControlErrorMessages.class)
+public class BeansComponentTypeForm {
 
-    private final HardwareTypeFormControlErrorMessages htfEM;
+    private final ComponentTypeFormControlErrorMessages htfEM;
 
     @Autowired
-    public BeansHardwareTypeForm(HardwareTypeFormControlErrorMessages htfEM) {
+    public BeansComponentTypeForm(ComponentTypeFormControlErrorMessages htfEM) {
         this.htfEM = htfEM;
     }
 
     @Bean
-    @Qualifier("hardwareTypeCreateForm")
-    FormModelValidator hardwareTypeCreateFormValidator() {
-        return new FormModelValidatorImpl(hardwareTypeFormControlValidators());
+    @Qualifier("componentTypeCreateFormValidator")
+    FormModelValidator componentTypeCreateFormValidator() {
+        return new FormModelValidatorImpl(componentTypeFormControlValidators());
     }
 
 
-    private Map<String, FormControlValidator> hardwareTypeFormControlValidators() {
+    private Map<String, FormControlValidator> componentTypeFormControlValidators() {
 
         var map = new HashMap<String, FormControlValidator>();
 
-        map.put(HARDWARE_COMPONENT, new FormControlValidatorImpl(this.htfEM.getHardwareComponent(), LENGTH));
+        map.put(COMPONENT, new FormControlValidatorImpl(this.htfEM.getComponent(), LENGTH));
         map.put(CATEGORY, new FormControlValidatorImpl(this.htfEM.getCategory(), LENGTH));
         map.put(LABEL, new FormControlValidatorImpl(this.htfEM.getLabel(), LENGTH));
         map.put(COMMENT, new FormControlValidatorImpl(this.htfEM.getComment(), LENGTH));

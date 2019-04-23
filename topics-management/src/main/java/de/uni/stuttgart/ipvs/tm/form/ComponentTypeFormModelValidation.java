@@ -13,52 +13,52 @@ import de.uni.stuttgart.ipvs.form.model.FormModel;
 import de.uni.stuttgart.ipvs.form.model.FormModelImpl;
 import de.uni.stuttgart.ipvs.form.validation.FormControlError;
 import de.uni.stuttgart.ipvs.form.validation.FormModelValidator;
-import de.uni.stuttgart.ipvs.tm.dto.HardwareTypeCreateDTO;
+import de.uni.stuttgart.ipvs.tm.dto.ComponentTypeCreateDTO;
 
 import java.util.Collection;
 import java.util.List;
 
-import static de.uni.stuttgart.ipvs.tm.form.HardwareTypeFormControlIds.*;
+import static de.uni.stuttgart.ipvs.tm.form.ComponentTypeFormControlIds.*;
 
 @Component
 @Slf4j
-public class HardwareTypeFormModelValidation {
+public class ComponentTypeFormModelValidation {
 
 
-    private final FormModelValidator htFMV;
+    private final FormModelValidator ctFMV;
 
     @Autowired
-    public HardwareTypeFormModelValidation(@Qualifier("hardwareTypeCreateForm") FormModelValidator htFMV) {
-        this.htFMV = htFMV;
+    public ComponentTypeFormModelValidation(@Qualifier("componentTypeCreateFormValidator") FormModelValidator ctFMV) {
+        this.ctFMV = ctFMV;
     }
 
-    public void validate(HardwareTypeCreateDTO hardwareTypeCreateDTO) {
-        var formModel = formModel(hardwareTypeCreateDTO);
+    public void validate(ComponentTypeCreateDTO componentTypeCreateDTO) {
+        var formModel = formModel(componentTypeCreateDTO);
 
-        if (!this.htFMV.isValid(formModel)) {
-            throwHardwareTypeFormControlErrorException(this.htFMV.getError());
+        if (!this.ctFMV.isValid(formModel)) {
+            throwComponentTypeFormControlErrorException(this.ctFMV.getError());
         }
-        log.debug("HARDWARE TYPE CREATE FORM IS VALID");
+        log.debug("COMPONENT TYPE CREATE FORM IS VALID");
     }
 
-    private void throwHardwareTypeFormControlErrorException(FormControlError formControlError) {
+    private void throwComponentTypeFormControlErrorException(FormControlError formControlError) {
         log.error("FORM CONTROL ERROR: " + formControlError.toString());
-        throw new HardwareTypeFormControlErrorException(formControlError.getHelp());
+        throw new ComponentTypeFormControlErrorException(formControlError.getHelp());
     }
 
-    private FormModel formModel(HardwareTypeCreateDTO hardwareTypeCreateDTO) {
-        return new FormModelImpl(formControls(hardwareTypeCreateDTO));
+    private FormModel formModel(ComponentTypeCreateDTO componentTypeCreateDTO) {
+        return new FormModelImpl(formControls(componentTypeCreateDTO));
     }
 
-    private Collection<FormControl> formControls(HardwareTypeCreateDTO hardwareTypeCreateDTO) {
-        var hardwareTypeFormControl =
-                new FormControlImpl<>(HARDWARE_COMPONENT, hardwareTypeCreateDTO.getHardwareComponent());
+    private Collection<FormControl> formControls(ComponentTypeCreateDTO componentTypeCreateDTO) {
+        var componentTypeFormControl =
+                new FormControlImpl<>(COMPONENT, componentTypeCreateDTO.getComponent());
 
-        var categoryFormControl = new FormControlImpl<>(CATEGORY, hardwareTypeCreateDTO.getCategory());
-        var labelFormControl = new FormControlImpl<>(LABEL, hardwareTypeCreateDTO.getLabel());
-        var commentFormControl = new FormControlImpl<>(COMMENT, hardwareTypeCreateDTO.getComment());
+        var categoryFormControl = new FormControlImpl<>(CATEGORY, componentTypeCreateDTO.getCategory());
+        var labelFormControl = new FormControlImpl<>(LABEL, componentTypeCreateDTO.getLabel());
+        var commentFormControl = new FormControlImpl<>(COMMENT, componentTypeCreateDTO.getComment());
 
-        return List.of(hardwareTypeFormControl, categoryFormControl, labelFormControl, commentFormControl);
+        return List.of(componentTypeFormControl, categoryFormControl, labelFormControl, commentFormControl);
     }
 
 }

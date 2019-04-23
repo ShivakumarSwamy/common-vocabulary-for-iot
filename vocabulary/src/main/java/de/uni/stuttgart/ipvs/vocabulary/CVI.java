@@ -35,7 +35,7 @@ public class CVI {
     public static final PrefixedName CVI_HAS_HARDWARE_TYPE;
     public static final PrefixedName CVI_HAS_UNIT;
 
-    public static final PrefixedName CVI_HARDWARE_TYPE_CLASS;
+    public static final PrefixedName CVI_COMPONENT_TYPE_CLASS;
     public static final PrefixedName CVI_COMPONENT_CLASS;
 
     static {
@@ -67,7 +67,7 @@ public class CVI {
         CVI_HAS_HARDWARE_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasHardwareType");
         CVI_HAS_UNIT = new PrefixedName(CVI_PREFIX_LABEL, "hasUnit");
 
-        CVI_HARDWARE_TYPE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware-type");
+        CVI_COMPONENT_TYPE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "component-type");
         CVI_COMPONENT_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "component");
     }
 }

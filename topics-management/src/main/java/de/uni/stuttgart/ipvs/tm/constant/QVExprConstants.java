@@ -13,7 +13,7 @@ public class QVExprConstants {
     public static final QueryVariable QV_LABEL;
     public static final QueryVariable QV_COMMENT;
 
-    public static final QueryVariable QV_HARDWARE_TYPE;
+    public static final QueryVariable QV_COMPONENT_TYPE;
 
     public static final QueryVariable QV_CATEGORY;
     public static final QueryVariable QV_CATEGORY_LABEL;
@@ -39,7 +39,7 @@ public class QVExprConstants {
         QV_LABEL = QueryVariable.of("label");
         QV_COMMENT = QueryVariable.of("comment");
 
-        QV_HARDWARE_TYPE = QueryVariable.of("hardwareType");
+        QV_COMPONENT_TYPE = QueryVariable.of("componentType");
 
         QV_CATEGORY = QueryVariable.of("category");
         QV_CATEGORY_LABEL = QueryVariable.of("categoryLabel");

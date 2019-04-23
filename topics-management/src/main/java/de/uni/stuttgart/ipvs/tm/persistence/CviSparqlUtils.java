@@ -6,7 +6,7 @@ import de.uni.stuttgart.ipvs.sparql.terminal.PrefixedName;
 import de.uni.stuttgart.ipvs.sparql.terminal.StringLiteral;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubject;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubjectImpl;
-import de.uni.stuttgart.ipvs.tm.service.HardwareType;
+import de.uni.stuttgart.ipvs.tm.service.ComponentType;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -38,26 +38,26 @@ public class CviSparqlUtils {
         return searchItemDetails(PrefixedName.of(CVI_PREFIX_LABEL, term));
     }
 
-    static TripleSameSubject searchItemDetailsHardwareType() {
-        var tripleSameSubject = searchItemDetails(QV_HARDWARE_TYPE);
+    static TripleSameSubject searchItemDetailsComponentType() {
+        var tripleSameSubject = searchItemDetails(QV_COMPONENT_TYPE);
 
-        tripleSameSubject.add(RDF_TYPE, CVI_HARDWARE_TYPE_CLASS);
+        tripleSameSubject.add(RDF_TYPE, CVI_COMPONENT_TYPE_CLASS);
         tripleSameSubject.add(RDFS_SUBCLASS_OF, QV_CATEGORY);
 
         return tripleSameSubject;
     }
 
-    static TripleSameSubject newHardwareType(HardwareType hardwareType) {
-        var tripleSameSubject = new TripleSameSubjectImpl(PrefixedName.of(CVI_PREFIX_LABEL, hardwareType.getSearchId()));
+    static TripleSameSubject newComponentType(ComponentType componentType) {
+        var tripleSameSubject = new TripleSameSubjectImpl(PrefixedName.of(CVI_PREFIX_LABEL, componentType.getSearchId()));
 
-        tripleSameSubject.add(CVI_HAS_SEARCH_ID, StringLiteral.of(hardwareType.getSearchId()));
-        tripleSameSubject.add(RDFS_LABEL, StringLiteral.of(hardwareType.getLabel()));
-        tripleSameSubject.add(RDFS_COMMENT, StringLiteral.of(hardwareType.getComment()));
+        tripleSameSubject.add(CVI_HAS_SEARCH_ID, StringLiteral.of(componentType.getSearchId()));
+        tripleSameSubject.add(RDFS_LABEL, StringLiteral.of(componentType.getLabel()));
+        tripleSameSubject.add(RDFS_COMMENT, StringLiteral.of(componentType.getComment()));
 
         tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
-        tripleSameSubject.add(RDF_TYPE, CVI_HARDWARE_TYPE_CLASS);
+        tripleSameSubject.add(RDF_TYPE, CVI_COMPONENT_TYPE_CLASS);
 
-        tripleSameSubject.add(RDFS_SUBCLASS_OF, PrefixedName.of(CVI_PREFIX_LABEL, hardwareType.getCategory()));
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, PrefixedName.of(CVI_PREFIX_LABEL, componentType.getCategory()));
 
         return tripleSameSubject;
     }

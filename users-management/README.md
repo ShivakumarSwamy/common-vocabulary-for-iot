@@ -18,6 +18,14 @@ graph db as triple store
 
 - The JAR built by maven can be use to deploy the app based on [profile](./src/main/resources/application.yml) default, dev, and docker 
 
+## Version 0.1.2
+
+- fix vocabulary version 0.2.1 -> 0.2.3
+
+## Version 0.1.1
+
+- add username to JWT token
+
 ## Version 0.1.0
 
 ### Endpoints

@@ -9,7 +9,12 @@ graph db as triple store
     
 - The JAR built by maven can be use to deploy the app based on [profile](./src/main/resources/application.yml) default, dev, and docker 
 
-- Manage terms meaning, hardware types, topics
+- Manage terms meaning, component types, topics
+
+## Version 0.4.0
+
+- change of api url from `/api/manager/hardware-types` to `/api/manager/component-types`
+- version update vocabulary 0.2.2 -> 0.2.3
 
 ## Version 0.3.1
 

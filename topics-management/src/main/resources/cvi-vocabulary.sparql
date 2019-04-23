@@ -214,7 +214,7 @@ cvi:xml-schema              rdf:type             cvi:meta-model-type;
 
 
 cvi:hardware                rdf:type            cvi:module;;
-                            rdf:type             rdfs:Class;
+                            rdf:type            rdfs:Class;
                             cvi:hasSearchId     "hardware";
                             rdfs:label          "Hardware";
                             rdfs:comment        "The hardware component provided by the entity".
@@ -222,15 +222,15 @@ cvi:hardware                rdf:type            cvi:module;;
 
 cvi:hasHardwareType         rdf:type            owl:ObjectProperty;
                             rdfs:domain         cvi:hardware;
-                            rdfs:range          cvi:hardware-type;
+                            rdfs:range          cvi:component-type;
                             rdfs:label          "Hardware Type";
-                            rdfs:comment        "The type of hardware component the device is equipped with. The value of this property is the class name of the hardwareProperties type created by Manager role".
+                            rdfs:comment        "The type of hardware component provided by the entity".
 
 cvi:hasUnit                 rdf:type            owl:DatatypeProperty;
                             rdfs:domain         cvi:hardware;
                             rdfs:range          xsd:string;
                             rdfs:label          "Unit";
-                            rdfs:comment        "The unit of the hardware type".
+                            rdfs:comment        "The unit of the component type".
 
 
 
@@ -277,10 +277,10 @@ cvi:parking-gate-actuator   rdf:type            cvi:category;
                             rdfs:label          "Parking Gate Actuator";
                             rdfs:comment        "An actuator which controls the opening and closing of a parking gate".
 
-cvi:hardware-type           rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "hardware-type";
-                            rdfs:label          "Hardware Type";
-                            rdfs:comment        "A hardware type created by a manager. A hardware type can be model number of a category like parking space sensor".
+cvi:component-type          rdf:type            rdfs:Class;
+                            cvi:hasSearchId     "component-type";
+                            rdfs:label          "Component Type";
+                            rdfs:comment        "A component type created by a manager. A component type can be model number of a category like parking space sensor".
 
 
 cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
@@ -290,7 +290,7 @@ cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
                             rdfs:comment    "ID to uniquely identify the class. The subject of the triple or specifically the local name of the subject in the prefixed name represents the ID. It is used for terms meaning search and a convenience property".
 
 
-cvi:pss-123                 rdf:type            cvi:hardware-type;
+cvi:pss-123                 rdf:type            cvi:component-type;
                             rdf:type            rdfs:Class;
                             rdfs:subClassOf     cvi:parking-space-sensor;
                             cvi:hasSearchId     "pss-123";
@@ -298,7 +298,7 @@ cvi:pss-123                 rdf:type            cvi:hardware-type;
                             rdfs:comment        "A parking space sensor with model number PSS-123".
 
 
-cvi:pga-456                 rdf:type            cvi:hardware-type;
+cvi:pga-456                 rdf:type            cvi:component-type;
                             rdf:type            rdfs:Class;
                             rdfs:subClassOf     cvi:parking-gate-actuator;
                             cvi:hasSearchId     "pga-456";

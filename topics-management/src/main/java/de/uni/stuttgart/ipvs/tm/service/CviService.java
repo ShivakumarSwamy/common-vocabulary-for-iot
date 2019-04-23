@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import de.uni.stuttgart.ipvs.tm.dto.HardwareTypeCreateDTO;
-import de.uni.stuttgart.ipvs.tm.form.HardwareTypeFormModelValidation;
+import de.uni.stuttgart.ipvs.tm.dto.ComponentTypeCreateDTO;
+import de.uni.stuttgart.ipvs.tm.form.ComponentTypeFormModelValidation;
 import de.uni.stuttgart.ipvs.tm.persistence.CviRepository;
 import de.uni.stuttgart.ipvs.tm.response.ResultsSet;
 import de.uni.stuttgart.ipvs.tm.response.TermsMeaningResultsSet;
@@ -21,13 +21,13 @@ import static org.springframework.util.StringUtils.hasLength;
 public class CviService {
 
     private final CviRepository cviRepository;
-    private final HardwareTypeFormModelValidation htFMV;
+    private final ComponentTypeFormModelValidation ctFMV;
 
     @Autowired
     public CviService(CviRepository cviRepository,
-                      HardwareTypeFormModelValidation htFMV) {
+                      ComponentTypeFormModelValidation ctFMV) {
         this.cviRepository = cviRepository;
-        this.htFMV = htFMV;
+        this.ctFMV = ctFMV;
     }
 
     public TermsMeaningResultsSet searchMeaningOfTermsText(String termsText) {
@@ -47,20 +47,20 @@ public class CviService {
                 CviServiceUtils.getTermsMeaningResultsSet(termsText, selectResults);
     }
 
-    public ResultsSet getAllHardwareTypes() {
-        var selectResults = this.cviRepository.findAllHardwareTypes();
+    public ResultsSet getAllComponentTypes() {
+        var selectResults = this.cviRepository.findAllComponentTypes();
 
-        return selectResults.isEmpty() ? ResultsSet.EMPTY : CviServiceUtils.getAllHardwareTypesResultsSet(selectResults);
+        return selectResults.isEmpty() ? ResultsSet.EMPTY : CviServiceUtils.getAllComponentTypesResultsSet(selectResults);
     }
 
-    public String createHardwareType(HardwareTypeCreateDTO hardwareTypeCreateDTO) {
+    public String createComponentType(ComponentTypeCreateDTO componentTypeCreateDTO) {
 
-        this.htFMV.validate(hardwareTypeCreateDTO);
+        this.ctFMV.validate(componentTypeCreateDTO);
 
-        var hardwareType = HardwareType.build(hardwareTypeCreateDTO);
-        this.cviRepository.save(hardwareType);
+        var componentType = ComponentType.build(componentTypeCreateDTO);
+        this.cviRepository.save(componentType);
 
-        return hardwareType.getSearchId();
+        return componentType.getSearchId();
     }
 
 

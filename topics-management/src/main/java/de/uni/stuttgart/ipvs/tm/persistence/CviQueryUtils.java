@@ -29,11 +29,11 @@ public class CviQueryUtils {
         return query.getString();
     }
 
-    static String allHardwareTypes() {
+    static String allComponentTypes() {
 
         var whereClause = new WhereClause(CviSparqlUtils.identifyComponent());
         whereClause.add(CviSparqlUtils.identifyCategory());
-        whereClause.add(CviSparqlUtils.searchItemDetailsHardwareType());
+        whereClause.add(CviSparqlUtils.searchItemDetailsComponentType());
 
         var selectQuery = new SelectQuery(List.of(QV_SEARCH_ID, QV_LABEL, QV_COMMENT,
                 QV_CATEGORY_LABEL, QV_COMPONENT_LABEL));

@@ -4,11 +4,11 @@ import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "error.message.hardware-type.form-control", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "error.message.component-type.form-control", ignoreUnknownFields = false)
 @Data
-public class HardwareTypeFormControlErrorMessages {
+public class ComponentTypeFormControlErrorMessages {
 
-    private String hardwareComponent;
+    private String component;
 
     private String category;
 

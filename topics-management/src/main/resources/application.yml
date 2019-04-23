@@ -25,9 +25,9 @@ data:
 
 error:
   message:
-    hardware-type:
+    component-type:
       form-control:
-        hardware-component: "Hardware component is required"
+        component: "Hardware component is required"
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
@@ -85,9 +85,9 @@ logging:
 
 error:
   message:
-    hardware-type:
+    component-type:
       form-control:
-        hardware-component: "Hardware component is required"
+        component: "Hardware component is required"
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
@@ -133,9 +133,9 @@ server:
 
 error:
   message:
-    hardware-type:
+    component-type:
       form-control:
-        hardware-component: "Hardware component is required"
+        component: "Hardware component is required"
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
