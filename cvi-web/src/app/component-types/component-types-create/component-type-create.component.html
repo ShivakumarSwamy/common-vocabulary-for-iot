@@ -19,11 +19,11 @@
 
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label class="text-dark" for="hardwareComponent">Hardware Component</label><span class="text-danger">*</span>
-          <select class="form-control" formControlName="hardwareComponent"
-                  id="hardwareComponent">
-            <option *ngFor="let hardwareComponent of hardwareComponents"
-                    [value]="hardwareComponent">{{hardwareComponent}}</option>
+          <label class="text-dark" for="component">Component</label><span class="text-danger">*</span>
+          <select class="form-control" formControlName="component"
+                  id="component">
+            <option *ngFor="let component of components"
+                    [value]="component">{{component}}</option>
           </select>
 
         </div>
@@ -38,9 +38,9 @@
       </div>
 
       <div class="form-group">
-        <label class="text-dark" for="label">Hardware Type</label><span class="text-danger">*</span>
+        <label class="text-dark" for="label">Component Type</label><span class="text-danger">*</span>
         <input class="form-control col-md-4" formControlName="label"
-               id="label" placeholder="Enter hardware type"
+               id="label" placeholder="Enter component type"
                type="text">
       </div>
 

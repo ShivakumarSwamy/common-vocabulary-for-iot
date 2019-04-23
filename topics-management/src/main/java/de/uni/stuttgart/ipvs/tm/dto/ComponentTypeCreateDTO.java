@@ -3,9 +3,9 @@ package de.uni.stuttgart.ipvs.tm.dto;
 import lombok.Data;
 
 @Data
-public class HardwareTypeCreateDTO {
+public class ComponentTypeCreateDTO {
 
-    private String hardwareComponent;
+    private String component;
     private String category;
     private String label;
     private String comment;

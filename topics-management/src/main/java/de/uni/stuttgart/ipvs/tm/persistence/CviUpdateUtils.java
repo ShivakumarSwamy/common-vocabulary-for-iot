@@ -1,7 +1,7 @@
 package de.uni.stuttgart.ipvs.tm.persistence;
 
 import de.uni.stuttgart.ipvs.sparql.update.GraphUpdate;
-import de.uni.stuttgart.ipvs.tm.service.HardwareType;
+import de.uni.stuttgart.ipvs.tm.service.ComponentType;
 import de.uni.stuttgart.ipvs.vocabulary.ProloguesFactory;
 
 public class CviUpdateUtils {
@@ -9,9 +9,9 @@ public class CviUpdateUtils {
         throw new IllegalStateException(getClass().getName());
     }
 
-    static String newHardwareType(HardwareType hardwareType) {
+    static String newComponentType(ComponentType componentType) {
 
-        var tripleSameSubject = CviSparqlUtils.newHardwareType(hardwareType);
+        var tripleSameSubject = CviSparqlUtils.newComponentType(componentType);
         var graphUpdate = GraphUpdate.insertDataOf(tripleSameSubject);
         graphUpdate.setPrologues(ProloguesFactory.getProloguesRdfRdfsOwlCvi());
 

@@ -1,38 +1,38 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControlOptions, FormBuilder, Validators} from '@angular/forms';
-import {HardwareTypeDto} from '../../dto/hardware-type-dto';
+import {ComponentTypeDto} from '../../dto/component-type-dto';
 import {CviService} from '../../service/cvi.service';
 import {ResponseMessage} from '../../response/response-message';
 
 
 @Component({
-  selector: 'app-hardware-types-create',
-  templateUrl: './hardware-types-create.component.html'
+  selector: 'app-component-types-create',
+  templateUrl: './component-type-create.component.html'
 })
-export class HardwareTypesCreateComponent implements OnInit {
+export class ComponentTypeCreateComponent implements OnInit {
 
   defaultSensorCategory = 'Parking Space Sensor';
   defaultActuatorCategory = 'Parking Gate Actuator';
 
   changeAndRequired: AbstractControlOptions = {validators: Validators.required, updateOn: 'change'};
 
-  hardwareComponentControl = this.fmb.control('', this.changeAndRequired);
+  componentControl = this.fmb.control('', this.changeAndRequired);
   categoryControl = this.fmb.control('', this.changeAndRequired);
   labelControl = this.fmb.control('', Validators.required);
   commentControl = this.fmb.control('', Validators.required);
 
   chtForm = this.fmb.group({
-      hardwareComponent: this.hardwareComponentControl,
+      component: this.componentControl,
       category: this.categoryControl,
       label: this.labelControl,
       comment: this.commentControl,
     }, {updateOn: 'blur'}
   );
 
-  hardwareComponents = ['Sensor', 'Actuator'];
+  components = ['Sensor', 'Actuator'];
   categories = [this.defaultSensorCategory];
 
-  hardwareComponentValue = '';
+  componentValue = '';
   categoryValue = '';
   labelValue = '';
   commentValue = '';
@@ -45,33 +45,33 @@ export class HardwareTypesCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscribeToHardwareComponentControl();
+    this.subscribeToComponentControl();
     this.subscribeToCategoryControl();
     this.subscribeToLabelControl();
     this.subscribeToCommentControl();
     this.initializeWithDefaultValuesForControls();
   }
 
-  subscribeToHardwareComponentControl() {
-    this.hardwareComponentControl.valueChanges
+  subscribeToComponentControl() {
+    this.componentControl.valueChanges
       .subscribe(
         value => {
-          this.hardwareComponentValue = value;
+          this.componentValue = value;
           this.updateCategoriesAndControl();
         }
       );
   }
 
   initializeWithDefaultValuesForControls() {
-    this.hardwareComponentControl.setValue('Sensor');
+    this.componentControl.setValue('Sensor');
     this.categoryControl.setValue(this.defaultSensorCategory);
   }
 
   updateCategoriesAndControl() {
-    if (this.hardwareComponentValue && this.hardwareComponentValue === 'Sensor') {
+    if (this.componentValue && this.componentValue === 'Sensor') {
       this.categoryControl.setValue(this.defaultSensorCategory);
       this.categories = [this.defaultSensorCategory];
-    } else if (this.hardwareComponentValue && this.hardwareComponentValue === 'Actuator') {
+    } else if (this.componentValue && this.componentValue === 'Actuator') {
       this.categoryControl.setValue(this.defaultActuatorCategory);
       this.categories = [this.defaultActuatorCategory];
     } else {
@@ -102,9 +102,9 @@ export class HardwareTypesCreateComponent implements OnInit {
       );
   }
 
-  getCustomHardwareTypeDTO(): HardwareTypeDto {
+  getCustomComponentTypeDTO(): ComponentTypeDto {
     return {
-      hardwareComponent: this.hardwareComponentValue,
+      component: this.componentValue,
       category: this.categoryValue,
       label: this.labelValue,
       comment: this.commentValue
@@ -114,7 +114,7 @@ export class HardwareTypesCreateComponent implements OnInit {
   onSubmit() {
     this.clearSuccessResponseMessage();
     this.clearErrorResponseMessage();
-    this.cviService.createHardwareType(this.getCustomHardwareTypeDTO())
+    this.cviService.createComponentType(this.getCustomComponentTypeDTO())
       .subscribe(
         srm => this.successResponseMessage = srm,
         erm => this.errorResponseMessage = erm,

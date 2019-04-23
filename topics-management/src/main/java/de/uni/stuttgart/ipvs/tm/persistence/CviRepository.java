@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import de.uni.stuttgart.ipvs.ilv.HttpEntityFactory;
 import de.uni.stuttgart.ipvs.ilv.config.DataSourceEndpoints;
 import de.uni.stuttgart.ipvs.results.SelectResults;
-import de.uni.stuttgart.ipvs.tm.service.HardwareType;
+import de.uni.stuttgart.ipvs.tm.service.ComponentType;
 
 import java.util.Collection;
 
@@ -33,14 +33,14 @@ public class CviRepository {
         return selectQuery(queryString, "READ: FAILED TO GET SEARCH TERMS MEANING");
     }
 
-    public SelectResults findAllHardwareTypes() {
-        var queryFormString = CviQueryUtils.allHardwareTypes();
-        return selectQuery(queryFormString, "READ: ALL HARDWARE TYPES", false);
+    public SelectResults findAllComponentTypes() {
+        var queryFormString = CviQueryUtils.allComponentTypes();
+        return selectQuery(queryFormString, "READ: ALL COMPONENT TYPES", false);
     }
 
-    public void save(HardwareType hardwareType) {
-        var graphUpdateFormString = CviUpdateUtils.newHardwareType(hardwareType);
-        graphUpdate(graphUpdateFormString, "CREATE: NEW HARDWARE TYPE");
+    public void save(ComponentType componentType) {
+        var graphUpdateFormString = CviUpdateUtils.newComponentType(componentType);
+        graphUpdate(graphUpdateFormString, "CREATE: NEW COMPONENT TYPE");
     }
 
     private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {

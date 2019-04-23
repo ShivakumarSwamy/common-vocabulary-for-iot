@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="text-center mt-3">
+    <div *ngIf="showCreateComponentType" class="mb-3">
+      <small class="mr-1">Nothing found. Create Component Type?</small>
+      <a class="btn btn-sm btn-primary" routerLink="../create">Create</a>
+    </div>
+  </div>
+
+  <div *ngIf="isResultsSetValid()"
+       class="mb-3">
+    <hr class="text-black-50">
+    <div *ngFor="let componentTypeItemDetails of componentTypeItemDetailsResultsSet.results">
+      <div class="mb-3">
+        <app-component-types-item-details [componentTypeItemDetails]="componentTypeItemDetails"></app-component-types-item-details>
+      </div>
+    </div>
+  </div>
+</div>

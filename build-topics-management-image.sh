@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=${1:-0.3.0}
+version=${1:-0.4.0}
 
 cd ./topics-management/
 

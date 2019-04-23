@@ -2,7 +2,7 @@ package de.uni.stuttgart.ipvs.tm.service;
 
 import de.uni.stuttgart.ipvs.results.SelectResults;
 import de.uni.stuttgart.ipvs.results.VariableBinding;
-import de.uni.stuttgart.ipvs.tm.response.HardwareTypeItemDetails;
+import de.uni.stuttgart.ipvs.tm.response.ComponentTypeItemDetails;
 import de.uni.stuttgart.ipvs.tm.response.ResultsSet;
 import de.uni.stuttgart.ipvs.tm.response.SearchItemDetails;
 import de.uni.stuttgart.ipvs.tm.response.TermsMeaningResultsSet;
@@ -36,27 +36,27 @@ public class CviServiceUtils {
         return new TermsMeaningResultsSet(exactResults, relatedResults);
     }
 
-    static ResultsSet getAllHardwareTypesResultsSet(SelectResults selectResults) {
+    static ResultsSet getAllComponentTypesResultsSet(SelectResults selectResults) {
 
         var results = selectResults.getResults().getBindings().stream()
-                .map(CviServiceUtils::geHardwareTypeItemDetails)
+                .map(CviServiceUtils::getComponentTypeItemDetails)
                 .collect(toList());
 
         return new ResultsSet<>(results);
     }
 
-    private static HardwareTypeItemDetails geHardwareTypeItemDetails(Map<String, VariableBinding> stringVariableBindingMap) {
+    private static ComponentTypeItemDetails getComponentTypeItemDetails(Map<String, VariableBinding> stringVariableBindingMap) {
 
-        var hardwareTypeItemDetails = new HardwareTypeItemDetails();
+        var componentTypeItemDetails = new ComponentTypeItemDetails();
 
         var categoryLabelVB = stringVariableBindingMap.get(QV_CATEGORY_LABEL.getVariableName());
-        hardwareTypeItemDetails.setCategory(categoryLabelVB.getValue());
+        componentTypeItemDetails.setCategory(categoryLabelVB.getValue());
 
-        var hardwareComponentLabelVB = stringVariableBindingMap.get(QV_COMPONENT_LABEL.getVariableName());
-        hardwareTypeItemDetails.setHardwareComponent(hardwareComponentLabelVB.getValue());
+        var componentLabelVB = stringVariableBindingMap.get(QV_COMPONENT_LABEL.getVariableName());
+        componentTypeItemDetails.setComponent(componentLabelVB.getValue());
 
-        hardwareTypeItemDetails.of(getSearchItemDetails(stringVariableBindingMap));
-        return hardwareTypeItemDetails;
+        componentTypeItemDetails.of(getSearchItemDetails(stringVariableBindingMap));
+        return componentTypeItemDetails;
     }
 
     private static SearchItemDetails getSearchItemDetails(Map<String, VariableBinding> stringVariableBindingMap) {
@@ -76,7 +76,7 @@ public class CviServiceUtils {
     }
 
     static Collection<String> termsTextToTerms(String termsText) {
-        String[] terms = termsText.toLowerCase().split("\\s+");
+        String[] terms = termsText.trim().toLowerCase().split("\\s+");
 
         List<String> finalTerms = new ArrayList<>(Arrays.asList(terms));
         finalTerms.add(requiredTermsTextFormat(termsText));
@@ -85,7 +85,7 @@ public class CviServiceUtils {
     }
 
     static String requiredTermsTextFormat(String termsText) {
-        return termsText.toLowerCase().replaceAll("\\s+", "-");
+        return termsText.trim().toLowerCase().replaceAll("\\s+", "-");
     }
 
 

@@ -1,5 +1,5 @@
-export interface HardwareTypeItemDetails {
-  hardwareComponent: string;
+export interface ComponentTypeItemDetails {
+  component: string;
   category: string;
   searchId: string;
   label: string;

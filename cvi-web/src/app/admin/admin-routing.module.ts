@@ -32,8 +32,8 @@ const routes: Routes = [
             loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
           },
           {
-            path: 'hardware-types',
-            loadChildren: '../hardware-types/hardware-types.module#HardwareTypesModule'
+            path: 'component-types',
+            loadChildren: '../component-types/component-types.module#ComponentTypesModule'
           },
           {
             path: 'profile',

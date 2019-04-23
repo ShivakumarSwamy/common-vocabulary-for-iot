@@ -19,6 +19,8 @@ export class TopicEditComponent implements OnInit {
 
   topicsService: ManagerTopicsService | AdminTopicsService;
 
+  showForm = false;
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private topicFormProvider: TopicFormProvider,
@@ -40,7 +42,10 @@ export class TopicEditComponent implements OnInit {
           return this.topicsService.read(this.topicId);
         })
       ).subscribe(
-      value => this.topicFormProvider.setControlValuesUsingTopicProperties(value.results[0])
+      value => {
+        this.topicFormProvider.setControlValuesUsingTopicProperties(value.results[0]);
+        this.showForm = true;
+      }
     );
   }
 
