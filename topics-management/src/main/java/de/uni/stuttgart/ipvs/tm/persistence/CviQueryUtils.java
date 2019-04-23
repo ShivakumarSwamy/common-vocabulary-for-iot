@@ -31,12 +31,12 @@ public class CviQueryUtils {
 
     static String allHardwareTypes() {
 
-        var whereClause = new WhereClause(CviSparqlUtils.identifyHardwareComponent());
+        var whereClause = new WhereClause(CviSparqlUtils.identifyComponent());
         whereClause.add(CviSparqlUtils.identifyCategory());
         whereClause.add(CviSparqlUtils.searchItemDetailsHardwareType());
 
         var selectQuery = new SelectQuery(List.of(QV_SEARCH_ID, QV_LABEL, QV_COMMENT,
-                QV_CATEGORY_LABEL, QV_HARDWARE_COMPONENT_LABEL));
+                QV_CATEGORY_LABEL, QV_COMPONENT_LABEL));
         selectQuery.setWhereClause(whereClause);
 
         var query = new QueryImpl(ProloguesFactory.getProloguesRdfRdfsOwlCvi(), selectQuery);
