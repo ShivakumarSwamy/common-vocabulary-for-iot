@@ -13,29 +13,30 @@ public class CVI {
 
     public static final PrefixDeclaration CVI_PREFIX_DECLARATION;
 
-    public static final PrefixedName HAS_SEARCH_ID;
+    public static final PrefixedName CVI_HAS_SEARCH_ID;
 
-    public static final PrefixedName ENTITY_CLASS;
-    public static final PrefixedName HAS_ID;
-    public static final PrefixedName HAS_OWNER;
+    public static final PrefixedName CVI_ENTITY_CLASS;
+    public static final PrefixedName CVI_HAS_ID;
+    public static final PrefixedName CVI_HAS_OWNER;
 
-    public static final PrefixedName TOPIC_CLASS;
-    public static final PrefixedName HAS_PATH;
-    public static final PrefixedName HAS_MIDDLEWARE_ENDPOINT;
-    public static final PrefixedName HAS_DATA_TYPE;
-    public static final PrefixedName HAS_TOPIC_TYPE;
-    public static final PrefixedName HAS_PROTOCOL;
+    public static final PrefixedName CVI_TOPIC_CLASS;
+    public static final PrefixedName CVI_HAS_PATH;
+    public static final PrefixedName CVI_HAS_MIDDLEWARE_ENDPOINT;
+    public static final PrefixedName CVI_HAS_DATA_TYPE;
+    public static final PrefixedName CVI_HAS_TOPIC_TYPE;
+    public static final PrefixedName CVI_HAS_PROTOCOL;
 
-    public static final PrefixedName MESSAGE_CLASS;
-    public static final PrefixedName HAS_MESSAGE_FORMAT;
-    public static final PrefixedName HAS_META_MODEL;
-    public static final PrefixedName HAS_META_MODEL_TYPE;
+    public static final PrefixedName CVI_MESSAGE_CLASS;
+    public static final PrefixedName CVI_HAS_MESSAGE_FORMAT;
+    public static final PrefixedName CVI_HAS_META_MODEL;
+    public static final PrefixedName CVI_HAS_META_MODEL_TYPE;
 
-    public static final PrefixedName HARDWARE_CLASS;
-    public static final PrefixedName HAS_HARDWARE_TYPE;
-    public static final PrefixedName HAS_UNIT;
+    public static final PrefixedName CVI_HARDWARE_CLASS;
+    public static final PrefixedName CVI_HAS_HARDWARE_TYPE;
+    public static final PrefixedName CVI_HAS_UNIT;
 
-    public static final PrefixedName HARDWARE_TYPE_CLASS;
+    public static final PrefixedName CVI_HARDWARE_TYPE_CLASS;
+    public static final PrefixedName CVI_COMPONENT_CLASS;
 
     static {
         CVI_IRI = new Iri("http://www.cvi.com/vocabulary#");
@@ -44,28 +45,29 @@ public class CVI {
 
         CVI_PREFIX_DECLARATION = new PrefixDeclaration(CVI_PREFIX_LABEL, CVI_IRI);
 
-        HAS_SEARCH_ID = new PrefixedName(CVI_PREFIX_LABEL, "hasSearchId");
+        CVI_HAS_SEARCH_ID = new PrefixedName(CVI_PREFIX_LABEL, "hasSearchId");
 
-        ENTITY_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "entity");
-        HAS_ID = new PrefixedName(CVI_PREFIX_LABEL, "hasId");
-        HAS_OWNER = new PrefixedName(CVI_PREFIX_LABEL, "hasOwner");
+        CVI_ENTITY_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "entity");
+        CVI_HAS_ID = new PrefixedName(CVI_PREFIX_LABEL, "hasId");
+        CVI_HAS_OWNER = new PrefixedName(CVI_PREFIX_LABEL, "hasOwner");
 
-        TOPIC_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "topic");
-        HAS_PATH = new PrefixedName(CVI_PREFIX_LABEL, "hasPath");
-        HAS_MIDDLEWARE_ENDPOINT = new PrefixedName(CVI_PREFIX_LABEL, "hasMiddlewareEndpoint");
-        HAS_DATA_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasDataType");
-        HAS_TOPIC_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasTopicType");
-        HAS_PROTOCOL = new PrefixedName(CVI_PREFIX_LABEL, "hasProtocol");
+        CVI_TOPIC_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "topic");
+        CVI_HAS_PATH = new PrefixedName(CVI_PREFIX_LABEL, "hasPath");
+        CVI_HAS_MIDDLEWARE_ENDPOINT = new PrefixedName(CVI_PREFIX_LABEL, "hasMiddlewareEndpoint");
+        CVI_HAS_DATA_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasDataType");
+        CVI_HAS_TOPIC_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasTopicType");
+        CVI_HAS_PROTOCOL = new PrefixedName(CVI_PREFIX_LABEL, "hasProtocol");
 
-        MESSAGE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "message");
-        HAS_MESSAGE_FORMAT = new PrefixedName(CVI_PREFIX_LABEL, "hasMessageFormat");
-        HAS_META_MODEL = new PrefixedName(CVI_PREFIX_LABEL, "hasMetaModel");
-        HAS_META_MODEL_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasMetaModelType");
+        CVI_MESSAGE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "message");
+        CVI_HAS_MESSAGE_FORMAT = new PrefixedName(CVI_PREFIX_LABEL, "hasMessageFormat");
+        CVI_HAS_META_MODEL = new PrefixedName(CVI_PREFIX_LABEL, "hasMetaModel");
+        CVI_HAS_META_MODEL_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasMetaModelType");
 
-        HARDWARE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware");
-        HAS_HARDWARE_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasHardwareType");
-        HAS_UNIT = new PrefixedName(CVI_PREFIX_LABEL, "hasUnit");
+        CVI_HARDWARE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware");
+        CVI_HAS_HARDWARE_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasHardwareType");
+        CVI_HAS_UNIT = new PrefixedName(CVI_PREFIX_LABEL, "hasUnit");
 
-        HARDWARE_TYPE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware-type");
+        CVI_HARDWARE_TYPE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware-type");
+        CVI_COMPONENT_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "component");
     }
 }

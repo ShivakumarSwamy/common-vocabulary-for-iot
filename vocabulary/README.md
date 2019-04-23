@@ -4,6 +4,16 @@ NOTE:
 - This project would not packaged on it's own, needs to packaged via [parent project pom](../pom.xml)
 - Only needed properties, class for project is present in the module
 
+### Version 0.2.2
+
+- prefix CVI vocabulary fields with CVI to improve readability
+
+- CVI
+    - prefix label: `cvi`
+    - iri: `http://www.cvi.com/vocabulary#`
+    - local names:
+        - component
+        
 ### Version 0.2.1
 
 
