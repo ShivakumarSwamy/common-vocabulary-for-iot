@@ -6,7 +6,7 @@ services:
     ports:
       - "7205:7200"
   app-users-management:
-    container_name: users-management
+    container_name: app.users
     image: users-management
     ports:
       - "8005:8080"
@@ -18,9 +18,17 @@ services:
     ports:
       - "7210:7200"
   app-topics-management:
-    container_name: topics-management
+    container_name: app.topics
     image: topics-management
     ports:
       - "8010:8080"
     depends_on:
       - db-2
+  cvi-web:
+    container_name: web.cvi
+    image: cvi-web
+    ports:
+      - "80:80"
+    depends_on:
+      - app-users-management
+      - app-topics-management

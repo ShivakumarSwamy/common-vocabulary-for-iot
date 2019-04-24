@@ -4,7 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.uni.stuttgart.ipvs</groupId>
+    <parent>
+        <groupId>de.uni.stuttgart.ipvs</groupId>
+        <artifactId>common-vocabulary-for-iot-parent</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
     <artifactId>initial-load-vocabulary</artifactId>
     <version>0.1.0</version>
 
@@ -12,16 +17,6 @@
     <description>Initial load vocabulary by creating a repository in triple store</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.encoding>utf-8</maven.compiler.encoding>
-
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-
-        <version.sl4j.api>1.7.26</version.sl4j.api>
-        <version.spring.web>5.1.6.RELEASE</version.spring.web>
-        <version.lombok>1.18.0</version.lombok>
-
         <version.sparql.query.results>0.1.0</version.sparql.query.results>
     </properties>
 
@@ -36,7 +31,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${version.spring.web}</version>
         </dependency>
 
         <dependency>
@@ -53,23 +47,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
-
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
