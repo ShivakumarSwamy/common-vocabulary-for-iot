@@ -4,23 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.uni.stuttgart.ipvs</groupId>
+    <parent>
+        <groupId>de.uni.stuttgart.ipvs</groupId>
+        <artifactId>common-vocabulary-for-iot-parent</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
     <artifactId>sparql-query-results</artifactId>
     <version>0.1.0</version>
 
     <name>SPARQL Query Result</name>
     <description>SPARQL Query Results</description>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.encoding>utf-8</maven.compiler.encoding>
-
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-
-        <version.lombok>1.18.0</version.lombok>
-        <version.junit>5.3.2</version.junit>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -38,23 +32,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
-
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

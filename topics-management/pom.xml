@@ -5,33 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <groupId>de.uni.stuttgart.ipvs</groupId>
+        <artifactId>common-vocabulary-for-iot-parent</artifactId>
+        <version>0.1.0</version>
     </parent>
 
-    <groupId>de.uni.stuttgart.ipvs</groupId>
     <artifactId>topics-management</artifactId>
     <version>0.4.0</version>
     <packaging>jar</packaging>
 
     <name>Topics Management</name>
-    <description>Manage terms meaning, component types,  topics</description>
+    <description>Manage terms meaning, component types, topics</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.encoding>utf-8</maven.compiler.encoding>
-
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-
         <version.jose4j>0.6.5</version.jose4j>
 
         <version.sparql.query.results>0.1.0</version.sparql.query.results>
         <version.forms>0.1.0</version.forms>
         <version.initial.load.vocabulary>0.1.0</version.initial.load.vocabulary>
         <version.vocabulary>0.2.3</version.vocabulary>
-
     </properties>
 
     <dependencies>
@@ -102,25 +94,8 @@
     <build>
         <plugins>
             <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
-
-            </plugin>
-
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <outputDirectory>${project.basedir}</outputDirectory>
-                </configuration>
             </plugin>
 
         </plugins>
