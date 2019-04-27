@@ -17,6 +17,11 @@
       <p class="mb-0">Message Format: <span class="text-secondary">{{topicProperties.message_format}}</span></p>
       <p class="mb-0">Meta Model Type: <span class="text-secondary">{{topicProperties.meta_model_type}}</span></p>
       <p class="mb-0">Meta Model: <span class="text-secondary">{{topicProperties.meta_model}}</span></p>
+      <p class="mb-0">Country: <span class="text-secondary">{{topicProperties.country}}</span></p>
+      <p class="mb-0">State: <span class="text-secondary">{{topicProperties.state}}</span></p>
+      <p class="mb-0">City: <span class="text-secondary">{{topicProperties.city}}</span></p>
+      <p class="mb-0">Street: <span class="text-secondary">{{topicProperties.street}}</span></p>
+      <p class="mb-0">Point: <span class="text-secondary">{{topicProperties.point}}</span></p>
     </div>
 
     <div *ngIf="authService.isManager || authService.isAdmin"

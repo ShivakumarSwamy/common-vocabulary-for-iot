@@ -9,48 +9,6 @@ import {TopicFormProvider} from '../provider/topic-form-provider';
 })
 export class TopicCreateComponent implements OnInit {
 
-  // pathControl = this.formBuilder.control('', Validators.required);
-  // middlewareEndpointControl = this.formBuilder.control('', Validators.required);
-  // dataTypeControl = this.formBuilder.control('', Validators.required);
-  // protocolControl = this.formBuilder.control('', Validators.required);
-  // topicTypeControl = this.formBuilder.control('', Validators.required);
-  // hardwareTypeControl = this.formBuilder.control('', Validators.required);
-  // unitControl = this.formBuilder.control('', Validators.required);
-  // messageFormatControl = this.formBuilder.control('', Validators.required);
-  // metaModelTypeControl = this.formBuilder.control('', Validators.required);
-  // metaModelControl = this.formBuilder.control('', Validators.required);
-  //
-  // topicsForm = this.formBuilder.group({
-  //     path: this.pathControl,
-  //     middlewareEndpoint: this.middlewareEndpointControl,
-  //     topicType: this.topicTypeControl,
-  //     protocol: this.protocolControl,
-  //     dataType: this.dataTypeControl,
-  //     hardwareType: this.hardwareTypeControl,
-  //     unit: this.unitControl,
-  //     messageFormat: this.messageFormatControl,
-  //     metaModelType: this.metaModelTypeControl,
-  //     metaModel: this.metaModelControl
-  //   }, {updateOn: 'blur'}
-  // );
-  //
-  // topicTypes = ['Publish', 'Subscribe'];
-  // protocols = ['HTTP', 'MQTT'];
-  // dataTypes = ['String', 'Integer', 'Float', 'Boolean', 'Double'];
-  // messageFormats = ['JSON'];
-  // metaModelTypes = ['JSON Schema'];
-  //
-  // pathValue = '';
-  // middlewareEndpointValue = '';
-  // dataTypeValue = '';
-  // protocolValue = '';
-  // topicTypeValue = '';
-  // hardwareTypeValue = '';
-  // unitValue = '';
-  // messageFormatValue = '';
-  // metaModelTypeValue = '';
-  // metaModelValue = '';
-
   successResponseMessage: ResponseMessage;
   errorResponseMessage: ResponseMessage;
 

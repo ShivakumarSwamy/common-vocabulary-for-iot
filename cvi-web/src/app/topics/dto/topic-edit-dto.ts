@@ -10,4 +10,9 @@ export interface TopicEditDto {
   messageFormat: string;
   metaModelType: string;
   metaModel: string;
+  country: string;
+  state: string;
+  city: string;
+  street: string;
+  point: string;
 }

@@ -13,12 +13,12 @@
 
 
     <div *ngIf="errorResponseMessage"
-         class="alert alert-danger mb-3">
+         class="alert alert-danger mb-3 col-sm-10">
       {{errorResponseMessage.message}}
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-4 mr-3">
+      <div class="form-group col-md-4 mr-4">
         <label class="text-dark" for="path">Path</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="path"
                id="path" placeholder="Enter path"
@@ -34,7 +34,7 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6 mr-3">
+      <div class="form-group col-md-6 mr-4">
         <label class="text-dark" for="hardwareType">Hardware Type</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="hardwareType"
                id="hardwareType" placeholder="Enter hardware type"
@@ -83,7 +83,7 @@
         </select>
       </div>
 
-      <div class="form-group col-md-2">
+      <div class="form-group col-sm-2">
         <label class="text-dark" for="metaModelType">Meta Model Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="metaModelType"
                 id="metaModelType">
@@ -93,11 +93,51 @@
       </div>
     </div>
 
+    <div class="form-row">
+      <div class="form-group col-md-3 mr-2">
+        <label class="text-dark" for="country">Country</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="country"
+               id="country" placeholder="Enter country"
+               type="text">
+      </div>
+      <div class="form-group col-md-4 mr-2">
+        <label class="text-dark" for="state">State</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="state"
+               id="state" placeholder="Enter state"
+               type="text">
+      </div>
+      <div class="form-group col-md-3">
+        <label class="text-dark" for="city">City</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="city"
+               id="city" placeholder="Enter city"
+               type="text">
+      </div>
+    </div>
 
-    <div class="form-group col-md-10">
-      <label class="text-dark" for="metaModel">Meta Model</label><span class="text-danger">*</span>
-      <textarea class="form-control" formControlName="metaModel" id="metaModel"
-                placeholder="Enter meta model"></textarea>
+    <div class="form-row">
+      <div class="form-group col-md-4 mr-3">
+        <label class="text-dark" for="street">Street</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="street"
+               id="street" placeholder="Enter street"
+               type="text">
+      </div>
+      <div class="form-group col-sm-6">
+        <label class="text-dark" for="point">Point</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="point"
+               id="point" placeholder="Enter point in format lat-long in decimal degrees"
+               type="text">
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-10">
+        <label class="text-dark" for="metaModel">Meta Model</label><span class="text-danger">*</span>
+        <textarea class="form-control" formControlName="metaModel" id="metaModel"
+                  placeholder="Enter meta model">
+
+      </textarea>
+      </div>
     </div>
 
 
