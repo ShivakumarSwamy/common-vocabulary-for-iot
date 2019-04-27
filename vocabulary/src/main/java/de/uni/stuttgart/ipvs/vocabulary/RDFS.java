@@ -16,6 +16,7 @@ public class RDFS {
 
     public static final PrefixedName RDFS_LABEL;
     public static final PrefixedName RDFS_COMMENT;
+    public static final PrefixedName RDFS_SUB_CLASS_OF;
 
     static {
         RDFS_IRI = new Iri("http://www.w3.org/2000/01/rdf-schema#");
@@ -26,5 +27,6 @@ public class RDFS {
         RDFS_CLASS = new PrefixedName(RDFS_PREFIX_LABEL, "Class");
         RDFS_LABEL = new PrefixedName(RDFS_PREFIX_LABEL, "label");
         RDFS_COMMENT = new PrefixedName(RDFS_PREFIX_LABEL, "comment");
+        RDFS_SUB_CLASS_OF = new PrefixedName(RDFS_PREFIX_LABEL, "subClassOf");
     }
 }

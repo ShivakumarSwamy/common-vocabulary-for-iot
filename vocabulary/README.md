@@ -4,6 +4,26 @@ NOTE:
 - This project would not packaged on it's own, needs to packaged via [parent project pom](../pom.xml)
 - Only needed properties, class for project is present in the module
 
+### Version 0.2.4
+
+- CVI
+    - local names:
+        - location
+        - hasCountry
+        - hasState
+        - hasCity
+        - hasStreet
+        - hasPoint
+        - country
+        - state
+        - city        
+        - street
+        - point
+        
+- [RDFS](http://www.w3.org/2000/01/rdf-schema# "RDFS")    
+    - local names:
+        - subClassOf 
+
 ### Version 0.2.3
 
 - CVI
