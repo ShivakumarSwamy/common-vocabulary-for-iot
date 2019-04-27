@@ -16,6 +16,7 @@ import de.uni.stuttgart.ipvs.form.validation.FormModelValidator;
 import de.uni.stuttgart.ipvs.tm.topics.dto.TopicCreateDTO;
 import de.uni.stuttgart.ipvs.tm.topics.dto.TopicEditDTO;
 import de.uni.stuttgart.ipvs.tm.topics.properties.HardwareProperties;
+import de.uni.stuttgart.ipvs.tm.topics.properties.LocationProperties;
 import de.uni.stuttgart.ipvs.tm.topics.properties.MessageProperties;
 import de.uni.stuttgart.ipvs.tm.topics.properties.TopicProperties;
 
@@ -54,6 +55,7 @@ public class TopicFormModelValidation {
 
         formControls.addAll(formControlsMessageProperties(topicEditDTO));
         formControls.addAll(formControlsHardwareProperties(topicEditDTO));
+        formControls.addAll(formControlsLocationProperties(topicEditDTO));
 
         return formControls;
     }
@@ -63,8 +65,20 @@ public class TopicFormModelValidation {
 
         formControls.addAll(formControlsMessageProperties(topicCreateDTO));
         formControls.addAll(formControlsHardwareProperties(topicCreateDTO));
+        formControls.addAll(formControlsLocationProperties(topicCreateDTO));
 
         return formControls;
+    }
+
+    private static Collection<FormControl> formControlsLocationProperties(LocationProperties locationProperties) {
+
+        var countryFormControl = new FormControlImpl<>(COUNTRY, locationProperties.getCountry());
+        var stateFormControl = new FormControlImpl<>(STATE, locationProperties.getState());
+        var cityFormControl = new FormControlImpl<>(CITY, locationProperties.getCity());
+        var streetFormControl = new FormControlImpl<>(STREET, locationProperties.getStreet());
+        var pointFormControl = new FormControlImpl<>(POINT, locationProperties.getPoint());
+
+        return List.of(countryFormControl, stateFormControl, cityFormControl, streetFormControl, pointFormControl);
     }
 
     private static Collection<FormControl> formControlsMessageProperties(MessageProperties messageProperties) {
@@ -98,11 +112,7 @@ public class TopicFormModelValidation {
 
     public void validate(TopicCreateDTO topicCreateDTO) {
         var formModel = formModel(topicCreateDTO);
-
-        if (!this.tFMV.isValid(formModel)) {
-            throwTopicFormControlErrorException(this.tFMV.getError());
-        }
-        log.debug("TOPIC FORM IS VALID");
+        validateFormModelUsingFormModelValidator(formModel, "TOPIC CREATE");
     }
 
     public void validate(TopicEditDTO topicEditDTO) {
@@ -111,10 +121,13 @@ public class TopicFormModelValidation {
             throw new TopicFormControlErrorException("Owner id is required");
 
         var formModel = formModel(topicEditDTO);
+        validateFormModelUsingFormModelValidator(formModel, "TOPIC EDIT");
+    }
 
+    private void validateFormModelUsingFormModelValidator(FormModel formModel, String formName) {
         if (!this.tFMV.isValid(formModel)) {
             throwTopicFormControlErrorException(this.tFMV.getError());
         }
-        log.debug("TOPIC FORM IS VALID");
+        log.debug( formName + " FORM IS VALID");
     }
 }

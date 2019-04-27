@@ -10,23 +10,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class TopicFormControlErrorMessages {
 
     private String path;
-
     private String protocol;
-
     private String middlewareEndpoint;
-
     private String topicType;
-
     private String dataType;
 
     private String unit;
-
     private String hardwareType;
 
     private String messageFormat;
-
     private String metaModelType;
-
     private String metaModel;
+
+    private String country;
+    private String state;
+    private String city;
+    private String street;
+    private String point;
 
 }

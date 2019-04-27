@@ -5,16 +5,14 @@ import lombok.ToString;
 
 import de.uni.stuttgart.ipvs.tm.topics.dto.TopicCreateDTO;
 import de.uni.stuttgart.ipvs.tm.topics.dto.TopicEditDTO;
-import de.uni.stuttgart.ipvs.tm.topics.properties.EntityProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.HardwareProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.MessageProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.TopicProperties;
+import de.uni.stuttgart.ipvs.tm.topics.properties.*;
 
 import java.util.UUID;
 
 @Getter
 @ToString
-public class Topic implements EntityProperties, TopicProperties, HardwareProperties, MessageProperties {
+public class Topic
+        implements EntityProperties, TopicProperties, HardwareProperties, MessageProperties, LocationProperties {
 
     private String id;
     private String owner;
@@ -32,6 +30,13 @@ public class Topic implements EntityProperties, TopicProperties, HardwarePropert
     private String metaModelType;
     private String metaModel;
 
+    private String country;
+    private String state;
+    private String city;
+    private String street;
+    private String point;
+
+
     private Topic(String owner, String id) {
         this.owner = owner;
         this.id = id;
@@ -47,34 +52,63 @@ public class Topic implements EntityProperties, TopicProperties, HardwarePropert
     }
 
     private static Topic build(TopicBuilder topicBuilder, TopicEditDTO topicEditDTO) {
-        return topicBuilder
-                .path(topicEditDTO.getPath())
-                .protocol(topicEditDTO.getProtocol().toLowerCase())
-                .middlewareEndpoint(topicEditDTO.getMiddlewareEndpoint())
-                .topicType(topicEditDTO.getTopicType().toLowerCase())
-                .dataType(topicEditDTO.getDataType().toLowerCase())
-                .hardwareType(requiredTermsTextFormat(topicEditDTO.getHardwareType()))
-                .unit(topicEditDTO.getUnit())
-                .messageFormat(topicEditDTO.getMessageFormat().toLowerCase())
-                .metaModelType(requiredTermsTextFormat(topicEditDTO.getMetaModelType()))
-                .metaModel(properJsonFormat(topicEditDTO.getMetaModel()))
-                .get();
+
+        topicProperties(topicBuilder, topicEditDTO);
+        hardwareProperties(topicBuilder, topicEditDTO);
+        messageProperties(topicBuilder, topicEditDTO);
+        locationProperties(topicBuilder, topicEditDTO);
+        return topicBuilder.get();
     }
 
     private static Topic build(TopicBuilder topicBuilder, TopicCreateDTO topicCreateDTO) {
-        return topicBuilder
-                .path(topicCreateDTO.getPath())
-                .protocol(topicCreateDTO.getProtocol().toLowerCase())
-                .middlewareEndpoint(topicCreateDTO.getMiddlewareEndpoint())
-                .topicType(topicCreateDTO.getTopicType().toLowerCase())
-                .dataType(topicCreateDTO.getDataType().toLowerCase())
-                .hardwareType(requiredTermsTextFormat(topicCreateDTO.getHardwareType()))
-                .unit(topicCreateDTO.getUnit())
-                .messageFormat(topicCreateDTO.getMessageFormat().toLowerCase())
-                .metaModelType(requiredTermsTextFormat(topicCreateDTO.getMetaModelType()))
-                .metaModel(properJsonFormat(topicCreateDTO.getMetaModel()))
-                .get();
+
+        topicProperties(topicBuilder, topicCreateDTO);
+        hardwareProperties(topicBuilder, topicCreateDTO);
+        messageProperties(topicBuilder, topicCreateDTO);
+        locationProperties(topicBuilder, topicCreateDTO);
+        return topicBuilder.get();
+
     }
+
+    private static void topicProperties(TopicBuilder topicBuilder,
+                                        TopicProperties topicProperties) {
+        topicBuilder
+                .path(topicProperties.getPath())
+                .protocol(topicProperties.getProtocol().toLowerCase())
+                .middlewareEndpoint(topicProperties.getMiddlewareEndpoint())
+                .topicType(topicProperties.getTopicType().toLowerCase())
+                .dataType(topicProperties.getDataType().toLowerCase())
+        ;
+    }
+
+    private static void hardwareProperties(TopicBuilder topicBuilder,
+                                           HardwareProperties hardwareProperties) {
+        topicBuilder
+                .hardwareType(requiredTextFormat(hardwareProperties.getHardwareType()))
+                .unit(hardwareProperties.getUnit())
+        ;
+    }
+
+    private static void messageProperties(TopicBuilder topicBuilder,
+                                          MessageProperties messageProperties) {
+        topicBuilder
+                .messageFormat(messageProperties.getMessageFormat().toLowerCase())
+                .metaModelType(requiredTextFormat(messageProperties.getMetaModelType()))
+                .metaModel(properJsonFormat(messageProperties.getMetaModel()))
+        ;
+    }
+
+    private static void locationProperties(TopicBuilder topicBuilder,
+                                           LocationProperties locationProperties) {
+        topicBuilder
+                .country(requiredTextFormat(locationProperties.getCountry()))
+                .state(requiredTextFormat(locationProperties.getState()))
+                .city(requiredTextFormat(locationProperties.getCity()))
+                .street(requiredTextFormat(locationProperties.getStreet()))
+                .point(locationProperties.getPoint())
+        ;
+    }
+
 
     static class TopicBuilder {
 
@@ -142,18 +176,48 @@ public class Topic implements EntityProperties, TopicProperties, HardwarePropert
             return this;
         }
 
+        TopicBuilder country(String country) {
+            this.topic.country = country;
+            return this;
+        }
+
+        TopicBuilder state(String state) {
+            this.topic.state = state;
+            return this;
+        }
+
+        TopicBuilder city(String city) {
+            this.topic.city = city;
+            return this;
+        }
+
+        TopicBuilder street(String street) {
+            this.topic.street = street;
+            return this;
+        }
+
+        TopicBuilder point(String point) {
+            this.topic.point = point;
+            return this;
+        }
+
 
         Topic get() {
             return this.topic;
         }
     }
 
-    static String requiredTermsTextFormat(String termsText) {
-        return termsText.toLowerCase().replaceAll("\\s+", "-");
+    private static String requiredTextFormat(String text) {
+        return text.strip()
+                .toLowerCase()
+                .replaceAll("\\s+", "-");
     }
 
-    static String properJsonFormat(String text) {
-        return text.strip().replaceAll("\\\\\"", "\"").replaceAll("\\r|\\n", "").replaceAll("\"", "\\\\\"");
+    private static String properJsonFormat(String text) {
+        return text.strip()
+                .replaceAll("\\\\\"", "\"")
+                .replaceAll("\\r|\\n", "")
+                .replaceAll("\"", "\\\\\"");
     }
 }
 

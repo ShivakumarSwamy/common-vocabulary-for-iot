@@ -37,19 +37,29 @@ public class BeansTopicForm {
 
         var map = new HashMap<String, FormControlValidator>();
 
-        map.put(PATH, new FormControlValidatorImpl(this.tfcEM.getPath(), LENGTH));
-        map.put(DATA_TYPE, new FormControlValidatorImpl(this.tfcEM.getDataType(), LENGTH));
-        map.put(MIDDLEWARE_ENDPOINT, new FormControlValidatorImpl(this.tfcEM.getMiddlewareEndpoint(), LENGTH));
-        map.put(TOPIC_TYPE, new FormControlValidatorImpl(this.tfcEM.getTopicType(), LENGTH));
-        map.put(PROTOCOL, new FormControlValidatorImpl(this.tfcEM.getProtocol(), LENGTH));
+        map.put(PATH, formControlValidatorHasLength(this.tfcEM.getPath()));
+        map.put(DATA_TYPE, formControlValidatorHasLength(this.tfcEM.getDataType()));
+        map.put(MIDDLEWARE_ENDPOINT, formControlValidatorHasLength(this.tfcEM.getMiddlewareEndpoint()));
+        map.put(TOPIC_TYPE, formControlValidatorHasLength(this.tfcEM.getTopicType()));
+        map.put(PROTOCOL, formControlValidatorHasLength(this.tfcEM.getProtocol()));
 
-        map.put(UNIT, new FormControlValidatorImpl(this.tfcEM.getUnit(), LENGTH));
-        map.put(HARDWARE_TYPE, new FormControlValidatorImpl(this.tfcEM.getHardwareType(), LENGTH));
+        map.put(UNIT, formControlValidatorHasLength(this.tfcEM.getUnit()));
+        map.put(HARDWARE_TYPE, formControlValidatorHasLength(this.tfcEM.getHardwareType()));
 
-        map.put(META_MODEL, new FormControlValidatorImpl(this.tfcEM.getMetaModel(), LENGTH));
-        map.put(META_MODEL_TYPE, new FormControlValidatorImpl(this.tfcEM.getMetaModelType(), LENGTH));
-        map.put(MESSAGE_FORMAT, new FormControlValidatorImpl(this.tfcEM.getMessageFormat(), LENGTH));
+        map.put(META_MODEL, formControlValidatorHasLength(this.tfcEM.getMetaModel()));
+        map.put(META_MODEL_TYPE, formControlValidatorHasLength(this.tfcEM.getMetaModelType()));
+        map.put(MESSAGE_FORMAT, formControlValidatorHasLength(this.tfcEM.getMessageFormat()));
+
+        map.put(COUNTRY, formControlValidatorHasLength(this.tfcEM.getCountry()));
+        map.put(STATE, formControlValidatorHasLength(this.tfcEM.getState()));
+        map.put(CITY, formControlValidatorHasLength(this.tfcEM.getCity()));
+        map.put(STREET, formControlValidatorHasLength(this.tfcEM.getStreet()));
+        map.put(POINT, formControlValidatorHasLength(this.tfcEM.getPoint()));
 
         return map;
+    }
+
+    private static FormControlValidator formControlValidatorHasLength(String help) {
+        return new FormControlValidatorImpl(help, LENGTH);
     }
 }

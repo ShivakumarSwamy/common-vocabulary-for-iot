@@ -5,7 +5,7 @@ RUN mvn package
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-ARG version=0.4.0
+ARG version=0.4.1
 ENV TOPICS_MANAGEMENT_APP_JAR=topics-management-${version}.jar
 COPY --from=mvn /app/topics-management/target/${TOPICS_MANAGEMENT_APP_JAR}  /app/lib/
 RUN groupadd -r javaApp && \

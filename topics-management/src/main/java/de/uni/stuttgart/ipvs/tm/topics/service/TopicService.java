@@ -52,26 +52,12 @@ public class TopicService {
         return new ResultsSet<>(this.topicRepository.findAllTopics(termsTextToTerms(termsText)));
     }
 
-    //
-//    private TopicsResponse getAllTopicsUsingTerms(String[] terms) {
-//        String[] termsWithTopicTermAdded = addTopicTermToTerms(terms);
-//        var allTopics = this.topicRepository.findAllTopics(termsWithTopicTermAdded);
-//        return allTopics.isEmpty() ? TopicsResponse.EMPTY : new TopicsResponse(allTopics);
-//    }
-//
     public ResultsSet getAllTopicsUsingTermsTextForOwner(String ownerId, String termsText) {
 
         if (!StringUtils.hasLength(termsText)) return ResultsSet.EMPTY;
         return new ResultsSet<>(this.topicRepository.findAllTopics(ownerId, termsTextToTerms(termsText)));
     }
 
-    //
-//    private TopicsResponse getAllTopicsUsingTermsForOwner(String ownerId, String[] terms) {
-//        String[] termsWithTopicTermAdded = addTopicTermToTerms(terms);
-//        var allTopics = this.topicRepository.findAllTopics(ownerId, termsWithTopicTermAdded);
-//        return allTopics.isEmpty() ? TopicsResponse.EMPTY : new TopicsResponse(allTopics);
-//    }
-//
     public String createTopic(TopicCreateDTO topicCreateDTO, String ownerID) {
 
         this.tFMV.validate(topicCreateDTO);
@@ -97,7 +83,8 @@ public class TopicService {
     }
 
     static Collection<String> termsTextToTerms(String termsText) {
-        String[] terms = termsText.toLowerCase().split("\\s+");
+        String[] terms = termsText.strip()
+                .toLowerCase().split("\\s+");
 
         List<String> finalTerms = new ArrayList<>(Arrays.asList(terms));
         finalTerms.add("topic");

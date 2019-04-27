@@ -10,10 +10,7 @@ import de.uni.stuttgart.ipvs.sparql.triple.Triple;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleImpl;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubject;
 import de.uni.stuttgart.ipvs.sparql.triple.TripleSameSubjectImpl;
-import de.uni.stuttgart.ipvs.tm.topics.properties.EntityProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.HardwareProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.MessageProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.TopicProperties;
+import de.uni.stuttgart.ipvs.tm.topics.properties.*;
 import de.uni.stuttgart.ipvs.vocabulary.OWL;
 import de.uni.stuttgart.ipvs.vocabulary.RDFS;
 
@@ -133,6 +130,23 @@ class TopicSparqlUtils {
         return tripleSameSubject;
     }
 
+    static TripleSameSubject locationProperties(String entityId, LocationProperties locationProperties) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
+        tripleSameSubject.add(RDF_TYPE, CVI_LOCATION_CLASS);
+
+        tripleSameSubject.add(CVI_HAS_COUNTRY, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCountry()));
+        tripleSameSubject.add(CVI_HAS_STATE, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getState()));
+        tripleSameSubject.add(CVI_HAS_CITY, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCity()));
+        tripleSameSubject.add(CVI_HAS_STREET, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getStreet()));
+
+        var pointClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getPoint());
+        tripleSameSubject.add(CVI_HAS_POINT, pointClass);
+        tripleSameSubject.add(RDF_TYPE, pointClass);
+
+        return tripleSameSubject;
+    }
+
     static List<Triple> terms(Collection<String> terms) {
 
         return terms.stream()
@@ -144,50 +158,4 @@ class TopicSparqlUtils {
         return new TripleImpl(QV_ENTITY, RDF_TYPE, PrefixedName.of(CVI_PREFIX_LABEL, term));
     }
 
-
-//    static final Triple DELETE_PROPERTY;
-//
-//    private static final Function<String, Node> QN_CIV_CLASS_TYPE;
-//
-//    private static final Function<Node, Triple> TRIPLE_ENTITY_TYPE;
-//
-//    static Collection<Triple> getTriplesTopic(Topic topic) {
-//        var entityId = topic.getId();
-//        var triplesTopicEntity = new ArrayList<Triple>();
-//
-//        try {
-//            triplesTopicEntity.addAll(getTriplesEntity(topic));
-//            triplesTopicEntity.addAll(getTriplesTopic(entityId, topic));
-//            triplesTopicEntity.addAll(getTriplesMessage(entityId, topic));
-//            triplesTopicEntity.addAll(getTriplesHardware(entityId, topic));
-//        } catch (IllegalArgumentException failedNodeCreation) {
-//            throw new TopicSparqlException(failedNodeCreation);
-//        }
-//        return triplesTopicEntity;
-//    }
-//
-
-//
-//    static Collection<Triple> getTriplesHasIdWithProperty(String uuid) {
-//        var hasIdDP = Triple.of(QV_ID, CIV_HAS_ID, new Literal(uuid));
-//        return List.of(hasIdDP, DELETE_PROPERTY);
-//    }
-//
-//
-//    static Collection<Triple> getTriplesForTerms(String[] terms) {
-//
-//        return Arrays.stream(terms)
-//                .map(QN_CIV_CLASS_TYPE)
-//                .map(TRIPLE_ENTITY_TYPE)
-//                .collect(toList());
-//
-//    }
-//
-//    static {
-//        DELETE_PROPERTY = Triple.of(QV_ID, QV_PROPERTY_NAME, QV_PROPERTY_VALUE);
-//
-//        QN_CIV_CLASS_TYPE = term -> new QName(CIV_PREFIX, term);
-//
-//        TRIPLE_ENTITY_TYPE = classType -> Triple.of(QV_ENTITY, RDF_TYPE, classType);
-//    }
 }

@@ -299,29 +299,34 @@ cvi:location                rdf:type             cvi:module;
 cvi:hasCountry              rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:country;
+                            rdfs:label           "Country";
                             rdfs:comment         "The country where the entity is present" .
 
 
 cvi:hasState                rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:state;
+                            rdfs:label           "State";                            
                             rdfs:comment         "The state where the entity is present" .
 
 cvi:hasCity                 rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:city;
+                            rdfs:label           "City";
                             rdfs:comment         "The city where the entity is present" .
 
 
 cvi:hasStreet               rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:street;
+                            rdfs:label           "Street";
                             rdfs:comment         "The street where the entity is present" .
 
 
 cvi:hasPoint                rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:point;
+                            rdfs:label           "Point";
                             rdfs:comment         "The point where the entity is present. Its format is 'latitude-longitude' in decimal degress" .
 
 
@@ -381,7 +386,7 @@ cvi:universitätsstraße-38   rdf:type             cvi:street;
 cvi:point                   rdf:type             rdfs:Class;
                             cvi:hasSerachId      "point";
                             rdfs:label           "Point";
-                            rdfs:comment         "The coordinates of the location";
+                            rdfs:comment         "The coordinates of the location".
 
 cvi:48.74525-9.10727        rdf:type             cvi:point;
                             rdf:type             rdfs:Class;

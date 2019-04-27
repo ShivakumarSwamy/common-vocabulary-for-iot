@@ -22,6 +22,7 @@ class TopicUpdateUtils {
         graphUpdate.add(TopicSparqlUtils.hardwareProperties(topic.getId(), topic));
         graphUpdate.add(TopicSparqlUtils.messageProperties(topic.getId(), topic));
         graphUpdate.add(TopicSparqlUtils.topicProperties(topic.getId(), topic));
+        graphUpdate.add(TopicSparqlUtils.locationProperties(topic.getId(), topic));
 
         graphUpdate.setPrologues(ProloguesFactory.getProloguesRdfRdfsOwlCvi());
 
@@ -35,6 +36,7 @@ class TopicUpdateUtils {
         insertDelete.addInsertTriples(TopicSparqlUtils.hardwareProperties(topic.getId(), topic));
         insertDelete.addInsertTriples(TopicSparqlUtils.messageProperties(topic.getId(), topic));
         insertDelete.addInsertTriples(TopicSparqlUtils.topicProperties(topic.getId(), topic));
+        insertDelete.addInsertTriples(TopicSparqlUtils.locationProperties(topic.getId(), topic));
 
         insertDelete.addDeleteTriple(new TripleImpl(QV_ENTITY, QV_PROPERTY_NAME, QV_PROPERTY_VALUE));
 

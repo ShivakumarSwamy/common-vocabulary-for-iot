@@ -11,6 +11,10 @@ graph db as triple store
 
 - Manage terms meaning, component types, topics
 
+## Version 0.4.1
+
+- Location module added
+
 ## Version 0.4.0
 
 - change of api url from `/api/manager/hardware-types` to `/api/manager/component-types`
