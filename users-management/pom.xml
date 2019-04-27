@@ -24,7 +24,7 @@
         <version.sparql.query.results>0.1.0</version.sparql.query.results>
         <version.forms>0.1.0</version.forms>
         <version.initial.load.vocabulary>0.1.0</version.initial.load.vocabulary>
-        <version.vocabulary>0.2.3</version.vocabulary>
+        <version.vocabulary>0.2.4</version.vocabulary>
     </properties>
 
     <dependencies>
