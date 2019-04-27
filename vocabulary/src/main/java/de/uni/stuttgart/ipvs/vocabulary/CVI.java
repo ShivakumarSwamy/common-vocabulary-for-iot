@@ -35,6 +35,19 @@ public class CVI {
     public static final PrefixedName CVI_HAS_HARDWARE_TYPE;
     public static final PrefixedName CVI_HAS_UNIT;
 
+    public static final PrefixedName CVI_LOCATION_CLASS;
+    public static final PrefixedName CVI_HAS_COUNTRY;
+    public static final PrefixedName CVI_HAS_STATE;
+    public static final PrefixedName CVI_HAS_CITY;
+    public static final PrefixedName CVI_HAS_STREET;
+    public static final PrefixedName CVI_HAS_POINT;
+
+    public static final PrefixedName CVI_COUNTRY_CLASS;
+    public static final PrefixedName CVI_STATE_CLASS;
+    public static final PrefixedName CVI_CITY_CLASS;
+    public static final PrefixedName CVI_STREET_CLASS;
+    public static final PrefixedName CVI_POINT_CLASS;
+
     public static final PrefixedName CVI_COMPONENT_TYPE_CLASS;
     public static final PrefixedName CVI_COMPONENT_CLASS;
 
@@ -66,6 +79,19 @@ public class CVI {
         CVI_HARDWARE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware");
         CVI_HAS_HARDWARE_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasHardwareType");
         CVI_HAS_UNIT = new PrefixedName(CVI_PREFIX_LABEL, "hasUnit");
+
+        CVI_LOCATION_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "location");
+        CVI_HAS_COUNTRY = new PrefixedName(CVI_PREFIX_LABEL, "hasCountry");
+        CVI_HAS_STATE = new PrefixedName(CVI_PREFIX_LABEL, "hasState");
+        CVI_HAS_CITY = new PrefixedName(CVI_PREFIX_LABEL, "hasCity");
+        CVI_HAS_STREET = new PrefixedName(CVI_PREFIX_LABEL, "hasStreet");
+        CVI_HAS_POINT = new PrefixedName(CVI_PREFIX_LABEL, "hasPoint");
+
+        CVI_COUNTRY_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "country");
+        CVI_STATE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "state");
+        CVI_CITY_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "city");
+        CVI_STREET_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "street");
+        CVI_POINT_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "point");
 
         CVI_COMPONENT_TYPE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "component-type");
         CVI_COMPONENT_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "component");
