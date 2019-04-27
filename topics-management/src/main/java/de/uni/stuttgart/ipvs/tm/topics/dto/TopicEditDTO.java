@@ -2,13 +2,11 @@ package de.uni.stuttgart.ipvs.tm.topics.dto;
 
 import lombok.Data;
 
-import de.uni.stuttgart.ipvs.tm.topics.properties.EntityProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.HardwareProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.MessageProperties;
-import de.uni.stuttgart.ipvs.tm.topics.properties.TopicProperties;
+import de.uni.stuttgart.ipvs.tm.topics.properties.*;
 
 @Data
-public class TopicEditDTO implements EntityProperties, TopicProperties, MessageProperties, HardwareProperties {
+public class TopicEditDTO
+        implements EntityProperties, TopicProperties, MessageProperties, HardwareProperties, LocationProperties {
 
     private String id = "";
     private String owner;
@@ -25,5 +23,11 @@ public class TopicEditDTO implements EntityProperties, TopicProperties, MessageP
     private String messageFormat;
     private String metaModelType;
     private String metaModel;
+
+    private String country;
+    private String state;
+    private String city;
+    private String street;
+    private String point;
 }
 

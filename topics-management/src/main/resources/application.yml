@@ -43,6 +43,11 @@ error:
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"
+        point: "Point is required"
 
 
 logging:
@@ -103,6 +108,11 @@ error:
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"
+        point: "Point is required"
 ---
 
 spring:
@@ -151,3 +161,8 @@ error:
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"
+        point: "Point is required"

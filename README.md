@@ -38,14 +38,15 @@ NOTE: Image based on [Ontotext-AD Dockerfile][Ontotext-AD Dockerfile]
 ## Run all services
 
 - In [docker-compose.yml](./docker-compose.yml) file 
-    - `users` triple store container `7200` -> `7205`
-    - `cvi` triple store container `7200` -> `7210`
-    - `app.users` app container `8080` -> `8005`
-    - `app.topics` app container `8080` -> `8010`
-    - `web.cvi` app container `80` -> `80`
+    - Configuration: image name: container name: port forwarding
+        - `graph-db-free`: `users`: `7200` -> `7205`
+        - `graph-db-free`: `cvi`: `7200` -> `7210`
+        - `users-management`: `app.users`: `8080` -> `8005`
+        - `topics-management`: `app.topics`: `8080` -> `8010`
+        - `cvi-web`: `web.cvi`: `80` -> `80`
             
 - After building all images run, containers using [docker-compose.yml](./docker-compose.yml) file  
-`docker-compose up` or `docker-compose -d up` (detached)
+`docker-compose up` or `docker-compose up -d` (detached)
 
 
 [Ontotext-AD Dockerfile]: https://github.com/Ontotext-AD/graphdb-docker/blob/master/free-edition/Dockerfile "Ontotext-AD Dockerfile"
