@@ -194,9 +194,9 @@ cvi:meta-model-type         rdf:type             rdf:Class;
                             rdfs:label           "Meta Model Type";
                             rdfs:comment         "Meta model type of the message".
 
-cvi:json-schema             rdf:type             rdf:Class;
+cvi:json-schema             rdf:type             cvi:meta-model-type;
+                            rdf:type             rdf:Class;
                             rdfs:subClassOf      cvi:schema;
-                            rdf:type             cvi:meta-model-type;
                             cvi:hasSearchId      "json-schema";
                             rdfs:label           "JSON Schema";
                             rdfs:comment         "JSON Schema is a type of meta model type. The schema message format would be JSON".
@@ -208,79 +208,187 @@ cvi:xml-schema              rdf:type             cvi:meta-model-type;
                             rdfs:label           "XML Schema";
                             rdfs:comment         "XML Schema is a type of meta model type. The schema message format would be XML".
 
+cvi:hardware                rdf:type             cvi:module;;
+                            rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "hardware";
+                            rdfs:label           "Hardware";
+                            rdfs:comment         "The hardware component provided by the entity".
 
 
+cvi:hasHardwareType         rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:hardware;
+                            rdfs:range           cvi:component-type;
+                            rdfs:label           "Hardware Type";
+                            rdfs:comment         "The type of hardware component provided by the entity".
+
+cvi:hasUnit                 rdf:type             owl:DatatypeProperty;
+                            rdfs:domain          cvi:hardware;
+                            rdfs:range           xsd:string;
+                            rdfs:label           "Unit";
+                            rdfs:comment         "The unit of the component type".
+
+cvi:parking                 rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "parking";
+                            rdfs:label           "Parking";
+                            rdfs:comment         "The space in which vehicles park".
+
+cvi:space                   rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "space";
+                            rdfs:label           "Space";
+                            rdfs:comment         "An area which may be occupied or un-occupied".
+
+cvi:gate                    rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "gate";
+                            rdfs:label           "Gate";
+                            rdfs:comment         "A gate which can be opened an closed based on a command".
 
 
+cvi:category                rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "category";
+                            rdfs:label           "Category";
+                            rdfs:comment         "The category allows classifying the component further one-level down".
 
-cvi:hardware                rdf:type            cvi:module;;
-                            rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "hardware";
-                            rdfs:label          "Hardware";
-                            rdfs:comment        "The hardware component provided by the entity".
-
-
-cvi:hasHardwareType         rdf:type            owl:ObjectProperty;
-                            rdfs:domain         cvi:hardware;
-                            rdfs:range          cvi:component-type;
-                            rdfs:label          "Hardware Type";
-                            rdfs:comment        "The type of hardware component provided by the entity".
-
-cvi:hasUnit                 rdf:type            owl:DatatypeProperty;
-                            rdfs:domain         cvi:hardware;
-                            rdfs:range          xsd:string;
-                            rdfs:label          "Unit";
-                            rdfs:comment        "The unit of the component type".
+cvi:parking-space-sensor    rdf:type             cvi:category;
+                            rdf:type             cvi:sensor;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:sensor;
+                            rdfs:subClassOf      cvi:parking;
+                            rdfs:subClassOf      cvi:space;
+                            cvi:hasSearchId      "parking-space-sensor";
+                            rdfs:label           "Parking Space Sensor";
+                            rdfs:comment         "A sensor which monitors the parking space availability in the given area".
 
 
+cvi:parking-gate-actuator   rdf:type             cvi:category;
+                            rdf:type             cvi:actuator;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:actuator;
+                            rdfs:subClassOf      cvi:parking;
+                            rdfs:subClassOf      cvi:gate;
+                            cvi:hasSearchId      "parking-gate-actuator";
+                            rdfs:label           "Parking Gate Actuator";
+                            rdfs:comment         "An actuator which controls the opening and closing of a parking gate".
+
+cvi:component-type          rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "component-type";
+                            rdfs:label           "Component Type";
+                            rdfs:comment         "A component type can be model number of a category like parking space sensor".
 
 
-cvi:parking                 rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "parking";
-                            rdfs:label          "Parking";
-                            rdfs:comment        "The space in which vehicles park".
-
-cvi:space                   rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "space";
-                            rdfs:label          "Space";
-                            rdfs:comment        "An area which may be occupied or un-occupied".
-
-cvi:gate                    rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "gate";
-                            rdfs:label          "Gate";
-                            rdfs:comment        "A gate which can be opened an closed based on a command".
+cvi:pss-123                 rdf:type             cvi:component-type;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:parking-space-sensor;
+                            cvi:hasSearchId      "pss-123";
+                            rdfs:label           "PSS-123";
+                            rdfs:comment         "A parking space sensor with model number PSS-123".
 
 
-cvi:category                rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "category";
-                            rdfs:label          "Category";
-                            rdfs:comment        "The category allows the component to classify further one-level down".
+cvi:pga-456                 rdf:type             cvi:component-type;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:parking-gate-actuator;
+                            cvi:hasSearchId      "pga-456";
+                            rdfs:label           "PGA-456";
+                            rdfs:comment         "A parking gate actuator with model number PGA-456".
 
-cvi:parking-space-sensor    rdf:type            cvi:category;
-                            rdf:type            cvi:sensor;
-                            rdf:type            rdfs:Class;
-                            rdfs:subClassOf     cvi:sensor;
-                            rdfs:subClassOf     cvi:parking;
-                            rdfs:subClassOf     cvi:space;
-                            cvi:hasSearchId     "parking-space-sensor";
-                            rdfs:label          "Parking Space Sensor";
-                            rdfs:comment        "A sensor which monitors the parking space availability in the given area".
+cvi:location                rdf:type             cvi:module;
+                            rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "location";
+                            rdfs:label           "Location";
+                            rdfs:comment         "The location where the entity is present" .
+
+cvi:hasCountry              rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:location;
+                            rdfs:range           cvi:country;
+                            rdfs:comment         "The country where the entity is present" .
 
 
-cvi:parking-gate-actuator   rdf:type            cvi:category;
-                            rdf:type            cvi:actuator;
-                            rdf:type            rdfs:Class;
-                            rdfs:subClassOf     cvi:actuator;
-                            rdfs:subClassOf     cvi:parking;
-                            rdfs:subClassOf     cvi:gate;
-                            cvi:hasSearchId     "parking-gate-actuator";
-                            rdfs:label          "Parking Gate Actuator";
-                            rdfs:comment        "An actuator which controls the opening and closing of a parking gate".
+cvi:hasState                rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:location;
+                            rdfs:range           cvi:state;
+                            rdfs:comment         "The state where the entity is present" .
 
-cvi:component-type          rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "component-type";
-                            rdfs:label          "Component Type";
-                            rdfs:comment        "A component type created by a manager. A component type can be model number of a category like parking space sensor".
+cvi:hasCity                 rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:location;
+                            rdfs:range           cvi:city;
+                            rdfs:comment         "The city where the entity is present" .
+
+
+cvi:hasStreet               rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:location;
+                            rdfs:range           cvi:street;
+                            rdfs:comment         "The street where the entity is present" .
+
+
+cvi:hasPoint                rdf:type             owl:ObjectProperty;
+                            rdfs:domain          cvi:location;
+                            rdfs:range           cvi:point;
+                            rdfs:comment         "The point where the entity is present. Its format is 'latitude-longitude' in decimal degress" .
+
+
+cvi:country                 rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "country";
+                            rdfs:label           "Country";
+                            rdfs:comment         "A country is a region that is identified as a distinct entity in political geography".
+
+
+cvi:germany                 rdf:type             cvi:country;
+                            rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "germany";
+                            rdfs:label           "Germany";
+                            rdfs:comment         "Germany is a country".
+
+cvi:state                   rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "country";
+                            rdfs:label           "Country";
+                            rdfs:comment         "A state is a political organization with a centralized government that maintains a monopoly by use of force within a certain geographical territory".
+
+
+cvi:baden-württemberg       rdf:type             cvi:state;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:germany;
+                            cvi:hasSearchId      "baden-württemberg";
+                            rdfs:label           "Baden-Württemberg";
+                            rdfs:comment         "Baden-Württemberg is a state in country Germany".
+
+
+cvi:city                    rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "city";
+                            rdfs:label           "City";
+                            rdfs:comment         "A city is a large human settlement".
+
+
+cvi:stuttgart               rdf:type             cvi:city;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:baden-württemberg;
+                            cvi:hasSearchId      "stuttgart";
+                            rdfs:label           "Stuttgart";
+                            rdfs:comment         "Stuttgart is a city in state Baden-Württemberg".
+
+
+cvi:street                  rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "street";
+                            rdfs:label           "Street";
+                            rdfs:comment         "A paved road".
+
+
+cvi:universitätsstraße-38   rdf:type             cvi:street;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:stuttgart;
+                            cvi:hasSearchId      "universitätsstraße-38";
+                            rdfs:label           "UniversitätsStraße 38";
+                            rdfs:comment         "UniversitätsStraße 38 is a street in city Stuttgart".
+
+cvi:point                   rdf:type             rdfs:Class;
+                            cvi:hasSerachId      "point";
+                            rdfs:label           "Point";
+                            rdfs:comment         "The coordinates of the location";
+
+cvi:48.74525-9.10727        rdf:type             cvi:point;
+                            rdf:type             rdfs:Class;
+                            rdfs:subClassOf      cvi:universitätsstraße-38;
+                            cvi:hasSearchId      "48.74525-9.10727";
+                            rdfs:label           "48.74525-9.10727";
+                            rdfs:comment         "48.74525-9.10727 is a point in street universitätsstraße-38".
 
 
 cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
@@ -288,21 +396,5 @@ cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
                             rdfs:range      xsd:string;
                             rdfs:label      "Search ID";
                             rdfs:comment    "ID to uniquely identify the class. The subject of the triple or specifically the local name of the subject in the prefixed name represents the ID. It is used for terms meaning search and a convenience property".
-
-
-cvi:pss-123                 rdf:type            cvi:component-type;
-                            rdf:type            rdfs:Class;
-                            rdfs:subClassOf     cvi:parking-space-sensor;
-                            cvi:hasSearchId     "pss-123";
-                            rdfs:label          "PSS-123";
-                            rdfs:comment        "A parking space sensor with model number PSS-123".
-
-
-cvi:pga-456                 rdf:type            cvi:component-type;
-                            rdf:type            rdfs:Class;
-                            rdfs:subClassOf     cvi:parking-gate-actuator;
-                            cvi:hasSearchId     "pga-456";
-                            rdfs:label          "PGA-456";
-                            rdfs:comment        "A parking gate actuator with model number PGA-456".
 
 }
