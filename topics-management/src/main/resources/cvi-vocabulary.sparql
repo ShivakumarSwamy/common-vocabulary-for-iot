@@ -11,18 +11,18 @@ INSERT DATA {
 cvi:entity                  rdf:type             rdfs:Class;
                             cvi:hasSearchId      "entity";
                             rdfs:label           "Entity";
-                            rdfs:comment         "An Entity is a component, physical or virtual and is associated with n modules".
+                            rdfs:comment         "An Entity is a component, which either exist physically or virtually and is associated with 'n' modules".
 
-cvi:component               rdf:type            rdfs:Class;
-                            cvi:hasSearchId     "component";
-                            rdfs:label          "Component";
-                            rdfs:comment        "A component is a sensor or actuator. If a entity is associated with hardware module then component would be hardware (phsyical) component otherwise software(virtual) component".
+cvi:component               rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "component";
+                            rdfs:label           "Component";
+                            rdfs:comment         "A component is a sensor or actuator of a device".
 
 cvi:sensor                  rdf:type             rdfs:Class;
                             rdfs:subClassOf      cvi:component; 
                             cvi:hasSearchId      "sensor";
                             rdfs:label           "Sensor";
-                            rdfs:comment         "Sensor is a component. It gathers the information of the surrounding environment and sends the data to required connected device, or to any platform or application".
+                            rdfs:comment         "Sensor is a component. It gathers the information of the surrounding environment and sends the data to required connected device, or to a platform".
 
 cvi:actuator                rdf:type             rdfs:Class;
                             rdfs:subClassOf      cvi:component;
@@ -30,19 +30,16 @@ cvi:actuator                rdf:type             rdfs:Class;
                             rdfs:label           "Actuator";
                             rdfs:comment         "Actuator is a component. It performs action based on the command received by the connected device, or any platform or application".
 
-
 cvi:module                  rdf:type             rdfs:Class;
                             cvi:hasSearchId      "module";
                             rdfs:label           "Module";
                             rdfs:comment         "A module is a class and has unique properties associated with it.".
-
 
 cvi:hasId                   rdf:type             owl:DatatypeProperty;
                             rdfs:domain          cvi:entity;
                             rdfs:range           xsd:string;
                             rdfs:label           "ID";
                             rdfs:comment         "A Unique individual ID for the entity".
-
 
 cvi:hasOwner                rdf:type             owl:DatatypeProperty;
                             rdfs:domain          cvi:entity;
@@ -51,43 +48,35 @@ cvi:hasOwner                rdf:type             owl:DatatypeProperty;
                             rdfs:comment         "The ID of the owner of the entity".
 
 
-
-
-
-
 cvi:topic                   rdf:type             cvi:module;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "topic";
                             rdfs:label           "Topic";
-                            rdfs:comment         "Topic allows to send or receive data from a entity".
-
-
+                            rdfs:comment         "Topic allows to send or receive data from an entity".
 
 cvi:hasPath                 rdf:type             owl:DatatypeProperty;
                             rdfs:domain          cvi:topic;
                             rdfs:range           xsd:string;
                             rdfs:label           "Path";
-                            rdfs:comment         "Path of the topic".
+                            rdfs:comment         "the path of the topic".
 
 cvi:hasMiddlewareEndpoint   rdf:type             owl:DatatypeProperty;
                             rdfs:domain          cvi:topic;
                             rdfs:range           xsd:string;
                             rdfs:label           "Middleware Endpoint";
-                            rdfs:comment         "Endpoint where a topic is available".
+                            rdfs:comment         "the endpoint where a topic is available".
 
-
-cvi:hasDataType             rdf:type             owl:DatatypeProperty;
+cvi:hasDataType             rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:topic;
-                            rdfs:range           xsd:string;
+                            rdfs:range           cvi:data-type;
                             rdfs:label           "Data Type";
-                            rdfs:comment         "Type of data values the topic can provide, convenience property".
-
+                            rdfs:comment         "the type of data values the topic can provide, values would be instances of data-type class".
 
 cvi:hasTopicType            rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:topic;
                             rdfs:range           cvi:topic-type;
                             rdfs:label           "Topic Type";
-                            rdfs:comment         "Type of the topic, values would be instances of topic-type Class".
+                            rdfs:comment         "the type of the topic, values would be instances of topic-type Class".
 
 cvi:hasProtocol             rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:topic;
@@ -95,7 +84,22 @@ cvi:hasProtocol             rdf:type             owl:ObjectProperty;
                             rdfs:label           "Protocol";
                             rdfs:comment         "Protocol used by the middleware, values would be instances of protocol Class".
 
+cvi:data-type               rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "topic-type";
+                            rdfs:label           "Data Type";
+                            rdfs:comment         "Data type of the message value provided by the topic".
 
+cvi:string                  rdf:type             cvi:data-type;
+                            rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "string";
+                            rdfs:label           "string";
+                            rdfs:comment         "string data type of the message value provided by the topic".
+
+cvi:boolean                 rdf:type             cvi:data-type;
+                            rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "boolean";
+                            rdfs:label           "boolean";
+                            rdfs:comment         "boolean data type of the message value provided by the topic".
 
 cvi:topic-type              rdf:type             rdfs:Class;
                             cvi:hasSearchId      "topic-type";
@@ -114,8 +118,6 @@ cvi:publish                 rdf:type             cvi:topic-type;
                             rdfs:label           "Publish";
                             rdfs:comment         "Publish type of topic".
 
-
-
 cvi:protocol                rdf:type             rdfs:Class;
                             cvi:hasSearchId      "protocol";
                             rdfs:label           "Protocol";
@@ -132,10 +134,6 @@ cvi:http                    rdf:type             cvi:protocol;
                             cvi:hasSearchId      "http";
                             rdfs:label           "HTTP";
                             rdfs:comment         "HTTP is a type of protocol".
-
-
-
-
 
 
 cvi:message                 rdf:type             cvi:module;
@@ -163,13 +161,10 @@ cvi:hasMetaModelType        rdf:type             owl:ObjectProperty;
                             rdfs:label           "Meta Model Type";
                             rdfs:comment         "Meta model type of the message. values would be instances of meta-model-type Class".
 
-
-
 cvi:message-format          rdf:type             rdfs:Class;
                             cvi:hasSearchId      "message-format";
                             rdfs:label           "Message Format";
                             rdfs:comment         "Message Format of the message".
-
 
 cvi:json                    rdf:type             cvi:message-format;
                             rdf:type             rdfs:Class;
@@ -177,7 +172,7 @@ cvi:json                    rdf:type             cvi:message-format;
                             rdfs:label           "JSON";
                             rdfs:comment         "JSON is type of message format".
 
-cvi:xml                     rdf:type              cvi:message-format;
+cvi:xml                     rdf:type             cvi:message-format;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "xml";
                             rdfs:label           "XML";
@@ -187,7 +182,6 @@ cvi:schema                  rdf:type             rdf:Class;
                             cvi:hasSearchId      "schema";
                             rdfs:label           "Schema";
                             rdfs:comment         "schema the message".
-
 
 cvi:meta-model-type         rdf:type             rdf:Class;
                             cvi:hasSearchId      "meta-model-type";
@@ -208,18 +202,18 @@ cvi:xml-schema              rdf:type             cvi:meta-model-type;
                             rdfs:label           "XML Schema";
                             rdfs:comment         "XML Schema is a type of meta model type. The schema message format would be XML".
 
+
 cvi:hardware                rdf:type             cvi:module;;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "hardware";
                             rdfs:label           "Hardware";
                             rdfs:comment         "The hardware component provided by the entity".
 
-
-cvi:hasHardwareType         rdf:type             owl:ObjectProperty;
+cvi:hasComponentType        rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:hardware;
                             rdfs:range           cvi:component-type;
-                            rdfs:label           "Hardware Type";
-                            rdfs:comment         "The type of hardware component provided by the entity".
+                            rdfs:label           "Component Type";
+                            rdfs:comment         "The type of component the entity is".
 
 cvi:hasUnit                 rdf:type             owl:DatatypeProperty;
                             rdfs:domain          cvi:hardware;
@@ -240,15 +234,14 @@ cvi:space                   rdf:type             rdfs:Class;
 cvi:gate                    rdf:type             rdfs:Class;
                             cvi:hasSearchId      "gate";
                             rdfs:label           "Gate";
-                            rdfs:comment         "A gate which can be opened an closed based on a command".
+                            rdfs:comment         "A gate which can be opened and closed based on a command".
 
+cvi:component-category      rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "component-category";
+                            rdfs:label           "Component Category";
+                            rdfs:comment         "Component Category allows to further classify the component".
 
-cvi:category                rdf:type             rdfs:Class;
-                            cvi:hasSearchId      "category";
-                            rdfs:label           "Category";
-                            rdfs:comment         "The category allows classifying the component further one-level down".
-
-cvi:parking-space-sensor    rdf:type             cvi:category;
+cvi:parking-space-sensor    rdf:type             cvi:component-category;
                             rdf:type             cvi:sensor;
                             rdf:type             rdfs:Class;
                             rdfs:subClassOf      cvi:sensor;
@@ -258,8 +251,7 @@ cvi:parking-space-sensor    rdf:type             cvi:category;
                             rdfs:label           "Parking Space Sensor";
                             rdfs:comment         "A sensor which monitors the parking space availability in the given area".
 
-
-cvi:parking-gate-actuator   rdf:type             cvi:category;
+cvi:parking-gate-actuator   rdf:type             cvi:component-category;
                             rdf:type             cvi:actuator;
                             rdf:type             rdfs:Class;
                             rdfs:subClassOf      cvi:actuator;
@@ -272,8 +264,7 @@ cvi:parking-gate-actuator   rdf:type             cvi:category;
 cvi:component-type          rdf:type             rdfs:Class;
                             cvi:hasSearchId      "component-type";
                             rdfs:label           "Component Type";
-                            rdfs:comment         "A component type can be model number of a category like parking space sensor".
-
+                            rdfs:comment         "A component type allows to classify further component category".
 
 cvi:pss-123                 rdf:type             cvi:component-type;
                             rdf:type             rdfs:Class;
@@ -282,13 +273,13 @@ cvi:pss-123                 rdf:type             cvi:component-type;
                             rdfs:label           "PSS-123";
                             rdfs:comment         "A parking space sensor with model number PSS-123".
 
-
 cvi:pga-456                 rdf:type             cvi:component-type;
                             rdf:type             rdfs:Class;
                             rdfs:subClassOf      cvi:parking-gate-actuator;
                             cvi:hasSearchId      "pga-456";
                             rdfs:label           "PGA-456";
                             rdfs:comment         "A parking gate actuator with model number PGA-456".
+
 
 cvi:location                rdf:type             cvi:module;
                             rdf:type             rdfs:Class;
@@ -302,11 +293,10 @@ cvi:hasCountry              rdf:type             owl:ObjectProperty;
                             rdfs:label           "Country";
                             rdfs:comment         "The country where the entity is present" .
 
-
 cvi:hasState                rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:state;
-                            rdfs:label           "State";                            
+                            rdfs:label           "State";
                             rdfs:comment         "The state where the entity is present" .
 
 cvi:hasCity                 rdf:type             owl:ObjectProperty;
@@ -315,25 +305,16 @@ cvi:hasCity                 rdf:type             owl:ObjectProperty;
                             rdfs:label           "City";
                             rdfs:comment         "The city where the entity is present" .
 
-
 cvi:hasStreet               rdf:type             owl:ObjectProperty;
                             rdfs:domain          cvi:location;
                             rdfs:range           cvi:street;
                             rdfs:label           "Street";
                             rdfs:comment         "The street where the entity is present" .
 
-
-cvi:hasPoint                rdf:type             owl:ObjectProperty;
-                            rdfs:domain          cvi:location;
-                            rdfs:range           cvi:point;
-                            rdfs:label           "Point";
-                            rdfs:comment         "The point where the entity is present. Its format is 'latitude-longitude' in decimal degress" .
-
-
 cvi:country                 rdf:type             rdfs:Class;
                             cvi:hasSearchId      "country";
                             rdfs:label           "Country";
-                            rdfs:comment         "A country is a region that is identified as a distinct entity in political geography".
+                            rdfs:comment         "A distinct region in the world".
 
 
 cvi:germany                 rdf:type             cvi:country;
@@ -345,61 +326,40 @@ cvi:germany                 rdf:type             cvi:country;
 cvi:state                   rdf:type             rdfs:Class;
                             cvi:hasSearchId      "country";
                             rdfs:label           "Country";
-                            rdfs:comment         "A state is a political organization with a centralized government that maintains a monopoly by use of force within a certain geographical territory".
-
+                            rdfs:comment         "A state is part of a country".
 
 cvi:baden-württemberg       rdf:type             cvi:state;
                             rdf:type             rdfs:Class;
-                            rdfs:subClassOf      cvi:germany;
                             cvi:hasSearchId      "baden-württemberg";
                             rdfs:label           "Baden-Württemberg";
                             rdfs:comment         "Baden-Württemberg is a state in country Germany".
 
-
 cvi:city                    rdf:type             rdfs:Class;
                             cvi:hasSearchId      "city";
                             rdfs:label           "City";
-                            rdfs:comment         "A city is a large human settlement".
-
+                            rdfs:comment         "A large human settlement".
 
 cvi:stuttgart               rdf:type             cvi:city;
                             rdf:type             rdfs:Class;
-                            rdfs:subClassOf      cvi:baden-württemberg;
                             cvi:hasSearchId      "stuttgart";
                             rdfs:label           "Stuttgart";
                             rdfs:comment         "Stuttgart is a city in state Baden-Württemberg".
-
 
 cvi:street                  rdf:type             rdfs:Class;
                             cvi:hasSearchId      "street";
                             rdfs:label           "Street";
                             rdfs:comment         "A paved road".
 
-
 cvi:universitätsstraße-38   rdf:type             cvi:street;
                             rdf:type             rdfs:Class;
-                            rdfs:subClassOf      cvi:stuttgart;
                             cvi:hasSearchId      "universitätsstraße-38";
                             rdfs:label           "UniversitätsStraße 38";
                             rdfs:comment         "UniversitätsStraße 38 is a street in city Stuttgart".
-
-cvi:point                   rdf:type             rdfs:Class;
-                            cvi:hasSerachId      "point";
-                            rdfs:label           "Point";
-                            rdfs:comment         "The coordinates of the location".
-
-cvi:48.74525-9.10727        rdf:type             cvi:point;
-                            rdf:type             rdfs:Class;
-                            rdfs:subClassOf      cvi:universitätsstraße-38;
-                            cvi:hasSearchId      "48.74525-9.10727";
-                            rdfs:label           "48.74525-9.10727";
-                            rdfs:comment         "48.74525-9.10727 is a point in street universitätsstraße-38".
-
 
 cvi:hasSearchId             rdf:type        owl:DatatypeProperty;
                             rdfs:domain     rdfs:Class;
                             rdfs:range      xsd:string;
                             rdfs:label      "Search ID";
-                            rdfs:comment    "ID to uniquely identify the class. The subject of the triple or specifically the local name of the subject in the prefixed name represents the ID. It is used for terms meaning search and a convenience property".
+                            rdfs:comment    "A search ID for the class. The subject of the triple or specifically the local name of the subject in the prefixed name represents the ID".
 
 }
