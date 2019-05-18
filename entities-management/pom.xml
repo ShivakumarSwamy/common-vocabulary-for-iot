@@ -10,12 +10,12 @@
         <version>0.1.0</version>
     </parent>
 
-    <artifactId>topics-management</artifactId>
-    <version>0.4.1</version>
+    <artifactId>entities-management</artifactId>
+    <version>0.4.2.SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Topics Management</name>
-    <description>Manage terms meaning, component types, topics</description>
+    <description>Manage terms meaning, component types, entities</description>
 
     <properties>
         <version.jose4j>0.6.5</version.jose4j>

@@ -36,22 +36,22 @@ graph db as triple store
 
 Refer below for [filter, url role access rules](#security)
 
-- `/api/manager/hardware-types`
-    - `POST`: create new hardware type
-        - Request Body: [Hardware type create dto](#hardware-type-create-dto)
+- `/api/manager/component-types`
+    - `POST`: create new component type
+        - Request Body: [Component type create dto](#component-type-create-dto)
         - Content type: JSON
         - Response status Code: 201 
         - Role: MANAGER
         - Response Body: 
-        `message` key has `Hardware Type created with search id: <SEARCH_ID>` , `SEARCH_ID` for hardware type
-    - `GET`: get all hardware types
+        `message` key has `Component Type created with search id: <SEARCH_ID>` , `SEARCH_ID` for hardware type
+    - `GET`: get all component types
         - Content type: JSON
         - Response status Code: 200
         - Role: MANAGER 
         - - Response Body: [Results Set](#results-set) collection of elements 
-        [hardware-type-item-details](#hardware-type-item-details)
+        [component-type-item-details](#hardware-type-item-details)
 
-### Hardware type create dto
+### Component type create dto
 
 - keys required are
     - `label`: label for hardware type, represent RDFS label in vocabulary, also used to generate search id
@@ -63,7 +63,7 @@ Refer below for [filter, url role access rules](#security)
 - `hardware type` created would be subclassed under `category` value and `hardware-type` class from CVI Vocabulary
 
 
-### Hardware type item details
+### Component type item details
 
 - keys present are
     - `category`: value would be sub-classes of `Sensor` or `Actuator` in CVI vocabulary, 

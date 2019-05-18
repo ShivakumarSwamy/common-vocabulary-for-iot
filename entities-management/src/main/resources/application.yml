@@ -31,7 +31,7 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
-    topic:
+    entity:
       form-control:
         path: "Path cannot contain whitespaces"
         protocol: "Not a valid protocol, valid protocols are http or mqtt"
@@ -96,7 +96,7 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
-    topic:
+    entity:
       form-control:
         path: "Path cannot contain whitespaces"
         protocol: "Not a valid protocol, valid protocols are http or mqtt"
@@ -149,7 +149,7 @@ error:
         category: "Category is required"
         label: "Label is required"
         comment: "Comment is required"
-    topic:
+    entity:
       form-control:
         path: "Path cannot contain whitespaces"
         protocol: "Not a valid protocol, valid protocols are http or mqtt"

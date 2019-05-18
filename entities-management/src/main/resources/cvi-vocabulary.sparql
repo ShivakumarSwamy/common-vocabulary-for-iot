@@ -48,75 +48,75 @@ cvi:hasOwner                rdf:type             owl:DatatypeProperty;
                             rdfs:comment         "The ID of the owner of the entity".
 
 
-cvi:topic                   rdf:type             cvi:module;
+cvi:entity                   rdf:type             cvi:module;
                             rdf:type             rdfs:Class;
-                            cvi:hasSearchId      "topic";
+                            cvi:hasSearchId      "entity";
                             rdfs:label           "Topic";
                             rdfs:comment         "Topic allows to send or receive data from an entity".
 
 cvi:hasPath                 rdf:type             owl:DatatypeProperty;
-                            rdfs:domain          cvi:topic;
+                            rdfs:domain          cvi:entity;
                             rdfs:range           xsd:string;
                             rdfs:label           "Path";
-                            rdfs:comment         "the path of the topic".
+                            rdfs:comment         "the path of the entity".
 
 cvi:hasMiddlewareEndpoint   rdf:type             owl:DatatypeProperty;
-                            rdfs:domain          cvi:topic;
+                            rdfs:domain          cvi:entity;
                             rdfs:range           xsd:string;
                             rdfs:label           "Middleware Endpoint";
-                            rdfs:comment         "the endpoint where a topic is available".
+                            rdfs:comment         "the endpoint where a entity is available".
 
 cvi:hasDataType             rdf:type             owl:ObjectProperty;
-                            rdfs:domain          cvi:topic;
+                            rdfs:domain          cvi:entity;
                             rdfs:range           cvi:data-type;
                             rdfs:label           "Data Type";
-                            rdfs:comment         "the type of data values the topic can provide, values would be instances of data-type class".
+                            rdfs:comment         "the type of data values the entity can provide, values would be instances of data-type class".
 
 cvi:hasTopicType            rdf:type             owl:ObjectProperty;
-                            rdfs:domain          cvi:topic;
-                            rdfs:range           cvi:topic-type;
+                            rdfs:domain          cvi:entity;
+                            rdfs:range           cvi:entity-type;
                             rdfs:label           "Topic Type";
-                            rdfs:comment         "the type of the topic, values would be instances of topic-type Class".
+                            rdfs:comment         "the type of the entity, values would be instances of entity-type Class".
 
 cvi:hasProtocol             rdf:type             owl:ObjectProperty;
-                            rdfs:domain          cvi:topic;
+                            rdfs:domain          cvi:entity;
                             rdfs:range           cvi:protocol;
                             rdfs:label           "Protocol";
                             rdfs:comment         "Protocol used by the middleware, values would be instances of protocol Class".
 
 cvi:data-type               rdf:type             rdfs:Class;
-                            cvi:hasSearchId      "topic-type";
+                            cvi:hasSearchId      "entity-type";
                             rdfs:label           "Data Type";
-                            rdfs:comment         "Data type of the message value provided by the topic".
+                            rdfs:comment         "Data type of the message value provided by the entity".
 
 cvi:string                  rdf:type             cvi:data-type;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "string";
                             rdfs:label           "string";
-                            rdfs:comment         "string data type of the message value provided by the topic".
+                            rdfs:comment         "string data type of the message value provided by the entity".
 
 cvi:boolean                 rdf:type             cvi:data-type;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "boolean";
                             rdfs:label           "boolean";
-                            rdfs:comment         "boolean data type of the message value provided by the topic".
+                            rdfs:comment         "boolean data type of the message value provided by the entity".
 
-cvi:topic-type              rdf:type             rdfs:Class;
-                            cvi:hasSearchId      "topic-type";
+cvi:entity-type              rdf:type             rdfs:Class;
+                            cvi:hasSearchId      "entity-type";
                             rdfs:label           "Topic Type";
-                            rdfs:comment         "Type of the topic".
+                            rdfs:comment         "Type of the entity".
 
-cvi:subscribe               rdf:type             cvi:topic-type;
+cvi:subscribe               rdf:type             cvi:entity-type;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "subscribe";
                             rdfs:label           "Subscribe";
-                            rdfs:comment         "Subscribe type of topic".
+                            rdfs:comment         "Subscribe type of entity".
 
-cvi:publish                 rdf:type             cvi:topic-type;
+cvi:publish                 rdf:type             cvi:entity-type;
                             rdf:type             rdfs:Class;
                             cvi:hasSearchId      "publish";
                             rdfs:label           "Publish";
-                            rdfs:comment         "Publish type of topic".
+                            rdfs:comment         "Publish type of entity".
 
 cvi:protocol                rdf:type             rdfs:Class;
                             cvi:hasSearchId      "protocol";

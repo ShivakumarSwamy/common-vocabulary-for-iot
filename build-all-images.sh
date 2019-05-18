@@ -6,4 +6,4 @@ bash ./build-cvi-web-image.sh
 
 bash ./build-users-management-image.sh
 
-bash ./build-topics-management-image.sh
+bash ./build-entities-management-image.sh

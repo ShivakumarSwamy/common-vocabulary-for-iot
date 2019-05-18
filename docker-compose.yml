@@ -17,9 +17,9 @@ services:
     image: graph-db-free
     ports:
       - "7210:7200"
-  app-topics-management:
-    container_name: app.topics
-    image: topics-management
+  app-entities-management:
+    container_name: app.entities
+    image: entities-management
     ports:
       - "8010:8080"
     depends_on:
@@ -31,4 +31,4 @@ services:
       - "80:80"
     depends_on:
       - app-users-management
-      - app-topics-management
+      - app-entities-management
