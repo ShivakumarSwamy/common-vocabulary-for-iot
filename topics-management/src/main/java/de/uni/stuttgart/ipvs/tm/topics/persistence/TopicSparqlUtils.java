@@ -117,7 +117,10 @@ class TopicSparqlUtils {
 
         tripleSameSubject.add(CVI_HAS_PATH, StringLiteral.of(topicProperties.getPath()));
         tripleSameSubject.add(CVI_HAS_MIDDLEWARE_ENDPOINT, StringLiteral.of(topicProperties.getMiddlewareEndpoint()));
-        tripleSameSubject.add(CVI_HAS_DATA_TYPE, StringLiteral.of(topicProperties.getDataType()));
+
+        var dataTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getDataType());
+        tripleSameSubject.add(CVI_HAS_DATA_TYPE, dataTypeClass);
+        tripleSameSubject.add(RDF_TYPE, dataTypeClass);
 
         var protocolClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getProtocol());
         tripleSameSubject.add(CVI_HAS_PROTOCOL, protocolClass);
