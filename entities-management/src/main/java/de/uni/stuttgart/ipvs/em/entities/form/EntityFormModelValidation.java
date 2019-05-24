@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Component;
 
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDTO;
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDTO;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDto;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDto;
 import de.uni.stuttgart.ipvs.em.entities.properties.HardwareProperties;
 import de.uni.stuttgart.ipvs.em.entities.properties.LocationProperties;
 import de.uni.stuttgart.ipvs.em.entities.properties.MessageProperties;
@@ -42,15 +42,15 @@ public class EntityFormModelValidation {
         throw new EntityFormControlErrorException(formControlError.getHelp());
     }
 
-    private static FormModel formModel(EntityCreateDTO entityCreateDTO) {
+    private static FormModel formModel(EntityCreateDto entityCreateDTO) {
         return new FormModelImpl(formControls(entityCreateDTO));
     }
 
-    private static FormModel formModel(EntityEditDTO entityEditDTO) {
+    private static FormModel formModel(EntityEditDto entityEditDTO) {
         return new FormModelImpl(formControls(entityEditDTO));
     }
 
-    private static Collection<FormControl> formControls(EntityEditDTO entityEditDTO) {
+    private static Collection<FormControl> formControls(EntityEditDto entityEditDTO) {
         var formControls = new ArrayList<>(formControlsTopicProperties(entityEditDTO));
 
         formControls.addAll(formControlsMessageProperties(entityEditDTO));
@@ -60,7 +60,7 @@ public class EntityFormModelValidation {
         return formControls;
     }
 
-    private static Collection<FormControl> formControls(EntityCreateDTO entityCreateDTO) {
+    private static Collection<FormControl> formControls(EntityCreateDto entityCreateDTO) {
         var formControls = new ArrayList<>(formControlsTopicProperties(entityCreateDTO));
 
         formControls.addAll(formControlsMessageProperties(entityCreateDTO));
@@ -110,12 +110,12 @@ public class EntityFormModelValidation {
         return List.of(hardwareTypeFormControl, unitFormControl);
     }
 
-    public void validate(EntityCreateDTO entityCreateDTO) {
+    public void validate(EntityCreateDto entityCreateDTO) {
         var formModel = formModel(entityCreateDTO);
         validateFormModelUsingFormModelValidator(formModel, "ENTITY CREATE");
     }
 
-    public void validate(EntityEditDTO entityEditDTO) {
+    public void validate(EntityEditDto entityEditDTO) {
 
         if (entityEditDTO.getOwner() == null || entityEditDTO.getOwner().isEmpty())
             throw new EntityFormControlErrorException("Owner id is required");

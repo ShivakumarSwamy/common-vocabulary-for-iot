@@ -11,6 +11,9 @@ graph db as triple store
 
 - Manage terms meaning, component types, topics
 
+## Version 0.4.2
+- Refactor topics -> entities 
+
 ## Version 0.4.1
 
 - Location module added
@@ -40,16 +43,16 @@ Refer below for [filter, url role access rules](#security)
     - `POST`: create new component type
         - Request Body: [Component type create dto](#component-type-create-dto)
         - Content type: JSON
-        - Response status Code: 201 
+        - Response status code: 201 
         - Role: MANAGER
         - Response Body: 
         `message` key has `Component Type created with search id: <SEARCH_ID>` , `SEARCH_ID` for hardware type
     - `GET`: get all component types
         - Content type: JSON
-        - Response status Code: 200
+        - Response status code: 200
         - Role: MANAGER 
         - - Response Body: [Results Set](#results-set) collection of elements 
-        [component-type-item-details](#hardware-type-item-details)
+        [component-type-item-details](#component-type-item-details)
 
 ### Component type create dto
 
@@ -157,14 +160,13 @@ example empty result set
 ```
 
 
-
 ### Security
 
 - Filters used are
     - `JwtHttpBearerFilter` replaces spring `BasicAuthenticationFilter` filter 
         - Filter that validates token for authentication
         - on successful authentication of [jwt token](#jwt-token) and authorisation allows to access of resource url 
-        - on unsuccessful authentication `401` is returned
+        - on unsuccessful authentication or unauthorised access `401` is returned
 
 - Uses a role hierarchy for authorisation
 ```
@@ -184,5 +186,6 @@ ROLE_CONSUMER > ROLE_AUTHENTICATED
     - `role`: user role
     - `iat`: issued at token time since epoch
     - `exp`: expiration time token since epoch (10000 minutes - randomly we have set, no specific reason)
+    - `username`: username of the user
     
    

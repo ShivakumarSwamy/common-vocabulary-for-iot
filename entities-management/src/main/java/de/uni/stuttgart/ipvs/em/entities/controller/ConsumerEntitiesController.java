@@ -2,13 +2,12 @@ package de.uni.stuttgart.ipvs.em.entities.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import de.uni.stuttgart.ipvs.em.entities.service.EntityService;
 import de.uni.stuttgart.ipvs.em.response.ResultsSet;
+
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/consumer/entities")
@@ -22,8 +21,9 @@ public class ConsumerEntitiesController {
     }
 
     @PostMapping("search")
+    @ResponseStatus(OK)
     public ResultsSet searchEntitiesUsingTerms(@RequestParam("search_query") String termsText) {
-        return this.entityService.getAllEntitiesUsingTermsText(termsText);
+        return this.entityService.getAllEntitiesUsingTerms_rolesConsumerAdmin(termsText);
     }
 
 }

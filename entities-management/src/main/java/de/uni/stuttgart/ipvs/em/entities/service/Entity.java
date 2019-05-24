@@ -3,8 +3,8 @@ package de.uni.stuttgart.ipvs.em.entities.service;
 import lombok.Getter;
 import lombok.ToString;
 
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDTO;
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDTO;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDto;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDto;
 import de.uni.stuttgart.ipvs.em.entities.properties.*;
 
 import java.util.UUID;
@@ -43,15 +43,15 @@ public class Entity
     }
 
 
-    static Entity buildFromEntityDTO(EntityCreateDTO entityCreateDTO, String ownerId) {
+    static Entity buildFromEntityDTO(EntityCreateDto entityCreateDTO, String ownerId) {
         return build(EntityBuilder.ownerId(ownerId), entityCreateDTO);
     }
 
-    static Entity buildFromEntityDTO(EntityEditDTO entityEditDTO, String entityId) {
+    static Entity buildFromEntityDTO(EntityEditDto entityEditDTO, String entityId) {
         return build(EntityBuilder.ownerIdAndEntityId(entityEditDTO.getOwner(), entityId), entityEditDTO);
     }
 
-    private static Entity build(EntityBuilder entityBuilder, EntityEditDTO entityEditDTO) {
+    private static Entity build(EntityBuilder entityBuilder, EntityEditDto entityEditDTO) {
 
         topicProperties(entityBuilder, entityEditDTO);
         hardwareProperties(entityBuilder, entityEditDTO);
@@ -60,7 +60,7 @@ public class Entity
         return entityBuilder.get();
     }
 
-    private static Entity build(EntityBuilder entityBuilder, EntityCreateDTO entityCreateDTO) {
+    private static Entity build(EntityBuilder entityBuilder, EntityCreateDto entityCreateDTO) {
 
         topicProperties(entityBuilder, entityCreateDTO);
         hardwareProperties(entityBuilder, entityCreateDTO);

@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import de.uni.stuttgart.ipvs.em.auth.UserDetailsImpl;
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDTO;
-import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDTO;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityCreateDto;
+import de.uni.stuttgart.ipvs.em.entities.dto.EntityEditDto;
 import de.uni.stuttgart.ipvs.em.entities.service.EntityService;
 import de.uni.stuttgart.ipvs.em.response.ResultsSet;
 import de.uni.stuttgart.ipvs.ilv.ResponseEntityUtils;
@@ -26,54 +26,65 @@ public class ManagerEntitiesController {
         this.entityService = entityService;
     }
 
-    @GetMapping
-    public ResultsSet getAllEntities(@AuthenticationPrincipal UserDetailsImpl user) {
-        return this.entityService.getAllEntities(user.getId());
-    }
-
+    // CREATE: 1
     @PostMapping
-    public ResponseEntity createEntity(@RequestBody EntityCreateDTO entityCreateDTO,
-                                       @AuthenticationPrincipal UserDetailsImpl user) {
+    public ResponseEntity createEntity_roleManager(@RequestBody EntityCreateDto entityCreateDto,
+                                                   @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        var entityId = entityService.createEntity(entityCreateDTO, user.getId());
+        String ownerId = userDetails.getId();
+        String entityId = entityService.createEntity_roleManager(entityCreateDto, ownerId);
+
         return ResponseEntityUtils
                 .getResponseEntityWithMessageKey(CREATED, "Created entity with ID '" + entityId + "'");
     }
 
+    // READ: 1
     @GetMapping(path = "/{id}")
-    public ResultsSet getEntity(@PathVariable("id") String entityId,
-                                @AuthenticationPrincipal UserDetailsImpl user) {
-        return this.entityService.getEntity(user.getId(), entityId);
+    @ResponseStatus(OK)
+    public ResultsSet getEntity_roleManager(@PathVariable("id") String entityId,
+                                            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        String ownerId = userDetails.getId();
+        return this.entityService.getEntity_roleManager(ownerId, entityId);
     }
 
+    // READ: 0 - n
+    @GetMapping
+    @ResponseStatus(OK)
+    public ResultsSet getAllEntities_roleManager(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        String ownerId = userDetails.getId();
+        return this.entityService.getAllEntities_roleManager(ownerId);
+    }
+
+    // READ: 0 - n
+    @PostMapping("/search")
+    @ResponseStatus(OK)
+    public ResultsSet searchEntitiesUsingTerms_roleManager(@RequestParam("search_query") String termsText,
+                                                           @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        String ownerId = userDetails.getId();
+        return this.entityService.getAllEntitiesUsingTerms_roleManager(ownerId, termsText);
+    }
+
+    // UPDATE: 1
     @PutMapping(path = "/{id}")
-    public ResponseEntity editEntity(@PathVariable("id") String entityId,
-                                     @RequestBody EntityEditDTO entityEditDTO,
-                                     @AuthenticationPrincipal UserDetailsImpl user) {
+    @ResponseStatus(NO_CONTENT)
+    public void editEntityRoleManager(@PathVariable("id") String entityId,
+                                      @RequestBody EntityEditDto entityEditDto,
+                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-
-        if (!user.getId().equals(entityEditDTO.getOwner()))
-            return ResponseEntity.status(FORBIDDEN).build();
-
-        this.entityService.updateEntity(entityEditDTO, entityId);
-
-        return ResponseEntity.status(NO_CONTENT).build();
+        String ownerId = userDetails.getId();
+        this.entityService.updateEntity_roleManager(entityEditDto, ownerId, entityId);
     }
 
+    // DELETE: 1
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(NO_CONTENT)
     public void deleteEntity(@PathVariable("id") String entityId,
-                             @AuthenticationPrincipal UserDetailsImpl user) {
+                             @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        this.entityService.deleteEntity(user.getId(), entityId);
+        String ownerId = userDetails.getId();
+        this.entityService.deleteEntity_roleManager(ownerId, entityId);
     }
-
-
-    @PostMapping("/search")
-    public ResultsSet searchEntitiesUsingTerms(@RequestParam("search_query") String termsText,
-                                               @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-        return this.entityService.getAllEntitiesUsingTermsTextForOwner(userDetails.getId(), termsText);
-    }
-
 }
