@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.component.types.dto;
+package de.uni.stuttgart.ipvs.em.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
 public class ComponentTypeCreateDto {
 
     private String component;
-    private String category;
+    private String componentCategory;
     private String label;
     private String comment;
 }
