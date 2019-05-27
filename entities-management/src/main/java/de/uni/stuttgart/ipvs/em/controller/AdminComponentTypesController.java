@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.component.types.controller;
+package de.uni.stuttgart.ipvs.em.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,30 +14,30 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api/manager/component-types")
-public class ManagerComponentTypesController {
+@RequestMapping("/api/admin/component-types")
+public class AdminComponentTypesController {
 
     private final CviService cviService;
 
     @Autowired
-    public ManagerComponentTypesController(CviService cviService) {
+    public AdminComponentTypesController(CviService cviService) {
         this.cviService = cviService;
     }
 
-    // CREATE: 1
+    // CREATE
     @PostMapping
-    public ResponseEntity createComponentType_roleManager(@RequestBody ComponentTypeCreateDto ctDTO) {
-        var searchId = this.cviService.createComponentType(ctDTO);
+    public ResponseEntity createComponentType_roleAdmin(@RequestBody ComponentTypeCreateDto ctDTO) {
+        var searchId = this.cviService.createComponentType_roleManagerAdmin(ctDTO);
 
         return ResponseEntityUtils.getResponseEntityWithMessageKey(
                 CREATED, "Component Type created with search id: '" + searchId + "'");
     }
 
-    // READ: 0 - n
+    // READ
     @GetMapping
     @ResponseStatus(OK)
-    public ResultsSet getAllComponentTypes_roleManager() {
-        return this.cviService.getAllComponentTypes();
+    public ResultsSet getAllComponentTypes_roleAdmin() {
+        return this.cviService.getAllComponentTypes_roleManagerAdmin();
     }
 
 }

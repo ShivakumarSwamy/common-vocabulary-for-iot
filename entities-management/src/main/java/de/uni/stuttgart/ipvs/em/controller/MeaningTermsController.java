@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.controller;
+package de.uni.stuttgart.ipvs.em.component.types.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
