@@ -2,48 +2,47 @@ import {Component, OnInit} from '@angular/core';
 import {ManagerEntitiesService} from '../service/manager-entities.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
-import {TopicFormProvider} from '../provider/topic-form-provider';
+import {EntityFormProvider} from '../provider/entity-form-provider';
 import {ResponseMessage} from '../../response/response-message';
 import {AdminEntitiesService} from "../service/admin-entities.service";
 import {AuthService} from "../../auth/auth.service";
 
 @Component({
-  selector: 'app-topic-edit',
-  templateUrl: './topic-edit.component.html'
+  selector: 'app-entity-edit',
+  templateUrl: './entity-edit.component.html'
 })
-export class TopicEditComponent implements OnInit {
+export class EntityEditComponent implements OnInit {
 
   successResponseMessage: ResponseMessage;
   errorResponseMessage: ResponseMessage;
-  topicId: string;
-
-  topicsService: ManagerEntitiesService | AdminEntitiesService;
+  entityId: string;
+  entitiesService: ManagerEntitiesService | AdminEntitiesService;
 
   showForm = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private topicFormProvider: TopicFormProvider,
+              private entityFormProvider: EntityFormProvider,
               private authService: AuthService,
-              private managerTopicsService: ManagerEntitiesService,
-              private adminTopicsService: AdminEntitiesService) {
+              private managerEntitiesService: ManagerEntitiesService,
+              private adminEntitiesService: AdminEntitiesService) {
   }
 
   ngOnInit() {
-    this.topicFormProvider.subscribeAllEditControls();
-    this.topicFormProvider.topicsForm.reset();
+    this.entityFormProvider.subscribeAllEditControls();
+    this.entityFormProvider.entityForm.reset();
 
-    this.initTopicsService();
+    this.initEntitiesService();
 
     this.activatedRoute.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
-          this.topicId = params.get('idValue');
-          return this.topicsService.read(this.topicId);
+          this.entityId = params.get('idValue');
+          return this.entitiesService.read(this.entityId);
         })
       ).subscribe(
       value => {
-        this.topicFormProvider.setControlValuesUsingTopicProperties(value.results[0]);
+        this.entityFormProvider.setControlValuesUsingEntityProperties(value.results[0]);
         this.showForm = true;
       }
     );
@@ -52,7 +51,7 @@ export class TopicEditComponent implements OnInit {
   onSave() {
     this.clearSuccessResponseMessage();
     this.clearErrorResponseMessage();
-    this.topicsService.edit(this.topicId, this.topicFormProvider.getTopicEditDto())
+    this.entitiesService.edit(this.entityId, this.entityFormProvider.getEntityEditDto())
       .subscribe(
         () => this.gotoList(),
         erm => this.errorResponseMessage = erm,
@@ -75,18 +74,9 @@ export class TopicEditComponent implements OnInit {
     this.errorResponseMessage = undefined;
   }
 
-  initTopicsService() {
-    if (this.authService.isManager) {
-      this.topicsService = this.managerTopicsService;
-    }
-
-    if (this.authService.isAdmin) {
-      this.topicsService = this.adminTopicsService;
-    }
-
-    // default
-    if (!this.topicsService) {
-      this.topicsService = this.managerTopicsService;
-    }
+  initEntitiesService() {
+    this.entitiesService = this.authService.isManager
+      ? this.managerEntitiesService
+      : this.adminEntitiesService;
   }
 }

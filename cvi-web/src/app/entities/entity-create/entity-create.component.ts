@@ -1,33 +1,33 @@
 import {Component, OnInit} from '@angular/core';
 import {ManagerEntitiesService} from '../service/manager-entities.service';
 import {ResponseMessage} from '../../response/response-message';
-import {TopicFormProvider} from '../provider/topic-form-provider';
+import {EntityFormProvider} from '../provider/entity-form-provider';
 
 @Component({
   selector: 'app-topic-create',
-  templateUrl: './topic-create.component.html'
+  templateUrl: './entity-create.component.html'
 })
-export class TopicCreateComponent implements OnInit {
+export class EntityCreateComponent implements OnInit {
 
   successResponseMessage: ResponseMessage;
   errorResponseMessage: ResponseMessage;
 
-  constructor(private topicFormProvider: TopicFormProvider,
-              private topicsService: ManagerEntitiesService) {
+  constructor(private entityFormProvider: EntityFormProvider,
+              private managerEntitiesService: ManagerEntitiesService) {
   }
 
   ngOnInit() {
 
-    this.topicFormProvider.subscribeAllCreateControls();
-    this.topicFormProvider.topicsForm.reset();
-    this.topicFormProvider.initializeWithDefaultValuesForControls();
+    this.entityFormProvider.subscribeAllCreateControls();
+    this.entityFormProvider.entityForm.reset();
+    this.entityFormProvider.initializeWithDefaultValuesForControls();
   }
 
 
   onSubmit() {
     this.clearSuccessResponseMessage();
     this.clearErrorResponseMessage();
-    this.topicsService.createTopic(this.topicFormProvider.getTopicCreateDto())
+    this.managerEntitiesService.create(this.entityFormProvider.getEntityCreateDto())
       .subscribe(
         srm => this.successResponseMessage = srm,
         erm => this.errorResponseMessage = erm,

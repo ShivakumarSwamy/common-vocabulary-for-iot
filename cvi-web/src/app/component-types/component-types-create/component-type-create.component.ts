@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControlOptions, FormBuilder, Validators} from '@angular/forms';
-import {ComponentTypeDto} from '../../dto/component-type-dto';
+import {ComponentTypeDto} from '../dto/component-type-dto';
 import {CviService} from '../../service/cvi.service';
 import {ResponseMessage} from '../../response/response-message';
 
@@ -17,13 +17,13 @@ export class ComponentTypeCreateComponent implements OnInit {
   changeAndRequired: AbstractControlOptions = {validators: Validators.required, updateOn: 'change'};
 
   componentControl = this.fmb.control('', this.changeAndRequired);
-  categoryControl = this.fmb.control('', this.changeAndRequired);
+  componentCategoryControl = this.fmb.control('', this.changeAndRequired);
   labelControl = this.fmb.control('', Validators.required);
   commentControl = this.fmb.control('', Validators.required);
 
   chtForm = this.fmb.group({
       component: this.componentControl,
-      category: this.categoryControl,
+      category: this.componentCategoryControl,
       label: this.labelControl,
       comment: this.commentControl,
     }, {updateOn: 'blur'}
@@ -46,7 +46,7 @@ export class ComponentTypeCreateComponent implements OnInit {
 
   ngOnInit() {
     this.subscribeToComponentControl();
-    this.subscribeToCategoryControl();
+    this.subscribeToComponentCategoryControl();
     this.subscribeToLabelControl();
     this.subscribeToCommentControl();
     this.initializeWithDefaultValuesForControls();
@@ -64,24 +64,24 @@ export class ComponentTypeCreateComponent implements OnInit {
 
   initializeWithDefaultValuesForControls() {
     this.componentControl.setValue('Sensor');
-    this.categoryControl.setValue(this.defaultSensorCategory);
+    this.componentCategoryControl.setValue(this.defaultSensorCategory);
   }
 
   updateCategoriesAndControl() {
     if (this.componentValue && this.componentValue === 'Sensor') {
-      this.categoryControl.setValue(this.defaultSensorCategory);
+      this.componentCategoryControl.setValue(this.defaultSensorCategory);
       this.categories = [this.defaultSensorCategory];
     } else if (this.componentValue && this.componentValue === 'Actuator') {
-      this.categoryControl.setValue(this.defaultActuatorCategory);
+      this.componentCategoryControl.setValue(this.defaultActuatorCategory);
       this.categories = [this.defaultActuatorCategory];
     } else {
-      this.categoryControl.setValue(this.defaultSensorCategory);
+      this.componentCategoryControl.setValue(this.defaultSensorCategory);
       this.categories = [this.defaultSensorCategory];
     }
   }
 
-  subscribeToCategoryControl() {
-    this.categoryControl.valueChanges
+  subscribeToComponentCategoryControl() {
+    this.componentCategoryControl.valueChanges
       .subscribe(
         value => this.categoryValue = value
       )
@@ -105,7 +105,7 @@ export class ComponentTypeCreateComponent implements OnInit {
   getCustomComponentTypeDTO(): ComponentTypeDto {
     return {
       component: this.componentValue,
-      category: this.categoryValue,
+      componentCategory: this.categoryValue,
       label: this.labelValue,
       comment: this.commentValue
     };

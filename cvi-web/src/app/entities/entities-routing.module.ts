@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TopicCreateComponent} from './topic-create/topic-create.component';
-import {TopicsSearchComponent} from './topics-search/topics-search.component';
-import {TopicsListComponent} from './topics-list/topics-list.component';
-import {TopicEditComponent} from './topic-edit/topic-edit.component';
-import {TopicsHomeComponent} from './topics-home/topics-home.component';
+import {EntityCreateComponent} from './entity-create/entity-create.component';
+import {EntitiesSearchComponent} from './entities-search/entities-search.component';
+import {EntitiesListComponent} from './entities-list/entities-list.component';
+import {EntityEditComponent} from './entity-edit/entity-edit.component';
+import {EntitiesHomeComponent} from './entities-home/entities-home.component';
 import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: TopicsHomeComponent,
+    component: EntitiesHomeComponent,
     canActivate: [AuthGuard],
     children: [
       {
@@ -19,19 +19,19 @@ const routes: Routes = [
         children: [
           {
             path: 'search',
-            component: TopicsSearchComponent
+            component: EntitiesSearchComponent
           },
           {
             path: 'list',
-            component: TopicsListComponent
+            component: EntitiesListComponent
           },
           {
             path: 'create',
-            component: TopicCreateComponent
+            component: EntityCreateComponent
           },
           {
             path: 'edit/:idValue',
-            component: TopicEditComponent
+            component: EntityEditComponent
           },
           {
             path: '',
@@ -47,5 +47,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TopicsRoutingModule {
+export class EntitiesRoutingModule {
 }

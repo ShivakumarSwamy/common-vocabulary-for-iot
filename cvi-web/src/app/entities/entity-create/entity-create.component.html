@@ -9,7 +9,7 @@
 
 <div *ngIf="!successResponseMessage" class="mt-4">
   <form (ngSubmit)="onSubmit()"
-        [formGroup]="topicFormProvider.topicsForm" class="container">
+        [formGroup]="entityFormProvider.entityForm" class="container">
 
 
     <div *ngIf="errorResponseMessage"
@@ -35,9 +35,9 @@
 
     <div class="form-row">
       <div class="form-group col-md-6 mr-4">
-        <label class="text-dark" for="hardwareType">Hardware Type</label><span class="text-danger">*</span>
-        <input class="form-control" formControlName="hardwareType"
-               id="hardwareType" placeholder="Enter hardware type"
+        <label class="text-dark" for="componentType">Component Type</label><span class="text-danger">*</span>
+        <input class="form-control" formControlName="componentType"
+               id="componentType" placeholder="Enter component type"
                type="text">
       </div>
 
@@ -54,7 +54,7 @@
         <label class="text-dark" for="topicType">Topic Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="topicType"
                 id="topicType">
-          <option *ngFor="let topicType of topicFormProvider.topicTypes" [value]="topicType">{{topicType}}</option>
+          <option *ngFor="let topicType of entityFormProvider.topicTypes" [value]="topicType">{{topicType}}</option>
         </select>
       </div>
 
@@ -62,7 +62,7 @@
         <label class="text-dark" for="protocol">Protocol</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="protocol"
                 id="protocol">
-          <option *ngFor="let protocol of topicFormProvider.protocols" [value]="protocol">{{protocol}}</option>
+          <option *ngFor="let protocol of entityFormProvider.protocols" [value]="protocol">{{protocol}}</option>
         </select>
       </div>
 
@@ -70,7 +70,7 @@
         <label class="text-dark" for="dataType">Data Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="dataType"
                 id="dataType">
-          <option *ngFor="let dataType of topicFormProvider.dataTypes" [value]="dataType">{{dataType}}</option>
+          <option *ngFor="let dataType of entityFormProvider.dataTypes" [value]="dataType">{{dataType}}</option>
         </select>
       </div>
 
@@ -78,7 +78,7 @@
         <label class="text-dark" for="messageFormat">Message Format</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="messageFormat"
                 id="messageFormat">
-          <option *ngFor="let messageFormat of topicFormProvider.messageFormats"
+          <option *ngFor="let messageFormat of entityFormProvider.messageFormats"
                   [value]="messageFormat">{{messageFormat}}</option>
         </select>
       </div>
@@ -87,48 +87,42 @@
         <label class="text-dark" for="metaModelType">Meta Model Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="metaModelType"
                 id="metaModelType">
-          <option *ngFor="let metaModelType of topicFormProvider.metaModelTypes"
+          <option *ngFor="let metaModelType of entityFormProvider.metaModelTypes"
                   [value]="metaModelType">{{metaModelType}}</option>
         </select>
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-3 mr-2">
+      <div class="form-group col-md-4 mr-4">
         <label class="text-dark" for="country">Country</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="country"
                id="country" placeholder="Enter country"
                type="text">
       </div>
-      <div class="form-group col-md-4 mr-2">
+
+      <div class="form-group col-md-6">
         <label class="text-dark" for="state">State</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="state"
                id="state" placeholder="Enter state"
                type="text">
       </div>
-      <div class="form-group col-md-3">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4 mr-4">
         <label class="text-dark" for="city">City</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="city"
                id="city" placeholder="Enter city"
                type="text">
       </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-4 mr-3">
+      <div class="form-group col-md-6">
         <label class="text-dark" for="street">Street</label><span class="text-danger">*</span>
         <input class="form-control" formControlName="street"
                id="street" placeholder="Enter street"
                type="text">
       </div>
-      <div class="form-group col-sm-6">
-        <label class="text-dark" for="point">Point</label><span class="text-danger">*</span>
-        <input class="form-control" formControlName="point"
-               id="point" placeholder="Enter point in format lat-long in decimal degrees"
-               type="text">
-      </div>
     </div>
-
 
     <div class="form-row">
       <div class="form-group col-md-10">
@@ -141,7 +135,7 @@
     </div>
 
 
-    <button [disabled]="topicFormProvider.topicsForm.invalid"
+    <button [disabled]="entityFormProvider.entityForm.invalid"
             class="btn btn-primary" type="submit">
       Submit
     </button>

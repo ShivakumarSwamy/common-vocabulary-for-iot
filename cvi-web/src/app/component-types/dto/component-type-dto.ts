@@ -1,6 +1,6 @@
 export interface ComponentTypeDto {
   component: string;
-  category: string;
+  componentCategory: string;
   label: string;
   comment: string;
 }

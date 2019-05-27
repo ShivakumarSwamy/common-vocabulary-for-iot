@@ -22,9 +22,9 @@
   <div *ngIf="validResults()"
        class="mb-3">
     <hr>
-    <div *ngFor="let topicProperties of topicsResponse.results">
+    <div *ngFor="let entityProperties of entitiesResponse.results">
       <div class="mb-3">
-        <app-entity-item-details [topicProperties]="topicProperties"></app-entity-item-details>
+        <app-entity-item-details [entityProperties]="entityProperties"></app-entity-item-details>
       </div>
     </div>
   </div>

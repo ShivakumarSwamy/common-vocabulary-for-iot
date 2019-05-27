@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from "../auth/auth.guard";
+import {AuthGuard} from "../../auth/auth.guard";
 import {AdminHomeComponent} from "./admin-home/admin-home.component";
 import {AdminWelcomeComponent} from "./admin-welcome/admin-welcome.component";
 import {AdminUsersListComponent} from "./admin-users-list/admin-users-list.component";
@@ -25,19 +25,19 @@ const routes: Routes = [
           },
           {
             path: 'entities',
-            loadChildren: '../entities/entities.module#EntitiesModule'
+            loadChildren: '../../entities/entities.module#EntitiesModule'
           },
           {
             path: 'terms',
-            loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
+            loadChildren: '../../terms-meaning/terms-meaning.module#TermsMeaningModule'
           },
           {
             path: 'component-types',
-            loadChildren: '../component-types/component-types.module#ComponentTypesModule'
+            loadChildren: '../../component-types/component-types.module#ComponentTypesModule'
           },
           {
             path: 'profile',
-            loadChildren: '../profile/profile.module#ProfileModule'
+            loadChildren: '../../profile/profile.module#ProfileModule'
           }
         ]
       }

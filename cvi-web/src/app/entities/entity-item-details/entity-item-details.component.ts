@@ -1,30 +1,30 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TopicProperties} from '../response/topic-properties';
+import {EntityProperties} from '../response/entity-properties';
 import {AuthService} from '../../auth/auth.service';
 import {ManagerEntitiesService} from '../service/manager-entities.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AdminEntitiesService} from "../service/admin-entities.service";
 
 @Component({
-  selector: 'app-topic-item-details',
-  templateUrl: './topic-item-details.component.html'
+  selector: 'app-entity-item-details',
+  templateUrl: './entity-item-details.component.html'
 })
-export class TopicItemDetailsComponent implements OnInit {
-  @Input() topicProperties: TopicProperties;
+export class EntityItemDetailsComponent implements OnInit {
+
+  @Input() entityProperties: EntityProperties;
+  entitiesService: ManagerEntitiesService | AdminEntitiesService;
 
   deleteSuccess = false;
-
-  topicsService: ManagerEntitiesService | AdminEntitiesService;
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private managerTopicsService: ManagerEntitiesService,
-              private adminTopicsService: AdminEntitiesService) {
+              private managerEntitiesService: ManagerEntitiesService,
+              private adminEntitiesService: AdminEntitiesService) {
   }
 
   delete(uuid: string) {
-    this.topicsService.delete(uuid)
+    this.entitiesService.delete(uuid)
       .subscribe(
         () => {
           this.deleteSuccess = true;
@@ -38,21 +38,16 @@ export class TopicItemDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initTopicsService();
+    this.initEntitiesService();
   }
 
-  initTopicsService() {
+  initEntitiesService() {
     if (this.authService.isManager) {
-      this.topicsService = this.managerTopicsService;
+      this.entitiesService = this.managerEntitiesService;
     }
 
     if (this.authService.isAdmin) {
-      this.topicsService = this.adminTopicsService;
-    }
-
-    // default
-    if (!this.topicsService) {
-      this.topicsService = this.managerTopicsService;
+      this.entitiesService = this.adminEntitiesService;
     }
   }
 }

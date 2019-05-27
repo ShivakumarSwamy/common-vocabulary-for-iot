@@ -8,7 +8,7 @@
 </div>
 
 <div *ngIf="!successResponseMessage && showForm" class="mt-4">
-  <form [formGroup]="topicFormProvider.topicsForm"
+  <form [formGroup]="entityFormProvider.entityForm"
         class="container">
 
     <div *ngIf="errorResponseMessage"
@@ -19,14 +19,14 @@
     <div class="form-row">
       <div class="form-group col-md-4 mr-3">
         <label class="text-dark" for="id">ID</label>
-        <input class="form-control" [formControl]="topicFormProvider.idControl"
+        <input class="form-control" [formControl]="entityFormProvider.idControl"
                id="id" placeholder="Enter id"
                type="text" readonly>
       </div>
 
       <div class="form-group col-md-6">
         <label class="text-dark" for="owner">Owner</label>
-        <input class="form-control" [formControl]="topicFormProvider.ownerControl"
+        <input class="form-control" [formControl]="entityFormProvider.ownerControl"
                id="owner" placeholder="Enter owner"
                type="text" readonly>
       </div>
@@ -69,7 +69,7 @@
         <label class="text-dark" for="topicType">Topic Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="topicType"
                 id="topicType">
-          <option *ngFor="let topicType of topicFormProvider.topicTypes" [value]="topicType">{{topicType}}</option>
+          <option *ngFor="let topicType of entityFormProvider.topicTypes" [value]="topicType">{{topicType}}</option>
         </select>
       </div>
 
@@ -77,7 +77,7 @@
         <label class="text-dark" for="protocol">Protocol</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="protocol"
                 id="protocol">
-          <option *ngFor="let protocol of topicFormProvider.protocols" [value]="protocol">{{protocol}}</option>
+          <option *ngFor="let protocol of entityFormProvider.protocols" [value]="protocol">{{protocol}}</option>
         </select>
       </div>
 
@@ -85,7 +85,7 @@
         <label class="text-dark" for="dataType">Data Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="dataType"
                 id="dataType">
-          <option *ngFor="let dataType of topicFormProvider.dataTypes" [value]="dataType">{{dataType}}</option>
+          <option *ngFor="let dataType of entityFormProvider.dataTypes" [value]="dataType">{{dataType}}</option>
         </select>
       </div>
 
@@ -93,7 +93,7 @@
         <label class="text-dark" for="messageFormat">Message Format</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="messageFormat"
                 id="messageFormat">
-          <option *ngFor="let messageFormat of topicFormProvider.messageFormats"
+          <option *ngFor="let messageFormat of entityFormProvider.messageFormats"
                   [value]="messageFormat">{{messageFormat}}</option>
         </select>
       </div>
@@ -102,7 +102,7 @@
         <label class="text-dark" for="metaModelType">Meta Model Type</label><span class="text-danger">*</span>
         <select class="form-control" formControlName="metaModelType"
                 id="metaModelType">
-          <option *ngFor="let metaModelType of topicFormProvider.metaModelTypes"
+          <option *ngFor="let metaModelType of entityFormProvider.metaModelTypes"
                   [value]="metaModelType">{{metaModelType}}</option>
         </select>
       </div>
@@ -155,7 +155,7 @@
       </div>
     </div>
 
-    <button (click)="onSave()" [disabled]="topicFormProvider.topicsForm.invalid"
+    <button (click)="onSave()" [disabled]="entityFormProvider.entityForm.invalid"
             class="btn btn-sm btn-primary mr-1">
       Save
     </button>

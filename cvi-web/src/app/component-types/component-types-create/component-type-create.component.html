@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group col-md-4 ml-3">
-          <label class="text-dark" for="category">Category</label><span class="text-danger">*</span>
+          <label class="text-dark" for="category">Component Category</label><span class="text-danger">*</span>
           <select class="form-control" formControlName="category"
                   id="category">
             <option *ngFor="let category of categories" [value]="category">{{category}}</option>
@@ -38,16 +38,16 @@
       </div>
 
       <div class="form-group">
-        <label class="text-dark" for="label">Component Type</label><span class="text-danger">*</span>
+        <label class="text-dark" for="label">Label</label><span class="text-danger">*</span>
         <input class="form-control col-md-4" formControlName="label"
-               id="label" placeholder="Enter component type"
+               id="label" placeholder="Enter label (component type)"
                type="text">
       </div>
 
       <div class="form-group">
-        <label class="text-dark" for="comment">Description</label><span class="text-danger">*</span>
+        <label class="text-dark" for="comment">Comment</label><span class="text-danger">*</span>
         <textarea class="form-control col-md-8"
-                  formControlName="comment" id="comment" placeholder="Enter description"
+                  formControlName="comment" id="comment" placeholder="Enter comment"
                   rows="5"></textarea>
       </div>
 

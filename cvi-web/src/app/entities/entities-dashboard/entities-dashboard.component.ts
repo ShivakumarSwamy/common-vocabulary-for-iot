@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
-  selector: 'app-topics-dashboard',
-  templateUrl: './topics-dashboard.component.html'
+  selector: 'app-entities-dashboard',
+  templateUrl: './entities-dashboard.component.html'
 })
-export class TopicsDashboardComponent implements OnInit {
+export class EntitiesDashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit() {

@@ -1,44 +1,48 @@
 import {FormBuilder, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {EntityCreateDto} from '../dto/entity-create-dto';
-import {TopicProperties} from '../response/topic-properties';
+import {EntityProperties} from '../response/entity-properties';
 import {EntityEditDto} from "../dto/entity-edit-dto";
 
 @Injectable()
-export class TopicFormProvider {
+export class EntityFormProvider {
 
   pathControl = this.formBuilder.control('', Validators.required);
   middlewareEndpointControl = this.formBuilder.control('', Validators.required);
   dataTypeControl = this.formBuilder.control('', Validators.required);
   protocolControl = this.formBuilder.control('', Validators.required);
   topicTypeControl = this.formBuilder.control('', Validators.required);
-  hardwareTypeControl = this.formBuilder.control('', Validators.required);
+
+  componentTypeControl = this.formBuilder.control('', Validators.required);
   unitControl = this.formBuilder.control('', Validators.required);
+
   messageFormatControl = this.formBuilder.control('', Validators.required);
   metaModelTypeControl = this.formBuilder.control('', Validators.required);
   metaModelControl = this.formBuilder.control('', Validators.required);
+
   countyControl = this.formBuilder.control('', Validators.required);
   stateControl = this.formBuilder.control('', Validators.required);
   cityControl = this.formBuilder.control('', Validators.required);
   streetControl = this.formBuilder.control('', Validators.required);
-  pointControl = this.formBuilder.control('', Validators.required);
 
-  topicsForm = this.formBuilder.group({
+  entityForm = this.formBuilder.group({
       path: this.pathControl,
       middlewareEndpoint: this.middlewareEndpointControl,
       topicType: this.topicTypeControl,
       protocol: this.protocolControl,
       dataType: this.dataTypeControl,
-      hardwareType: this.hardwareTypeControl,
+
+      componentType: this.componentTypeControl,
       unit: this.unitControl,
+
       messageFormat: this.messageFormatControl,
       metaModelType: this.metaModelTypeControl,
       metaModel: this.metaModelControl,
+
       country: this.countyControl,
       state: this.stateControl,
       city: this.cityControl,
       street: this.streetControl,
-      point: this.pointControl
     }, {updateOn: 'blur'}
   );
 
@@ -47,7 +51,7 @@ export class TopicFormProvider {
 
   topicTypes = ['Publish', 'Subscribe'];
   protocols = ['HTTP', 'MQTT'];
-  dataTypes = ['string', 'integer', 'float', 'boolean', 'double'];
+  dataTypes = ['string', 'boolean'];
   messageFormats = ['JSON'];
   metaModelTypes = ['JSON Schema'];
 
@@ -56,7 +60,7 @@ export class TopicFormProvider {
   dataTypeValue = '';
   protocolValue = '';
   topicTypeValue = '';
-  hardwareTypeValue = '';
+  componentTypeValue = '';
   unitValue = '';
   messageFormatValue = '';
   metaModelTypeValue = '';
@@ -65,7 +69,6 @@ export class TopicFormProvider {
   stateValue = '';
   cityValue = '';
   streetValue = '';
-  pointValue = '';
 
   ownerValue = '';
 
@@ -84,7 +87,7 @@ export class TopicFormProvider {
     this.subscribeToProtocolControl();
     this.subscribeToDataTypeControl();
 
-    this.subscribeToHardwareTypeControl();
+    this.subscribeToComponentTypeControl();
     this.subscribeToUnitControl();
 
     this.subscribeToMessageFormatControl();
@@ -95,31 +98,29 @@ export class TopicFormProvider {
     this.subscribeToStateControl();
     this.subscribeToCityControl();
     this.subscribeToStreetControl();
-    this.subscribeToPointControl();
   }
 
-  setControlValuesUsingTopicProperties(topicProperties: TopicProperties) {
-    this.pathControl.setValue(topicProperties.path);
-    this.middlewareEndpointControl.setValue(topicProperties.middleware_endpoint);
-    this.topicTypeControl.setValue(topicProperties.topic_type);
-    this.protocolControl.setValue(topicProperties.protocol);
-    this.dataTypeControl.setValue(topicProperties.data_type);
+  setControlValuesUsingEntityProperties(entityProperties: EntityProperties) {
+    this.pathControl.setValue(entityProperties.path);
+    this.middlewareEndpointControl.setValue(entityProperties.middleware_endpoint);
+    this.topicTypeControl.setValue(entityProperties.topic_type);
+    this.protocolControl.setValue(entityProperties.protocol);
+    this.dataTypeControl.setValue(entityProperties.data_type);
 
-    this.hardwareTypeControl.setValue(topicProperties.hardware_type);
-    this.unitControl.setValue(topicProperties.unit);
+    this.componentTypeControl.setValue(entityProperties.component_type);
+    this.unitControl.setValue(entityProperties.unit);
 
-    this.messageFormatControl.setValue(topicProperties.message_format);
-    this.metaModelTypeControl.setValue(topicProperties.meta_model_type);
-    this.metaModelControl.setValue(topicProperties.meta_model);
+    this.messageFormatControl.setValue(entityProperties.message_format);
+    this.metaModelTypeControl.setValue(entityProperties.meta_model_type);
+    this.metaModelControl.setValue(entityProperties.meta_model);
 
-    this.countyControl.setValue(topicProperties.country);
-    this.stateControl.setValue(topicProperties.state);
-    this.cityControl.setValue(topicProperties.city);
-    this.streetControl.setValue(topicProperties.street);
-    this.pointControl.setValue(topicProperties.point);
+    this.countyControl.setValue(entityProperties.country);
+    this.stateControl.setValue(entityProperties.state);
+    this.cityControl.setValue(entityProperties.city);
+    this.streetControl.setValue(entityProperties.street);
 
-    this.idControl.setValue(topicProperties.id);
-    this.ownerControl.setValue(topicProperties.owner);
+    this.idControl.setValue(entityProperties.id);
+    this.ownerControl.setValue(entityProperties.owner);
   }
 
   initializeWithDefaultValuesForControls() {
@@ -129,7 +130,6 @@ export class TopicFormProvider {
     this.messageFormatControl.setValue('JSON');
     this.metaModelTypeControl.setValue('JSON Schema');
   }
-
 
 
   subscribeToOwnerControl() {
@@ -174,10 +174,10 @@ export class TopicFormProvider {
       );
   }
 
-  subscribeToHardwareTypeControl() {
-    this.hardwareTypeControl.valueChanges
+  subscribeToComponentTypeControl() {
+    this.componentTypeControl.valueChanges
       .subscribe(
-        value => this.hardwareTypeValue = value
+        value => this.componentTypeValue = value
       );
   }
 
@@ -237,35 +237,30 @@ export class TopicFormProvider {
       );
   }
 
-  subscribeToPointControl() {
-    this.pointControl.valueChanges
-      .subscribe(
-        value => this.pointValue = value
-      );
-  }
 
-
-  getTopicCreateDto(): EntityCreateDto {
+  getEntityCreateDto(): EntityCreateDto {
     return {
       path: this.pathValue,
       middlewareEndpoint: this.middlewareEndpointValue,
       dataType: this.dataTypeValue,
       protocol: this.protocolValue,
       topicType: this.topicTypeValue,
-      hardwareType: this.hardwareTypeValue,
+
+      componentType: this.componentTypeValue,
       unit: this.unitValue,
+
       messageFormat: this.messageFormatValue,
       metaModelType: this.metaModelTypeValue,
       metaModel: this.escapeDoubleQuotes(),
+
       country: this.countryValue,
       state: this.stateValue,
       city: this.cityValue,
-      street: this.streetValue,
-      point: this.pointValue
+      street: this.streetValue
     };
   }
 
-  getTopicEditDto(): EntityEditDto {
+  getEntityEditDto(): EntityEditDto {
     return {
       owner: this.ownerValue,
       path: this.pathValue,
@@ -273,16 +268,18 @@ export class TopicFormProvider {
       dataType: this.dataTypeValue,
       protocol: this.protocolValue,
       topicType: this.topicTypeValue,
-      hardwareType: this.hardwareTypeValue,
+
+      componentType: this.componentTypeValue,
       unit: this.unitValue,
+
       messageFormat: this.messageFormatValue,
       metaModelType: this.metaModelTypeValue,
       metaModel: this.escapeDoubleQuotes(),
+
       country: this.countryValue,
       state: this.stateValue,
       city: this.cityValue,
-      street: this.streetValue,
-      point: this.pointValue
+      street: this.streetValue
     };
   }
 

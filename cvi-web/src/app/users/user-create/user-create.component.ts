@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
-import {UserCreateDto} from "../../dto/user-create-dto";
+import {UserCreateDto} from "../dto/user-create-dto";
 import {UserService} from "../../service/user.service";
 import {ResponseMessage} from "../../response/response-message";
 import {Router} from "@angular/router";

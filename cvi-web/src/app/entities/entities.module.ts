@@ -1,41 +1,41 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {TopicsRoutingModule} from './topics-routing.module';
-import {TopicCreateComponent} from './topic-create/topic-create.component';
-import {TopicsHomeComponent} from './topics-home/topics-home.component';
-import {TopicsDashboardComponent} from './topics-dashboard/topics-dashboard.component';
-import {TopicsSearchComponent} from './topics-search/topics-search.component';
-import {TopicEditComponent} from './topic-edit/topic-edit.component';
-import {TopicItemDetailsComponent} from './topic-item-details/topic-item-details.component';
-import {TopicsListComponent} from './topics-list/topics-list.component';
+import {EntitiesRoutingModule} from './entities-routing.module';
+import {EntityCreateComponent} from './entity-create/entity-create.component';
+import {EntitiesHomeComponent} from './entities-home/entities-home.component';
+import {EntitiesDashboardComponent} from './entities-dashboard/entities-dashboard.component';
+import {EntitiesSearchComponent} from './entities-search/entities-search.component';
+import {EntityEditComponent} from './entity-edit/entity-edit.component';
+import {EntityItemDetailsComponent} from './entity-item-details/entity-item-details.component';
+import {EntitiesListComponent} from './entities-list/entities-list.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {TopicFormProvider} from './provider/topic-form-provider';
-import {ConsumerTopicsService} from './service/consumer-topics.service';
-import {ManagerTopicsService} from './service/manager-topics.service';
-import {AdminTopicsService} from "./service/admin-topics.service";
+import {EntityFormProvider} from './provider/entity-form-provider';
+import {ConsumerEntitiesService} from './service/consumer-entities.service';
+import {ManagerEntitiesService} from './service/manager-entities.service';
+import {AdminEntitiesService} from "./service/admin-entities.service";
 
 @NgModule({
   declarations: [
-    TopicCreateComponent,
-    TopicsHomeComponent,
-    TopicsDashboardComponent,
-    TopicsSearchComponent,
-    TopicEditComponent,
-    TopicItemDetailsComponent,
-    TopicsListComponent
+    EntityCreateComponent,
+    EntitiesHomeComponent,
+    EntitiesDashboardComponent,
+    EntitiesSearchComponent,
+    EntityEditComponent,
+    EntityItemDetailsComponent,
+    EntitiesListComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TopicsRoutingModule
+    EntitiesRoutingModule
   ],
   providers: [
-    TopicFormProvider,
-    ConsumerTopicsService,
-    ManagerTopicsService,
-    AdminTopicsService
+    EntityFormProvider,
+    ConsumerEntitiesService,
+    ManagerEntitiesService,
+    AdminEntitiesService
   ]
 })
-export class TopicsModule {
+export class EntitiesModule {
 }

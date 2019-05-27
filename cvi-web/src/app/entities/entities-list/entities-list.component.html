@@ -1,17 +1,20 @@
 <div class="container">
   <div class="text-center mt-3">
-    <div *ngIf="showCreateTopic" class="mb-3">
-      <small class="mr-1">Nothing found. Create Topic?</small>
-      <a class="btn btn-sm btn-primary" routerLink="../create">Create</a>
+    <div *ngIf="showCreateEntity" class="mb-3">
+      <small class="mr-1">Nothing found.</small>
+      <div *ngIf="authService.isManager">
+        <small class="mr-1">Create Entity?</small>
+        <a class="btn btn-sm btn-primary" routerLink="../create">Create</a>
+      </div>
     </div>
   </div>
 
   <div *ngIf="validResults()"
        class="mb-3">
     <hr class="text-black-50">
-    <div *ngFor="let topicsProperties of allTopics.results">
+    <div *ngFor="let entityProperties of allEntities.results">
       <div class="mb-3">
-        <app-entity-item-details [topicProperties]="topicsProperties"></app-entity-item-details>
+        <app-entity-item-details [entityProperties]="entityProperties"></app-entity-item-details>
       </div>
     </div>
   </div>

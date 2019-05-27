@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ConsumerHomeComponent} from './consumer-home/consumer-home.component';
-import {AuthGuard} from '../auth/auth.guard';
+import {AuthGuard} from '../../auth/auth.guard';
 import {ConsumerWelcomeComponent} from './consumer-welcome/consumer-welcome.component';
 
 const routes: Routes = [
@@ -20,15 +20,15 @@ const routes: Routes = [
           },
           {
             path: 'entities',
-            loadChildren: '../entities/entities.module#EntitiesModule'
+            loadChildren: '../../entities/entities.module#EntitiesModule'
           },
           {
             path: 'terms',
-            loadChildren: '../terms-meaning/terms-meaning.module#TermsMeaningModule'
+            loadChildren: '../../terms-meaning/terms-meaning.module#TermsMeaningModule'
           },
           {
             path: 'profile',
-            loadChildren: '../profile/profile.module#ProfileModule'
+            loadChildren: '../../profile/profile.module#ProfileModule'
           }
         ]
       }
