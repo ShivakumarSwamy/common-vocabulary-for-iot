@@ -6,7 +6,7 @@ import lombok.Data;
 public class ComponentTypeItemDetails {
 
     private String component;
-    private String category;
+    private String componentCategory;
 
     private String searchId;
     private String label;

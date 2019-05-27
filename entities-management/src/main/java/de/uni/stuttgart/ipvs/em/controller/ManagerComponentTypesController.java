@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.component.types.controller;
+package de.uni.stuttgart.ipvs.em.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +27,7 @@ public class ManagerComponentTypesController {
     // CREATE: 1
     @PostMapping
     public ResponseEntity createComponentType_roleManager(@RequestBody ComponentTypeCreateDto ctDTO) {
-        var searchId = this.cviService.createComponentType(ctDTO);
+        var searchId = this.cviService.createComponentType_roleManagerAdmin(ctDTO);
 
         return ResponseEntityUtils.getResponseEntityWithMessageKey(
                 CREATED, "Component Type created with search id: '" + searchId + "'");
@@ -37,7 +37,7 @@ public class ManagerComponentTypesController {
     @GetMapping
     @ResponseStatus(OK)
     public ResultsSet getAllComponentTypes_roleManager() {
-        return this.cviService.getAllComponentTypes();
+        return this.cviService.getAllComponentTypes_roleManagerAdmin();
     }
 
 }

@@ -50,7 +50,7 @@ public class CviServiceUtils {
         var componentTypeItemDetails = new ComponentTypeItemDetails();
 
         var categoryLabelVB = stringVariableBindingMap.get(QV_CATEGORY_LABEL.getVariableName());
-        componentTypeItemDetails.setCategory(categoryLabelVB.getValue());
+        componentTypeItemDetails.setComponentCategory(categoryLabelVB.getValue());
 
         var componentLabelVB = stringVariableBindingMap.get(QV_COMPONENT_LABEL.getVariableName());
         componentTypeItemDetails.setComponent(componentLabelVB.getValue());

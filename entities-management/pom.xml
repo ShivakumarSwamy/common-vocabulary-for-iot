@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>entities-management</artifactId>
-    <version>0.4.2.SNAPSHOT</version>
+    <version>0.4.2.M1</version>
     <packaging>jar</packaging>
 
     <name>Topics Management</name>

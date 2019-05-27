@@ -41,7 +41,7 @@ public class QVExprConstants {
 
         QV_COMPONENT_TYPE = QueryVariable.of("componentType");
 
-        QV_CATEGORY = QueryVariable.of("category");
+        QV_CATEGORY = QueryVariable.of("componentCategory");
         QV_CATEGORY_LABEL = QueryVariable.of("categoryLabel");
 
         QV_COMPONENT = QueryVariable.of("component");

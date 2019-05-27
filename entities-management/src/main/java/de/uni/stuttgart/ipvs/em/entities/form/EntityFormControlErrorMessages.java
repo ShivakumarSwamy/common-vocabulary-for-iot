@@ -16,7 +16,7 @@ public class EntityFormControlErrorMessages {
     private String dataType;
 
     private String unit;
-    private String hardwareType;
+    private String componentType;
 
     private String messageFormat;
     private String metaModelType;
@@ -26,6 +26,5 @@ public class EntityFormControlErrorMessages {
     private String state;
     private String city;
     private String street;
-    private String point;
 
 }

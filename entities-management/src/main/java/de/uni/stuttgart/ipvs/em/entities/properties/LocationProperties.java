@@ -9,6 +9,4 @@ public interface LocationProperties {
     String getCity();
 
     String getStreet();
-
-    String getPoint();
 }

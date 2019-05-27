@@ -22,11 +22,11 @@ import static de.uni.stuttgart.ipvs.form.utils.FormControlValidators.LENGTH;
 @EnableConfigurationProperties(ComponentTypeFormControlErrorMessages.class)
 public class BeansComponentTypeForm {
 
-    private final ComponentTypeFormControlErrorMessages htfEM;
+    private final ComponentTypeFormControlErrorMessages ctfEM;
 
     @Autowired
-    public BeansComponentTypeForm(ComponentTypeFormControlErrorMessages htfEM) {
-        this.htfEM = htfEM;
+    public BeansComponentTypeForm(ComponentTypeFormControlErrorMessages ctfEM) {
+        this.ctfEM = ctfEM;
     }
 
     @Bean
@@ -40,10 +40,10 @@ public class BeansComponentTypeForm {
 
         var map = new HashMap<String, FormControlValidator>();
 
-        map.put(COMPONENT, new FormControlValidatorImpl(this.htfEM.getComponent(), LENGTH));
-        map.put(CATEGORY, new FormControlValidatorImpl(this.htfEM.getCategory(), LENGTH));
-        map.put(LABEL, new FormControlValidatorImpl(this.htfEM.getLabel(), LENGTH));
-        map.put(COMMENT, new FormControlValidatorImpl(this.htfEM.getComment(), LENGTH));
+        map.put(COMPONENT, new FormControlValidatorImpl(this.ctfEM.getComponent(), LENGTH));
+        map.put(COMPONENT_CATEGORY, new FormControlValidatorImpl(this.ctfEM.getComponentCategory(), LENGTH));
+        map.put(LABEL, new FormControlValidatorImpl(this.ctfEM.getLabel(), LENGTH));
+        map.put(COMMENT, new FormControlValidatorImpl(this.ctfEM.getComment(), LENGTH));
 
         return map;
     }

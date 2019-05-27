@@ -76,9 +76,8 @@ public class EntityFormModelValidation {
         var stateFormControl = new FormControlImpl<>(STATE, locationProperties.getState());
         var cityFormControl = new FormControlImpl<>(CITY, locationProperties.getCity());
         var streetFormControl = new FormControlImpl<>(STREET, locationProperties.getStreet());
-        var pointFormControl = new FormControlImpl<>(POINT, locationProperties.getPoint());
 
-        return List.of(countryFormControl, stateFormControl, cityFormControl, streetFormControl, pointFormControl);
+        return List.of(countryFormControl, stateFormControl, cityFormControl, streetFormControl);
     }
 
     private static Collection<FormControl> formControlsMessageProperties(MessageProperties messageProperties) {
@@ -104,10 +103,10 @@ public class EntityFormModelValidation {
 
     private static Collection<FormControl> formControlsHardwareProperties(HardwareProperties hardwareProperties) {
 
-        var hardwareTypeFormControl = new FormControlImpl<>(HARDWARE_TYPE, hardwareProperties.getHardwareType());
+        var componentTypeFormControl = new FormControlImpl<>(COMPONENT_TYPE, hardwareProperties.getComponentType());
         var unitFormControl = new FormControlImpl<>(UNIT, hardwareProperties.getUnit());
 
-        return List.of(hardwareTypeFormControl, unitFormControl);
+        return List.of(componentTypeFormControl, unitFormControl);
     }
 
     public void validate(EntityCreateDto entityCreateDTO) {
@@ -128,6 +127,6 @@ public class EntityFormModelValidation {
         if (!this.tFMV.isValid(formModel)) {
             throwEntityFormControlErrorException(this.tFMV.getError());
         }
-        log.debug( formName + " FORM IS VALID");
+        log.debug(formName + " FORM IS VALID");
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDTO;
+import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDto;
 import de.uni.stuttgart.ipvs.em.form.ComponentTypeFormModelValidation;
 import de.uni.stuttgart.ipvs.em.persistence.CviRepository;
 import de.uni.stuttgart.ipvs.em.response.ResultsSet;
@@ -30,7 +30,25 @@ public class CviService {
         this.ctFMV = ctFMV;
     }
 
-    public TermsMeaningResultsSet searchMeaningOfTermsText(String termsText) {
+    // CREATE
+    public String createComponentType_roleManagerAdmin(ComponentTypeCreateDto componentTypeCreateDto) {
+        this.ctFMV.validate(componentTypeCreateDto);
+
+        var componentType = ComponentType.build(componentTypeCreateDto);
+        this.cviRepository.save(componentType);
+
+        return componentType.getSearchId();
+    }
+
+    // READ
+    public ResultsSet getAllComponentTypes_roleManagerAdmin() {
+        var selectResults = this.cviRepository.findAllComponentTypes();
+
+        return selectResults.isEmpty() ? ResultsSet.EMPTY : CviServiceUtils.getAllComponentTypesResultsSet(selectResults);
+    }
+
+    // READ
+    public TermsMeaningResultsSet searchMeaningOfTermsText_allRoles(String termsText) {
         return !hasLength(termsText) ?
                 TermsMeaningResultsSet.EMPTY :
                 searchMeaningOfTerms(
@@ -39,6 +57,7 @@ public class CviService {
                 );
     }
 
+    // READ
     private TermsMeaningResultsSet searchMeaningOfTerms(String termsText, Collection<String> terms) {
         var selectResults = this.cviRepository.searchMeaningOfTerms(terms);
 
@@ -46,22 +65,5 @@ public class CviService {
                 TermsMeaningResultsSet.EMPTY :
                 CviServiceUtils.getTermsMeaningResultsSet(termsText, selectResults);
     }
-
-    public ResultsSet getAllComponentTypes() {
-        var selectResults = this.cviRepository.findAllComponentTypes();
-
-        return selectResults.isEmpty() ? ResultsSet.EMPTY : CviServiceUtils.getAllComponentTypesResultsSet(selectResults);
-    }
-
-    public String createComponentType(ComponentTypeCreateDTO componentTypeCreateDTO) {
-
-        this.ctFMV.validate(componentTypeCreateDTO);
-
-        var componentType = ComponentType.build(componentTypeCreateDTO);
-        this.cviRepository.save(componentType);
-
-        return componentType.getSearchId();
-    }
-
 
 }

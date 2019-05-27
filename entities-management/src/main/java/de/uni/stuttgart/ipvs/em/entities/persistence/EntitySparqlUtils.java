@@ -74,38 +74,6 @@ class EntitySparqlUtils {
     }
 
 
-    static TripleSameSubject messageProperties(String entityID, MessageProperties messageProperties) {
-        var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityID));
-        tripleSameSubject.add(RDF_TYPE, CVI_MESSAGE_CLASS);
-
-        var messageFormatClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMessageFormat());
-        tripleSameSubject.add(CVI_HAS_MESSAGE_FORMAT, messageFormatClass);
-        tripleSameSubject.add(RDF_TYPE, messageFormatClass);
-
-        var metaModelTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMetaModelType());
-        tripleSameSubject.add(CVI_HAS_META_MODEL_TYPE, metaModelTypeClass);
-        tripleSameSubject.add(RDF_TYPE, metaModelTypeClass);
-
-        tripleSameSubject.add(CVI_HAS_META_MODEL, StringLiteral.of(messageProperties.getMetaModel()));
-
-        return tripleSameSubject;
-    }
-
-    static TripleSameSubject hardwareProperties(String entityId, HardwareProperties hardwareProperties) {
-
-        var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
-        tripleSameSubject.add(RDF_TYPE, CVI_HARDWARE_CLASS);
-
-        var hardwareTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, hardwareProperties.getHardwareType());
-        tripleSameSubject.add(CVI_HAS_HARDWARE_TYPE, hardwareTypeClass);
-        tripleSameSubject.add(RDF_TYPE, hardwareTypeClass);
-
-        tripleSameSubject.add(CVI_HAS_UNIT, StringLiteral.of(hardwareProperties.getUnit()));
-
-        return tripleSameSubject;
-
-    }
-
     static TripleSameSubject topicProperties(String entityId, TopicProperties topicProperties) {
 
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
@@ -118,15 +86,30 @@ class EntitySparqlUtils {
         tripleSameSubject.add(CVI_HAS_DATA_TYPE, dataTypeClass);
         tripleSameSubject.add(RDF_TYPE, dataTypeClass);
 
-        var protocolClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getProtocol());
-        tripleSameSubject.add(CVI_HAS_PROTOCOL, protocolClass);
-        tripleSameSubject.add(RDF_TYPE, protocolClass);
-
         var topicTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getTopicType());
         tripleSameSubject.add(CVI_HAS_TOPIC_TYPE, topicTypeClass);
         tripleSameSubject.add(RDF_TYPE, topicTypeClass);
 
+        var protocolClass = PrefixedName.of(CVI_PREFIX_LABEL, topicProperties.getProtocol());
+        tripleSameSubject.add(CVI_HAS_PROTOCOL, protocolClass);
+        tripleSameSubject.add(RDF_TYPE, protocolClass);
+
         return tripleSameSubject;
+    }
+
+    static TripleSameSubject hardwareProperties(String entityId, HardwareProperties hardwareProperties) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
+        tripleSameSubject.add(RDF_TYPE, CVI_HARDWARE_CLASS);
+
+        var componentTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, hardwareProperties.getComponentType());
+        tripleSameSubject.add(CVI_HAS_COMPONENT_TYPE, componentTypeClass);
+        tripleSameSubject.add(RDF_TYPE, componentTypeClass);
+
+        tripleSameSubject.add(CVI_HAS_UNIT, StringLiteral.of(hardwareProperties.getUnit()));
+
+        return tripleSameSubject;
+
     }
 
     static TripleSameSubject locationProperties(String entityId, LocationProperties locationProperties) {
@@ -134,14 +117,39 @@ class EntitySparqlUtils {
         var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityId));
         tripleSameSubject.add(RDF_TYPE, CVI_LOCATION_CLASS);
 
-        tripleSameSubject.add(CVI_HAS_COUNTRY, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCountry()));
-        tripleSameSubject.add(CVI_HAS_STATE, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getState()));
-        tripleSameSubject.add(CVI_HAS_CITY, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCity()));
-        tripleSameSubject.add(CVI_HAS_STREET, PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getStreet()));
+        var countryClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCountry());
+        tripleSameSubject.add(CVI_HAS_COUNTRY, countryClass);
+        tripleSameSubject.add(RDF_TYPE, countryClass);
 
-        var pointClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getPoint());
-        tripleSameSubject.add(CVI_HAS_POINT, pointClass);
-        tripleSameSubject.add(RDF_TYPE, pointClass);
+        var stateClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getState());
+        tripleSameSubject.add(CVI_HAS_STATE, stateClass);
+        tripleSameSubject.add(RDF_TYPE, stateClass);
+
+        var cityClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getCity());
+        tripleSameSubject.add(CVI_HAS_CITY, cityClass);
+        tripleSameSubject.add(RDF_TYPE, cityClass);
+
+        var streetClass = PrefixedName.of(CVI_PREFIX_LABEL, locationProperties.getStreet());
+        tripleSameSubject.add(CVI_HAS_STREET, streetClass);
+        tripleSameSubject.add(RDF_TYPE, streetClass);
+
+        return tripleSameSubject;
+    }
+
+    static TripleSameSubject messageProperties(String entityID, MessageProperties messageProperties) {
+
+        var tripleSameSubject = new TripleSameSubjectImpl(entityIdSubject(entityID));
+        tripleSameSubject.add(RDF_TYPE, CVI_MESSAGE_CLASS);
+
+        var messageFormatClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMessageFormat());
+        tripleSameSubject.add(CVI_HAS_MESSAGE_FORMAT, messageFormatClass);
+        tripleSameSubject.add(RDF_TYPE, messageFormatClass);
+
+        var metaModelTypeClass = PrefixedName.of(CVI_PREFIX_LABEL, messageProperties.getMetaModelType());
+        tripleSameSubject.add(CVI_HAS_META_MODEL_TYPE, metaModelTypeClass);
+        tripleSameSubject.add(RDF_TYPE, metaModelTypeClass);
+
+        tripleSameSubject.add(CVI_HAS_META_MODEL, StringLiteral.of(messageProperties.getMetaModel()));
 
         return tripleSameSubject;
     }

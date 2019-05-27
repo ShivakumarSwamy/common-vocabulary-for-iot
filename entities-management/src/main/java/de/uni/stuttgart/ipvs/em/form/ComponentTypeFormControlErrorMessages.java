@@ -9,11 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ComponentTypeFormControlErrorMessages {
 
     private String component;
-
-    private String category;
+    private String componentCategory;
 
     private String label;
-
     private String comment;
 
 }

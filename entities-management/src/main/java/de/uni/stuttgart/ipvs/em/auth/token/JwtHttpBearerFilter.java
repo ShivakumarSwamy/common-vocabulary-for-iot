@@ -6,7 +6,6 @@ import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import org.jose4j.jwt.consumer.JwtConsumer;
 
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,16 +30,14 @@ import static de.uni.stuttgart.ipvs.em.auth.AuthConstants.JWT_TOKEN_PREFIX;
 public class JwtHttpBearerFilter extends BasicAuthenticationFilter {
 
     private final JwtConsumer jwtConsumer;
-    private final RoleHierarchy roleHierarchy;
+
 
     public JwtHttpBearerFilter(AuthenticationManager authenticationManager,
                                AuthenticationEntryPoint authenticationEntryPoint,
-                               JwtConsumer jwtConsumer,
-                               RoleHierarchy roleHierarchy) {
+                               JwtConsumer jwtConsumer) {
 
         super(authenticationManager, authenticationEntryPoint);
         this.jwtConsumer = jwtConsumer;
-        this.roleHierarchy = roleHierarchy;
     }
 
     private static UserDetailsImpl getUser(JwtClaims claims) throws MalformedClaimException {
@@ -71,8 +68,8 @@ public class JwtHttpBearerFilter extends BasicAuthenticationFilter {
             JwtClaims claims = validateClaimsOfToken(authorizationHeader, this.jwtConsumer);
             var authUser = getUser(claims);
 
-            var reachableGrantedAuthorities = this.roleHierarchy.getReachableGrantedAuthorities(authUser.getAuthorities());
-            return new UsernamePasswordAuthenticationToken(authUser, null, reachableGrantedAuthorities);
+            var authorities = authUser.getAuthorities();
+            return new UsernamePasswordAuthenticationToken(authUser, null, authorities);
 
         } catch (InvalidJwtException | MalformedClaimException e) {
             log.error("JWT TOKEN CLAIMS INVALID");

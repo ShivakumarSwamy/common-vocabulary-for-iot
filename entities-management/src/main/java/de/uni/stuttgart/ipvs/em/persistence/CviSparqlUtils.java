@@ -57,13 +57,13 @@ public class CviSparqlUtils {
         tripleSameSubject.add(RDF_TYPE, RDFS_CLASS);
         tripleSameSubject.add(RDF_TYPE, CVI_COMPONENT_TYPE_CLASS);
 
-        tripleSameSubject.add(RDFS_SUBCLASS_OF, PrefixedName.of(CVI_PREFIX_LABEL, componentType.getCategory()));
+        tripleSameSubject.add(RDFS_SUBCLASS_OF, PrefixedName.of(CVI_PREFIX_LABEL, componentType.getComponentCategory()));
 
         return tripleSameSubject;
     }
 
     /**
-     * category is the subclass of component (i.e sensor and actuator in vocabulary)
+     * componentCategory is the subclass of component (i.e sensor and actuator in vocabulary)
      */
     static TripleSameSubject identifyCategory() {
 

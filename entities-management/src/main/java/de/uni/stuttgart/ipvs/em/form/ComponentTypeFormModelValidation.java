@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Component;
 
-import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDTO;
+import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDto;
 import de.uni.stuttgart.ipvs.form.control.FormControl;
 import de.uni.stuttgart.ipvs.form.control.FormControlImpl;
 import de.uni.stuttgart.ipvs.form.model.FormModel;
@@ -32,7 +32,7 @@ public class ComponentTypeFormModelValidation {
         this.ctFMV = ctFMV;
     }
 
-    public void validate(ComponentTypeCreateDTO componentTypeCreateDTO) {
+    public void validate(ComponentTypeCreateDto componentTypeCreateDTO) {
         var formModel = formModel(componentTypeCreateDTO);
 
         if (!this.ctFMV.isValid(formModel)) {
@@ -46,15 +46,15 @@ public class ComponentTypeFormModelValidation {
         throw new ComponentTypeFormControlErrorException(formControlError.getHelp());
     }
 
-    private FormModel formModel(ComponentTypeCreateDTO componentTypeCreateDTO) {
+    private FormModel formModel(ComponentTypeCreateDto componentTypeCreateDTO) {
         return new FormModelImpl(formControls(componentTypeCreateDTO));
     }
 
-    private Collection<FormControl> formControls(ComponentTypeCreateDTO componentTypeCreateDTO) {
+    private Collection<FormControl> formControls(ComponentTypeCreateDto componentTypeCreateDTO) {
         var componentTypeFormControl =
                 new FormControlImpl<>(COMPONENT, componentTypeCreateDTO.getComponent());
 
-        var categoryFormControl = new FormControlImpl<>(CATEGORY, componentTypeCreateDTO.getCategory());
+        var categoryFormControl = new FormControlImpl<>(COMPONENT_CATEGORY, componentTypeCreateDTO.getComponentCategory());
         var labelFormControl = new FormControlImpl<>(LABEL, componentTypeCreateDTO.getLabel());
         var commentFormControl = new FormControlImpl<>(COMMENT, componentTypeCreateDTO.getComment());
 

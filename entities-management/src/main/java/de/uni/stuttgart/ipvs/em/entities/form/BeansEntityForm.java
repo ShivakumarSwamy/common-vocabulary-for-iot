@@ -30,10 +30,10 @@ public class BeansEntityForm {
     @Bean
     @Qualifier("entityFormModel")
     FormModelValidator entityFormModelValidator() {
-        return new FormModelValidatorImpl(enityFormControlValidators());
+        return new FormModelValidatorImpl(entityFormControlValidators());
     }
 
-    private Map<String, FormControlValidator> enityFormControlValidators() {
+    private Map<String, FormControlValidator> entityFormControlValidators() {
 
         var map = new HashMap<String, FormControlValidator>();
 
@@ -44,7 +44,7 @@ public class BeansEntityForm {
         map.put(PROTOCOL, formControlValidatorHasLength(this.tfcEM.getProtocol()));
 
         map.put(UNIT, formControlValidatorHasLength(this.tfcEM.getUnit()));
-        map.put(HARDWARE_TYPE, formControlValidatorHasLength(this.tfcEM.getHardwareType()));
+        map.put(COMPONENT_TYPE, formControlValidatorHasLength(this.tfcEM.getComponentType()));
 
         map.put(META_MODEL, formControlValidatorHasLength(this.tfcEM.getMetaModel()));
         map.put(META_MODEL_TYPE, formControlValidatorHasLength(this.tfcEM.getMetaModelType()));
@@ -54,7 +54,6 @@ public class BeansEntityForm {
         map.put(STATE, formControlValidatorHasLength(this.tfcEM.getState()));
         map.put(CITY, formControlValidatorHasLength(this.tfcEM.getCity()));
         map.put(STREET, formControlValidatorHasLength(this.tfcEM.getStreet()));
-        map.put(POINT, formControlValidatorHasLength(this.tfcEM.getPoint()));
 
         return map;
     }

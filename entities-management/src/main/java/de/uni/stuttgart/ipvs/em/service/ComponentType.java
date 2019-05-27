@@ -2,22 +2,25 @@ package de.uni.stuttgart.ipvs.em.service;
 
 import lombok.Value;
 
-import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDTO;
+import de.uni.stuttgart.ipvs.em.dto.ComponentTypeCreateDto;
 
 @Value
 public class ComponentType {
 
-    private final String category;
+    private final String componentCategory;
     private final String searchId;
     private final String label;
     private final String comment;
 
-    public static ComponentType build(ComponentTypeCreateDTO componentTypeCreateDTO) {
+    public static ComponentType build(ComponentTypeCreateDto componentTypeCreateDto) {
 
-        String category = requiredTermsTextFormat(componentTypeCreateDTO.getCategory());
-        String searchId = requiredTermsTextFormat(componentTypeCreateDTO.getLabel());
+        String componentCategory = requiredTermsTextFormat(componentTypeCreateDto.getComponentCategory());
+        String searchId = requiredTermsTextFormat(componentTypeCreateDto.getLabel());
 
-        return new ComponentType(category, searchId, componentTypeCreateDTO.getLabel(), componentTypeCreateDTO.getComment());
+        String label = componentTypeCreateDto.getLabel();
+        String comment = componentTypeCreateDto.getComment();
+
+        return new ComponentType(componentCategory, searchId, label, comment);
     }
 
     private static String requiredTermsTextFormat(String text) {

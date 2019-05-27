@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.component.types.controller;
+package de.uni.stuttgart.ipvs.em.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,8 +22,8 @@ public class MeaningTermsController {
     }
 
     @PostMapping
-    public TermsMeaningResultsSet searchMeaningOfTermsText(@RequestParam("search_query") String termsText) {
-        return this.cviService.searchMeaningOfTermsText(termsText);
+    public TermsMeaningResultsSet searchMeaningOfTermsText_allRoles(@RequestParam("search_query") String termsText) {
+        return this.cviService.searchMeaningOfTermsText_allRoles(termsText);
     }
 
 }

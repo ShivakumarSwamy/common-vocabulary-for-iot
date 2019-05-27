@@ -1,4 +1,4 @@
-package de.uni.stuttgart.ipvs.em.component.types.controller;
+package de.uni.stuttgart.ipvs.em.controller;
 
 import lombok.extern.slf4j.Slf4j;
 

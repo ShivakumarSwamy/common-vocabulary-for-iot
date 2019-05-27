@@ -27,8 +27,8 @@ error:
   message:
     component-type:
       form-control:
-        component: "Hardware component is required"
-        category: "Category is required"
+        component: "Component is required"
+        component-category: "Component Category is required"
         label: "Label is required"
         comment: "Comment is required"
     entity:
@@ -39,7 +39,7 @@ error:
         topic-type: "Valid values are subscribe or publish"
         data-type: "Valid values are string, boolean, float, integer"
         unit: "Unit is required"
-        hardware-type: "Hardware type is required"
+        component-type: "Component type is required"
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
@@ -47,7 +47,6 @@ error:
         state: "State is required"
         city: "City is required"
         street: "Street is required"
-        point: "Point is required"
 
 
 logging:
@@ -92,8 +91,8 @@ error:
   message:
     component-type:
       form-control:
-        component: "Hardware component is required"
-        category: "Category is required"
+        component: "Component is required"
+        component-category: "Component Category is required"
         label: "Label is required"
         comment: "Comment is required"
     entity:
@@ -104,7 +103,7 @@ error:
         topic-type: "Valid values are subscribe or publish"
         data-type: "Valid values are string, boolean, float, integer"
         unit: "Unit is required"
-        hardware-type: "Hardware type is required"
+        component-type: "Component type is required"
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
@@ -112,7 +111,6 @@ error:
         state: "State is required"
         city: "City is required"
         street: "Street is required"
-        point: "Point is required"
 ---
 
 spring:
@@ -145,8 +143,8 @@ error:
   message:
     component-type:
       form-control:
-        component: "Hardware component is required"
-        category: "Category is required"
+        component: "Component is required"
+        component-category: "Component Category is required"
         label: "Label is required"
         comment: "Comment is required"
     entity:
@@ -157,7 +155,7 @@ error:
         topic-type: "Valid values are subscribe or publish"
         data-type: "Valid values are string, boolean, float, integer"
         unit: "Unit is required"
-        hardware-type: "Hardware type is required"
+        component-type: "Component type is required"
         message-format: "Valid message format is JSON"
         meta-model-type: "Valid message format is JSON Schema"
         meta-model: "Not a valid JSON message structure"
@@ -165,4 +163,3 @@ error:
         state: "State is required"
         city: "City is required"
         street: "Street is required"
-        point: "Point is required"

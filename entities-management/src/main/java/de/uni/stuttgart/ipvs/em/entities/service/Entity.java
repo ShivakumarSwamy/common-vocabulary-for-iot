@@ -23,7 +23,7 @@ public class Entity
     private String protocol;
     private String topicType;
 
-    private String hardwareType;
+    private String componentType;
     private String unit;
 
     private String messageFormat;
@@ -34,14 +34,12 @@ public class Entity
     private String state;
     private String city;
     private String street;
-    private String point;
 
 
     private Entity(String owner, String id) {
         this.owner = owner;
         this.id = id;
     }
-
 
     static Entity buildFromEntityDTO(EntityCreateDto entityCreateDTO, String ownerId) {
         return build(EntityBuilder.ownerId(ownerId), entityCreateDTO);
@@ -84,7 +82,7 @@ public class Entity
     private static void hardwareProperties(EntityBuilder entityBuilder,
                                            HardwareProperties hardwareProperties) {
         entityBuilder
-                .hardwareType(requiredTextFormat(hardwareProperties.getHardwareType()))
+                .componentType(requiredTextFormat(hardwareProperties.getComponentType()))
                 .unit(hardwareProperties.getUnit())
         ;
     }
@@ -105,7 +103,6 @@ public class Entity
                 .state(requiredTextFormat(locationProperties.getState()))
                 .city(requiredTextFormat(locationProperties.getCity()))
                 .street(requiredTextFormat(locationProperties.getStreet()))
-                .point(locationProperties.getPoint())
         ;
     }
 
@@ -151,8 +148,8 @@ public class Entity
             return this;
         }
 
-        EntityBuilder hardwareType(String hardwareType) {
-            this.entity.hardwareType = hardwareType;
+        EntityBuilder componentType(String hardwareType) {
+            this.entity.componentType = hardwareType;
             return this;
         }
 
@@ -195,12 +192,6 @@ public class Entity
             this.entity.street = street;
             return this;
         }
-
-        EntityBuilder point(String point) {
-            this.entity.point = point;
-            return this;
-        }
-
 
         Entity get() {
             return this.entity;
