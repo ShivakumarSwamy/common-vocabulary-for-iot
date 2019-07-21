@@ -1,0 +1,165 @@
+server:
+  port: 8090
+
+debug: true
+
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "localhost"
+      port: "7200"
+      repository-id: "cvi"
+      initial-load-file-location: "cvi-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/cvi"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/cvi/statements"
+      query-repository-statements: "/repositories/cvi"
+
+error:
+  message:
+    component-type:
+      form-control:
+        component: "Component is required"
+        component-category: "Component Category is required"
+        label: "Label is required"
+        comment: "Comment is required"
+    entity:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        component-type: "Component type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
+---
+
+
+spring:
+  profiles: dev
+
+server:
+  port: 8090
+
+debug: true
+
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "localhost"
+      port: "7210"
+      repository-id: "cvi"
+      initial-load-file-location: "cvi-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/cvi"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/cvi/statements"
+      query-repository-statements: "/repositories/cvi"
+logging:
+  level:
+    org:
+      springframework:
+        security: "DEBUG"
+        web: "DEBUG"
+
+error:
+  message:
+    component-type:
+      form-control:
+        component: "Component is required"
+        component-category: "Component Category is required"
+        label: "Label is required"
+        comment: "Comment is required"
+    entity:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        component-type: "Component type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"
+---
+
+spring:
+  profiles: docker
+  devtools:
+    restart:
+      enabled: false
+
+data:
+  source:
+    properties:
+      scheme: "http"
+      host: "cvi"
+      port: "7200"
+      repository-id: "cvi"
+      initial-load-file-location: "cvi-vocabulary.sparql"
+    endpoints:
+      create-repository: "/rest/repositories"
+      delete-repository: "/rest/repositories/cvi"
+      read-all-repository: "/repositories"
+      update-repository-statements: "/repositories/cvi/statements"
+      query-repository-statements: "/repositories/cvi"
+
+debug: false
+
+server:
+  port: 8080
+
+error:
+  message:
+    component-type:
+      form-control:
+        component: "Component is required"
+        component-category: "Component Category is required"
+        label: "Label is required"
+        comment: "Comment is required"
+    entity:
+      form-control:
+        path: "Path cannot contain whitespaces"
+        protocol: "Not a valid protocol, valid protocols are http or mqtt"
+        middleware-endpoint: "Not a valid url"
+        topic-type: "Valid values are subscribe or publish"
+        data-type: "Valid values are string, boolean, float, integer"
+        unit: "Unit is required"
+        component-type: "Component type is required"
+        message-format: "Valid message format is JSON"
+        meta-model-type: "Valid message format is JSON Schema"
+        meta-model: "Not a valid JSON message structure"
+        country: "Country is required"
+        state: "State is required"
+        city: "City is required"
+        street: "Street is required"

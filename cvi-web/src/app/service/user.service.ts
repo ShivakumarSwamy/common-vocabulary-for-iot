@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {UserCreateDto} from "../dto/user-create-dto";
+import {UserCreateDto} from "../users/dto/user-create-dto";
 import {HttpClient} from "@angular/common/http";
 import {ADMIN_USERS_ENDPOINT, USERS_ENDPOINT} from "../api-endpoints";
 import {catchError} from "rxjs/operators";

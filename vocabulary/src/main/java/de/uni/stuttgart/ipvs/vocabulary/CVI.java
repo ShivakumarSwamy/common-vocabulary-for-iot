@@ -32,7 +32,7 @@ public class CVI {
     public static final PrefixedName CVI_HAS_META_MODEL_TYPE;
 
     public static final PrefixedName CVI_HARDWARE_CLASS;
-    public static final PrefixedName CVI_HAS_HARDWARE_TYPE;
+    public static final PrefixedName CVI_HAS_COMPONENT_TYPE;
     public static final PrefixedName CVI_HAS_UNIT;
 
     public static final PrefixedName CVI_LOCATION_CLASS;
@@ -77,7 +77,7 @@ public class CVI {
         CVI_HAS_META_MODEL_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasMetaModelType");
 
         CVI_HARDWARE_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "hardware");
-        CVI_HAS_HARDWARE_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasHardwareType");
+        CVI_HAS_COMPONENT_TYPE = new PrefixedName(CVI_PREFIX_LABEL, "hasComponentType");
         CVI_HAS_UNIT = new PrefixedName(CVI_PREFIX_LABEL, "hasUnit");
 
         CVI_LOCATION_CLASS = new PrefixedName(CVI_PREFIX_LABEL, "location");
