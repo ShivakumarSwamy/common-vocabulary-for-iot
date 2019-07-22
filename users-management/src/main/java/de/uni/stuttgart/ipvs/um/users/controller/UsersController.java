@@ -1,6 +1,8 @@
 package de.uni.stuttgart.ipvs.um.users.controller;
 
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
+import springfox.documentation.annotations.ApiIgnore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,9 +19,12 @@ import de.uni.stuttgart.ipvs.um.users.persistence.UserDetailsImpl;
 import de.uni.stuttgart.ipvs.um.users.service.UserDetailsServiceImpl;
 import de.uni.stuttgart.ipvs.um.users.service.UserServiceException;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequestMapping("/api/users")
 @Slf4j
+@Api(tags = "Users")
 public class UsersController {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
@@ -30,18 +35,22 @@ public class UsersController {
     }
 
     @PostMapping
+    @ApiOperation("Create a user")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody UserCreateDTO userCreateDTO) {
+    public void createUser(
+            @ApiParam(value = "DTO object required to create a user", required = true)
+            @RequestBody UserCreateDTO userCreateDTO) {
         this.userDetailsServiceImpl.createUser(userCreateDTO);
     }
 
     @GetMapping
-    public ResultsSet getUserByUserIdInToken(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    @ApiOperation("Get your user information")
+    public ResultsSet getUserByUserIdInToken(@ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return this.userDetailsServiceImpl.findUserByUserId(userDetails.getId());
     }
 
     @ExceptionHandler
-    public ResponseEntity handlerUserFormControlErrorException(UserServiceException failedServiceUser) {
+    public ResponseEntity handlerUserServiceException(UserServiceException failedServiceUser) {
         log.error("FAILED USER SERVICE", failedServiceUser);
         return ResponseEntityUtils.getResponseEntityWithMessageKey(HttpStatus.BAD_REQUEST, failedServiceUser.getMessage());
     }
