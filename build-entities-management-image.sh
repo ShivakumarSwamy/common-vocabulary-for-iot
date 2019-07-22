@@ -8,7 +8,7 @@
 
 # final image entities-management:<version> and entities-management:latest
 
-version=${1:-0.4.1}
+version=${1:-0.4.2}
 
 docker image build \
     --file Entities-Management.Dockerfile \
