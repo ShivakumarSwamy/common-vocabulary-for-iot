@@ -11,10 +11,10 @@
     </parent>
 
     <artifactId>entities-management</artifactId>
-    <version>0.4.2.M1</version>
+    <version>0.4.2</version>
     <packaging>jar</packaging>
 
-    <name>Topics Management</name>
+    <name>Entities Management</name>
     <description>Manage terms meaning, component types, entities</description>
 
     <properties>

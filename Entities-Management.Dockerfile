@@ -5,7 +5,7 @@ RUN mvn package
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-ARG version=0.4.1
+ARG version=0.4.2
 ENV ENTITIES_MANAGEMENT_APP_JAR=entities-management-${version}.jar
 COPY --from=mvn /app/entities-management/target/${ENTITIES_MANAGEMENT_APP_JAR}  /app/lib/
 RUN groupadd -r javaApp && \
