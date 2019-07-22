@@ -41,18 +41,18 @@ public class UserRepository {
 
         var graphUpdateFormString = UserUpdateUtils.newUserDetails(userDetails);
         graphUpdate(graphUpdateFormString, "CREATE: NEW USER");
-
     }
 
     public Collection<Map<String, String>> findAllUsers() {
-        var allUsersQueryString = UserQueryUtils.findAllUsers();
 
+        var allUsersQueryString = UserQueryUtils.findAllUsers();
         var selectResults = selectQuery(allUsersQueryString, "READ: ALL USERS");
 
         return UserUtils.getUsersPropertyMapFromSelectResults(selectResults);
     }
 
     public Collection<Map<String, String>> findUserByUserId(String id) {
+
         var userQueryString = UserQueryUtils.findUserByUserId(id);
         var selectResults = selectQuery(userQueryString, "READ: A USER");
 
@@ -60,19 +60,17 @@ public class UserRepository {
     }
 
     public UserDetailsImpl findUserByUsername(String username) {
+
         var userQueryString = UserQueryUtils.findUserByUsername(username);
         var selectResults = selectQuery(userQueryString, "READ: A USER");
 
         return UserUtils.getUserFromSelectResults(selectResults);
     }
 
-
-
     private SelectResults selectQuery(String queryFormString, String contextErrorMessage) {
 
         var httpEntity = HttpEntityFactory.getHttpEntitySelectQuery(queryFormString);
         return query(httpEntity, SelectResults.class, contextErrorMessage);
-
     }
 
     private void graphUpdate(String graphUpdateFormString, String contextErrorMessage) {

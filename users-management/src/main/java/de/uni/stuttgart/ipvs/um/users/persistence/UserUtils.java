@@ -14,11 +14,9 @@ import static de.uni.stuttgart.ipvs.um.users.persistence.QVExprConstants.*;
 
 public class UserUtils {
 
-
     private static final Function<Map<String, VariableBinding>, String> GROUP_BY_USER_ID;
     private static final Function<Map<String, VariableBinding>, String> PROPERTY_NAME;
     private static final Function<Map<String, VariableBinding>, String> PROPERTY_VALUE;
-
 
     private UserUtils() {
         throw new IllegalStateException(getClass().getName());

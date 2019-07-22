@@ -15,5 +15,4 @@ public class ResultsSet<T> {
     static {
         EMPTY = new ResultsSet<>(List.of());
     }
-
 }

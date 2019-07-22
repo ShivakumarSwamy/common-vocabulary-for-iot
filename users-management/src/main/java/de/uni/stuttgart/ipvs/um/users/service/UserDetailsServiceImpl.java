@@ -26,7 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userFormModelValidation = userFormModelValidation;
     }
 
-
     public void createUser(UserCreateDTO userCreateDTO) {
 
         this.userFormModelValidation.validate(userCreateDTO);
