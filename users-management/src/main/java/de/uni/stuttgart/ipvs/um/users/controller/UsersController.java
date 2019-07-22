@@ -8,7 +8,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import de.uni.stuttgart.ipvs.ilv.ResponseEntityUtils;
 import de.uni.stuttgart.ipvs.um.form.UserFormControlErrorException;
@@ -21,13 +20,12 @@ import de.uni.stuttgart.ipvs.um.users.service.UserServiceException;
 @RestController
 @RequestMapping("/api/users")
 @Slf4j
-public class UserController {
-
+public class UsersController {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
-    public UserController(UserDetailsServiceImpl userDetailsServiceImpl) {
+    public UsersController(UserDetailsServiceImpl userDetailsServiceImpl) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
 
@@ -43,13 +41,13 @@ public class UserController {
     }
 
     @ExceptionHandler
-    public ResponseEntity handlerUserServiceException(UserServiceException failedServiceUser) {
+    public ResponseEntity handlerUserFormControlErrorException(UserServiceException failedServiceUser) {
         log.error("FAILED USER SERVICE", failedServiceUser);
         return ResponseEntityUtils.getResponseEntityWithMessageKey(HttpStatus.BAD_REQUEST, failedServiceUser.getMessage());
     }
 
     @ExceptionHandler
-    public ResponseEntity handlerUserServiceException(UserFormControlErrorException failedUserFormControl) {
+    public ResponseEntity handlerUserFormControlErrorException(UserFormControlErrorException failedUserFormControl) {
         log.error("FAILED USER FORM CONTROL", failedUserFormControl);
         return ResponseEntityUtils.getResponseEntityWithMessageKey(HttpStatus.BAD_REQUEST, failedUserFormControl.getMessage());
     }

@@ -57,6 +57,4 @@ public class BeansConfiguration {
         if (this.forceInitialLoad) repositoryService.onlyInitialLoad();
 
     }
-
-
 }

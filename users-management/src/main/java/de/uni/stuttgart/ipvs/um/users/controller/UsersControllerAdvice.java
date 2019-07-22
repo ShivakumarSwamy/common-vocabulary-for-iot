@@ -11,7 +11,7 @@ import de.uni.stuttgart.ipvs.um.users.persistence.UserRepositoryException;
 
 @ControllerAdvice
 @Slf4j
-public class UserControllerAdvice {
+public class UsersControllerAdvice {
 
     @ExceptionHandler
     public ResponseEntity handleUserRepositoryException(UserRepositoryException failedSparql) {
