@@ -69,13 +69,17 @@ public class BeansConfiguration {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(usersApiInfo())
-                .tags(new Tag("Users", "Users Management"))
+                .tags(
+                        new Tag("Admin Users", ""),
+                        new Tag("All Users", "")
+                )
                 .useDefaultResponseMessages(false)
                 .securitySchemes(List.of(apiKey()))
                 .securityContexts(List.of(securityContext()))
                 .select()
                 .build();
     }
+
 
     private ApiKey apiKey() {
         return new ApiKey("JWT Token Auth", "Authorization", "header");
