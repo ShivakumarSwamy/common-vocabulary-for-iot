@@ -25,6 +25,7 @@
         <version.forms>0.1.0</version.forms>
         <version.initial.load.vocabulary>0.1.0</version.initial.load.vocabulary>
         <version.vocabulary>0.2.4</version.vocabulary>
+        <version.springfox.swagger>2.9.2</version.springfox.swagger>
     </properties>
 
     <dependencies>
@@ -88,6 +89,17 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- API Documentation -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${version.springfox.swagger}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${version.springfox.swagger}</version>
+        </dependency>
 
     </dependencies>
 
@@ -97,7 +109,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
         </plugins>
     </build>
 

@@ -1,6 +1,10 @@
 package de.uni.stuttgart.ipvs.um;
 
 import lombok.extern.slf4j.Slf4j;
+import springfox.documentation.service.*;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
+import springfox.documentation.spring.web.plugins.Docket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +21,9 @@ import de.uni.stuttgart.ipvs.ilv.config.DataSourceProperties;
 import de.uni.stuttgart.ipvs.ilv.repository.service.RepositoryService;
 import de.uni.stuttgart.ipvs.um.config.UsersDataSourceEndpoints;
 import de.uni.stuttgart.ipvs.um.config.UsersDataSourceProperties;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties({UsersDataSourceProperties.class, UsersDataSourceEndpoints.class})
@@ -55,6 +62,49 @@ public class BeansConfiguration {
         if (!repositoryService.hasRepository()) repositoryService.createRepositoryWithInitialLoad();
 
         if (this.forceInitialLoad) repositoryService.onlyInitialLoad();
-
     }
+
+    @Bean
+    public Docket apiDocs() {
+
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(usersApiInfo())
+                .tags(
+                        new Tag("Admin Users", ""),
+                        new Tag("All Users", "")
+                )
+                .useDefaultResponseMessages(false)
+                .securitySchemes(List.of(apiKey()))
+                .securityContexts(List.of(securityContext()))
+                .select()
+                .build();
+    }
+
+
+    private ApiKey apiKey() {
+        return new ApiKey("JWT Token Auth", "Authorization", "header");
+    }
+
+    private SecurityContext securityContext() {
+        return SecurityContext.builder()
+                .securityReferences(defaultAuth())
+                .build();
+    }
+
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return List.of(new SecurityReference("Token Auth", authorizationScopes));
+    }
+
+    private ApiInfo usersApiInfo() {
+        return new ApiInfo(
+                "Users Management API Documentation", "", "1.0",
+                "", new Contact("", "", "st152495@stud.uni-stuttgart.de"),
+                "", "",
+                new ArrayList<>()
+        );
+    }
+
 }
