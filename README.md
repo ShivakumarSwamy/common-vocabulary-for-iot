@@ -1,5 +1,9 @@
 # A Common Vocabulary for the Internet of Things
 
+
+#### NOT IN DEVELOPMENT ANYMORE 
+
+
 ## Table of Contents
 
 * [Abstract](#abstract)
